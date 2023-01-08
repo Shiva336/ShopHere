@@ -18,6 +18,8 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
 const authRouter = require("./routes/Auth");
 app.use("/auth",authRouter);
+const productRouter = require("./routes/Product");
+app.use("/product",productRouter);
 
 app.listen("3002",()=> {
     
