@@ -1,6 +1,8 @@
 .login-container {
   display: flex;
   flex-direction: column;
+  background: rgb(0, 0, 0);
+  height: 100vh;
 }
 .top-container {
   display: flex;
@@ -8,10 +10,6 @@
   margin-top: 8%;
   margin-left: 5%;
 }
-body {
-  background: rgb(0, 0, 0);
-}
-
 .left-container {
   margin: 0;
   width: 40vw;
@@ -36,7 +34,6 @@ body {
   color: rgb(222, 198, 58);
 }
 
-
 .form {
   background-color: rgb(255, 255, 255);
   display: flex;
@@ -44,15 +41,14 @@ body {
   align-items: center;
   gap: 50px;
   margin-left: 250px;
-  border-radius:50px;
-  width:400px;  
-  height:fit-content;
-  -webkit-border-radius:50px;
-  -moz-border-radius:50px;
-  -ms-border-radius:50px;
-  -o-border-radius:50px;
+  border-radius: 50px;
+  width: 400px;
+  height: fit-content;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
 }
-
 
 .form-fields-container {
   display: flex;
@@ -71,28 +67,23 @@ body {
   padding-left: 30px;
   display: flex;
   flex-direction: column;
-  gap:11px;
+  gap: 11px;
 }
-
 input {
-  border-radius:15px;
   width: 200px;
+  border: none;
+  border-bottom: 1px solid black;
   outline: none;
   font-size: 20px;
-  -webkit-border-radius:15px;
-  -moz-border-radius:15px;
-  -ms-border-radius:15px;
-  -o-border-radius:15px;
 }
 
 input:focus {
   outline: none;
 }
-
-.buttons-login{
+.buttons-login {
   display: flex;
   flex-direction: row;
-  gap:10px;
+  gap: 10px;
 }
 .btn {
   cursor: pointer;
@@ -111,16 +102,28 @@ input:focus {
   color: black;
   transform: scale(1.5);
   border: none;
-  animation:step-end;
-  -webkit-animation:step-end;
+  animation: step-end;
+  -webkit-animation: step-end;
   -webkit-transform: scale(1.5);
   -moz-transform: scale(1.5);
   -ms-transform: scale(1.5);
   -o-transform: scale(1.5);
 }
 
-.logged-app-description{
-font-size: 90px;
-color: rgb(222, 198, 58);
-padding-left:5%;
+.logged-app-description {
+  font-size: 90px;
+  color: rgb(222, 198, 58);
+  padding-left: 5%;
+}
+
+.switch-form-link {
+  border:none;
+  background-color:white;
+  width:fit-content;
+  height:fit-content;
+  cursor:pointer
+}
+
+a {
+  cursor: pointer;
 }
