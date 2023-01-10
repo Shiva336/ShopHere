@@ -1,0 +1,30 @@
+.product-container {
+    padding-block: 44px;
+    padding-inline: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    justify-items: center;
+    background-color: rgb(0, 40, 85);
+    padding-top: 60px;
+  }
+  
+  .product-container > h1 {
+    color: white;
+  }
+  
+  .product-container .product-grid {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 36px;
+  }
+  
+  @media (max-width: 900px) {
+    .product-container {
+      padding-inline: 20px;
+      padding-top: 60px;
+    }
+  }
+  
