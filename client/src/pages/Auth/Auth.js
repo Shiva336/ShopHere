@@ -1,8 +1,8 @@
 import React from "react";
 import "./Login.css";
-import axios from "axios";
+import { api } from "../../api";
 import { useNavigate } from "react-router-dom";
-import { useState,useRef,useEffect} from "react";
+import { useState, useRef, useEffect } from "react";
 function Auth() {
   let navigate = useNavigate();
   const [isRegistered, setIsRegistered] = useState(true);
@@ -11,7 +11,7 @@ function Auth() {
   const addressField = useRef(null);
   const usernameField = useRef(null);
   const passwordField = useRef(null);
-  
+
   const [text, setText] = useState("");
   const fullText = "If not here,then where?";
 
@@ -28,8 +28,7 @@ function Auth() {
     return () => clearInterval(interval);
   }, []);
 
-
-  function sendRegistrationForm(event) {
+  async function sendRegistrationForm(event) {
     event.preventDefault();
     let username;
     let email;
@@ -63,62 +62,59 @@ function Auth() {
         password: password,
       };
 
-      axios
-        .post(` http://localhost:3002/auth/register`, data)
-        .then((response) => {
-          if (response.status === 200) {
-            setText("");
-            setIsRegistered(true);
-            console.log("Form data:\n", data);
-            console.log("\nResponse : ", response);
-            console.log("Successfully sent data");
-          }
-        })
-        .catch((error) => {
-          console.log(data);
-          console.error(error);
-        });
+      try {
+        const response = await api.post(`/auth/register`,data);
+        if (response.status === 200) {
+          setText("");
+          setIsRegistered(true);
+          console.log("Form data:\n", data);
+          console.log("\nResponse : ", response);
+          console.log("Successfully sent data");
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
-    function sendLoginForm(event) {
-      event.preventDefault();
-      let username;
-      let password;
-      username = usernameField.current.value;
-      password = passwordField.current.value;
-      let data;
-  
-      data = {
-        name: username,
-        password: password,
-      };
-      if (username.length === 0 && password.length === 0) {
-        alert("Please enter the username and password!");
-        return;
-      }
-      if (username.length === 0) {
-        alert("Please enter the username!");
-        return;
-      }
-      if (password.length === 0) {
-        alert("Please enter the password!");
-        return;
-      }
-      axios
-        .post(` http://localhost:3002/auth/login`, data)
-        .then((response) => {
-          if (response.status === 200) {
-            setIsRegistered(true);
-            navigate("/");
-          } else if (response.status === 400) {
-            alert("Incorrect password,Please try again!");
-          }
-        })
-        .catch((error) => {
-          console.log(data);
-          console.error(error);
-        });
+  async function sendLoginForm(event) {
+    event.preventDefault();
+    let username;
+    let password;
+    username = usernameField.current.value;
+    password = passwordField.current.value;
+    let data;
+
+    data = {
+      name: username,
+      password: password,
+    };
+    if (username.length === 0 && password.length === 0) {
+      alert("Please enter the username and password!");
+      return;
     }
+    if (username.length === 0) {
+      alert("Please enter the username!");
+      return;
+    }
+    if (password.length === 0) {
+      alert("Please enter the password!");
+      return;
+    }
+
+    try {
+      const response = await api.post(`/auth/login`, data);
+      if (response.status === 200) {
+        if (response.status === 200) {
+          setIsRegistered(true);
+          navigate("/");
+        } else if (response.status === 400) {
+          alert("Incorrect password,Please try again!");
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div className="login-container">
@@ -138,152 +134,152 @@ function Auth() {
         </div>
         {!isRegistered && (
           <div className="right-container">
-          <form
-            className="form"
-            onSubmit={sendRegistrationForm}
-            autoComplete="off"
-          >
-            <div className="form-fields-container">
-              <div className="label-container">
-                <label htmlFor="Username">Username </label>
-                <label htmlFor="email">Email </label>
-                <label htmlFor="phone">Phone Number </label>
-                <label htmlFor="address">Address </label>
-                <label htmlFor="password">Password </label>
+            <form
+              className="form"
+              onSubmit={sendRegistrationForm}
+              autoComplete="off"
+            >
+              <div className="form-fields-container">
+                <div className="label-container">
+                  <label htmlFor="Username">Username </label>
+                  <label htmlFor="email">Email </label>
+                  <label htmlFor="phone">Phone Number </label>
+                  <label htmlFor="address">Address </label>
+                  <label htmlFor="password">Password </label>
+                </div>
+                <div className="input-container">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="    Monkey D. Luffy"
+                    autoComplete="off"
+                    ref={usernameField}
+                  />
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="    shop@here.com"
+                    autoComplete="off"
+                    ref={emailField}
+                  />
+
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="    9876543210"
+                    autoComplete="off"
+                    ref={phoneField}
+                  />
+                  <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    placeholder="    Your Address"
+                    autoComplete="off"
+                    ref={addressField}
+                  />
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="    Password here"
+                    autoComplete="off"
+                    ref={passwordField}
+                  />
+                </div>
               </div>
-              <div className="input-container">
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="    Monkey D. Luffy"
-                  autoComplete="off"
-                  ref={usernameField}
-                />
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="    shop@here.com"
-                  autoComplete="off"
-                  ref={emailField}
-                />
-      
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  placeholder="    9876543210"
-                  autoComplete="off"
-                  ref={phoneField}
-                />
-                <input
-                  type="text"
-                  id="address"
-                  name="address"
-                  placeholder="    Your Address"
-                  autoComplete="off"
-                  ref={addressField}
-                />
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="    Password here"
-                  autoComplete="off"
-                  ref={passwordField}
-                />
+              <div className="buttons-login">
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => {
+                    setIsRegistered(true);
+                  }}
+                >
+                  Login
+                </button>
+                <button
+                  type="submit"
+                  className="btn"
+                  onClick={() => {
+                    setIsRegistered(false);
+                  }}
+                >
+                  Signup
+                </button>
               </div>
-            </div>
-            <div className="buttons-login">
-              <button
-                type="button"
-                className="btn"
-                onClick={() => {
-                  setIsRegistered(true);
-                }}
-              >
-                Login
-              </button>
-              <button
-                type="submit"
-                className="btn"
-                onClick={() => {
-                  setIsRegistered(false);
-                }}
-              >
-                Signup
-              </button>
-            </div>
-            <div className="link-to-reg">
-              Already a user ?{" "}
-              <button
-                className="switch-form-link"
-                onClick={() => setIsRegistered(true)}
-              >
-                Click here{" "}
-              </button>
-              to Login
-            </div>
-          </form>
+              <div className="link-to-reg">
+                Already a user ?{" "}
+                <button
+                  className="switch-form-link"
+                  onClick={() => setIsRegistered(true)}
+                >
+                  Click here{" "}
+                </button>
+                to Login
+              </div>
+            </form>
           </div>
         )}
         {isRegistered && (
           <div className="right-container">
-          <form className="form" onSubmit={sendLoginForm} autoComplete="off">
-            <div className="form-fields-container">
-              <div className="label-container">
-                <label htmlFor="Username" className="u-label">
-                  Username{" "}
-                </label>
-                <label htmlFor="password">Password </label>
+            <form className="form" onSubmit={sendLoginForm} autoComplete="off">
+              <div className="form-fields-container">
+                <div className="label-container">
+                  <label htmlFor="Username" className="u-label">
+                    Username{" "}
+                  </label>
+                  <label htmlFor="password">Password </label>
+                </div>
+                <div className="input-container">
+                  <input
+                    type="text"
+                    id="Username"
+                    name="Username"
+                    placeholder="    Monkey D. Luffy"
+                    autoComplete="off"
+                    ref={usernameField}
+                  />
+                  <div className="Username-err-label">Error label-todo</div>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="    Password here"
+                    autoComplete="off"
+                    ref={passwordField}
+                  />
+                  <div className="password-err-label">Error label-todo</div>
+                </div>
               </div>
-              <div className="input-container">
-                <input
-                  type="text"
-                  id="Username"
-                  name="Username"
-                  placeholder="    Monkey D. Luffy"
-                  autoComplete="off"
-                  ref={usernameField}
-                />
-                <div className="Username-err-label">Error label-todo</div>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="    Password here"
-                  autoComplete="off"
-                  ref={passwordField}
-                />
-                <div className="password-err-label">Error label-todo</div>
+              <div className="buttons-login">
+                <button type="submit" className="btn">
+                  Login
+                </button>
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => {
+                    setIsRegistered(false);
+                  }}
+                >
+                  Signup
+                </button>
               </div>
-            </div>
-            <div className="buttons-login">
-              <button type="submit" className="btn">
-                Login
-              </button>
-              <button
-                type="button"
-                className="btn"
-                onClick={() => {
-                  setIsRegistered(false);
-                }}
-              >
-                Signup
-              </button>
-            </div>
-            <div className="link-to-reg">
-              Not a user ?{" "}
-              <button
-                className="switch-form-link"
-                onClick={() => setIsRegistered(false)}
-              >
-                Click here{" "}
-              </button>
-              to register
-            </div>
-          </form>
+              <div className="link-to-reg">
+                Not a user ?{" "}
+                <button
+                  className="switch-form-link"
+                  onClick={() => setIsRegistered(false)}
+                >
+                  Click here{" "}
+                </button>
+                to register
+              </div>
+            </form>
           </div>
         )}
       </div>
