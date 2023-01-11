@@ -8,7 +8,18 @@ router.get("/", async(req,res)=> {
     res.status(200).json(products);
   }
   catch(err) {
-    return res.status(500).json(error);
+    return res.status(500).json(err);
+  }
+});
+
+//get one product
+router.get("/:id", async(req,res)=> {
+  try{
+    const products =  await productModel.findById(req.params.id);
+    res.status(200).json(products);
+  }
+  catch(err) {
+    return res.status(500).json(err);
   }
 });
 
@@ -45,16 +56,28 @@ router.post("/", async(req,res)=> {
 });
 
 //update rating
-router.put("/:id", async(req,res)=> {
+router.put("/:id/rating", async(req,res)=> {
     try {
         const product = productModel.findById(req.params.id);
-        let num = product.numberOfRating;
-        let rating = product.rating*num;
-    }catch(err) {
-        
+        await product.updateOne({ $push: { rating: req.body.newrating} });
+        res.status(200).json("The rating has been updated");
+    }
+    catch(err) {
+        console.log(err);
     }
 });
 
 //update review
+router.put("/:id/review", async(req,res)=> {
+  try {
+      const product = productModel.findById(req.params.id);
+      await product.updateOne({ $push: { rating: req.body.newreview} });
+      res.status(200).json("The rewview has been updated");
+  }
+  catch(err) {
+      console.log(err);
+  }
+});
+
 
 module.exports = router;
