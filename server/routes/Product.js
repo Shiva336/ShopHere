@@ -35,9 +35,9 @@ router.get("/:category", async(req,res)=> {
 });
 
 //get products by search
-router.get("/prefix/:term", async(req,res)=> {
+router.get("/search/term", async(req,res)=> {
   try{
-      const products = await productModel.find({ name: new RegExp('^'+ req.params.term + "i")});
+      const products = await productModel.find({ name: new RegExp('^'+ req.body.term,"i")});
       res.status(200).json(products);
     }
     catch(err) {
