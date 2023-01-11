@@ -13,12 +13,8 @@ const productSchema = new mongoose.Schema({
         max: 10
     },
     rating: {
-        type: Number,
-        require: true,
-    },
-    numberOfRating: {
-        type: Number,
-        default: 1
+        type: Array,
+        default: []
     },
     category: {
         type: String,

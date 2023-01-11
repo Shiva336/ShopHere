@@ -37,7 +37,7 @@ function Topbar() {
                     <span className="topbarIconBadge">1</span>
                 </div>
             </div>
-            <img src="/assets/person/people1.jpg " alt="profile pic" className='topbarImg'/>
+            <img src="assets/person/people1.jpg" alt="profile pic" className='topbarImg'/>
         </div>
     </div>
   )
