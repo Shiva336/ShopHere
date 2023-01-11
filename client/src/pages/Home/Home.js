@@ -1,11 +1,14 @@
 import React from 'react'
 import './Home.css'
 import TopBar from '../../components/topbar/Topbar';
-import { useNavigate } from 'react-router-dom';
+import Carousel from '../../components/Carousel/Carousel';
+import FeaturedProduct from '../../components/featured-products/Product';
 function Home() {
   return (
     <div className='HomeContainer'>
       <TopBar/>
+      <Carousel/>
+      <FeaturedProduct/>
     </div>
   )
 }
