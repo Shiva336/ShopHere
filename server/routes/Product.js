@@ -34,6 +34,17 @@ router.get("/:category", async(req,res)=> {
       }
 });
 
+//get products by search
+router.get("/prefix/:term", async(req,res)=> {
+  try{
+      const products = await productModel.find({ name: new RegExp('^'+ req.params.term + "i")});
+      res.status(200).json(products);
+    }
+    catch(err) {
+      return res.status(500).json(err);
+    }
+});
+
 //add product
 router.post("/", async(req,res)=> {
     try {
