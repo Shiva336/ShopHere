@@ -1,0 +1,37 @@
+.carousel {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .carousel__image {
+    z-index: -1;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .carousel__button {
+    position: absolute;
+    background: transparent;
+    transition: background-color 0.2s ease-in-out;  
+    width: 100px;
+    height:100vh;
+    font-size: 2rem;
+    border: none;
+    cursor: pointer;
+  }
+
+  .carousel__button:hover{
+    color:white;
+    background-color: rgb(255, 219, 172);
+}
+  
+  .carousel__button--prev {
+    left: 0;
+}
+  
+  .carousel__button--next {
+    right: 0;
+  }
+  

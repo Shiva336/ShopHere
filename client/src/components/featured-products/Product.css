@@ -1,24 +1,22 @@
 .product-container {
     padding-block: 44px;
     padding-inline: 50px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
     align-items: center;
-    justify-items: center;
-    background-color: rgb(0, 40, 85);
+    justify-content: center;
+    display: flex;
+    flex-direction:column;
+    gap: 30px;
     padding-top: 60px;
   }
   
   .product-container > h1 {
-    color: white;
+    color: black;
   }
   
   .product-container .product-grid {
-    display: grid;
-    justify-items: center;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 36px;
+    display: flex;
+    flex-direction:row;
+    gap:100px;
   }
   
   @media (max-width: 900px) {

@@ -15,7 +15,7 @@
 }
 
 .product-box {
-  color: white;
+  color: black;
   max-width: 1200px;
 }
 
@@ -29,10 +29,18 @@
   height: 35px;
 }
 
-.image-container{
-  overflow: hidden;
+img{
+  transition: all 0.1ms ease-in-out;
+  -webkit-transition: all 0.1ms ease-in-out;
+  -moz-transition: all 0.1ms ease-in-out;
+  -ms-transition: all 0.1ms ease-in-out;
+  -o-transition: all 0.1ms ease-in-out;
 }
 
 .image-container>img:hover{
-  transform: scale(1.1);
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
 }
