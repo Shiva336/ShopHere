@@ -1,4 +1,7 @@
 import React from 'react'
+import axios from "axios"
+import { useState } from 'react';
+import { useEffect } from 'react';
 import './topbar.css'
 import {Person} from '@material-ui/icons';
 import {Search } from '@material-ui/icons';
@@ -6,6 +9,23 @@ import {Notifications} from '@material-ui/icons';
 import {ShoppingCart} from '@material-ui/icons';
 
 function Topbar() {
+    const [searchText, setSearchText] = useState("");
+    const [suggestions, setSuggestions] = useState([]);
+
+    const handleSearchChange = event => {
+        setSearchText(event.target.value);
+        console.log(searchText);
+        const data = {
+            term: searchText,
+        }
+        console.log(data)
+        axios.get("http://localhost:3002/product/search/term",data).then(
+            (response) => {
+                console.log(response.data)
+            }
+        );
+    }
+
   return (
     <div className='topbarContainer'>
         <div className="topbarLeft">
@@ -15,7 +35,14 @@ function Topbar() {
         <div className="topbarCenter">
             <div className="searchbar">
                 <Search className='searchIcon'/>
-                <input placeholder='Search for a product' className="searchInput" />
+                <input placeholder='Search for a product' type='text' value={searchText} onChange={handleSearchChange} className="searchInput" />
+                
+                <ul className='searchlist'>
+                    {suggestions.map(value => (
+                        <li key={value}>{value}</li>
+                    ))}
+                </ul>
+
             </div>
         </div>
 
