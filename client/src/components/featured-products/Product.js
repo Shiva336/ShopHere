@@ -20,7 +20,6 @@ function Product() {
       console.error(error);
     }
   }
-
   useEffect(() => {
     (async () => {
       await getData();
