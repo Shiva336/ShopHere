@@ -23,6 +23,17 @@ router.get("/:category", async(req,res)=> {
       }
 });
 
+//get product by id
+router.get("/:id", async(req,res)=> {
+  try{
+    const product = productModel.findById(req.params.id);
+      res.status(200).json(product);
+    }
+    catch(err) {
+      return res.status(500).json(err);
+    }
+});
+
 //add product
 router.post("/", async(req,res)=> {
     try {
