@@ -34,6 +34,17 @@ router.get("/category/:category", async(req,res)=> {
       }
 });
 
+//get products by name
+router.get("/productname/:name", async(req,res)=> {
+  try{
+      const products = await productModel.find({ name: req.params.name});
+      res.status(200).json(products);
+    }
+    catch(err) {
+      return res.status(500).json(err);
+    }
+});
+
 //add product
 router.post("/", async(req,res)=> {
     try {
