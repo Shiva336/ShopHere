@@ -20,6 +20,8 @@ const authRouter = require("./routes/Auth");
 app.use("/auth",authRouter);
 const productRouter = require("./routes/Product");
 app.use("/product",productRouter);
+const cartRouter = require("./routes/Cart");
+app.use("/order",cartRouter);
 
 app.listen("3002",()=> {
     

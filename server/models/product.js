@@ -8,9 +8,9 @@ const productSchema = new mongoose.Schema({
         max: 30
     },
     highlights: {
-        type: String,
+        type: Array,
         require: true,
-        max: 10
+        default: []
     },
     rating: {
         type: Array,
