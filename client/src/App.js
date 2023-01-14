@@ -1,7 +1,7 @@
 import "./App.css";
 import HomePage from "./Routes/Home";
 import AuthPage from "./Routes/Auth";
-import { ProductPage } from "./Routes/Product";
+import  ProductPage  from "./Routes/Product";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
   {

@@ -33,7 +33,8 @@ function Product() {
       <div>
     <h1 style={{alignItems: 'center',justifyContent: 'center'}}>FEATURED PRODUCTS</h1></div>
       <div className="product-grid">
-          {products.map((product) => (
+        {!loading && <div className="loader"></div>}
+          {loading&&products.map((product) => (
             <ProductBox text={product} key={product._id} />
           ))}
       </div>
