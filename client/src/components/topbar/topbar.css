@@ -48,6 +48,10 @@
     outline: none;
 }
 
+.searchlist {
+    z-index: 10;
+}
+
 .topbarRight {
     flex: 4;
     display: flex;
