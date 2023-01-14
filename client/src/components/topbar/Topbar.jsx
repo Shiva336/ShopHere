@@ -18,7 +18,7 @@ function Topbar() {
                 setSuggestions(response.data);
         });
     },[])
-    
+
     const handleSearchChange = event => {
         setSearchText(event.target.value);
     };
@@ -26,6 +26,8 @@ function Topbar() {
     let filteredSuggestions = [];
     if(searchText.length > 0)
         filteredSuggestions = suggestions.filter(suggestion => suggestion.name.startsWith(searchText));
+
+    console.log(filteredSuggestions);
 
   return (
     <div className='topbarContainer'>
@@ -38,9 +40,9 @@ function Topbar() {
                 <Search className='searchIcon'/>
                 <input placeholder='Search for a product' type='text' value={searchText} onChange={handleSearchChange} className="searchInput" />
                 
-                <ul className='searchlist'>
+                <ul>
                     {filteredSuggestions.map(suggestion => (
-                        <li key={suggestion.name}>{suggestion.name}</li>
+                        <li className='searchlist' key={suggestion._id}>{suggestion.name}</li>
                     ))}
                 </ul>
 
