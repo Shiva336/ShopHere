@@ -9,22 +9,23 @@ import {Notifications} from '@material-ui/icons';
 import {ShoppingCart} from '@material-ui/icons';
 
 function Topbar() {
-    const [searchText, setSearchText] = useState("");
-    const [suggestions, setSuggestions] = useState([]);
+    const [searchText, setSearchText] = useState('');
+    const [suggestions, setSuggestions] = useState([]); 
 
+    useEffect(()=> {
+        axios.get("http://localhost:3002/product").then(
+        (response) => { 
+                setSuggestions(response.data);
+        });
+    },[])
+    
     const handleSearchChange = event => {
         setSearchText(event.target.value);
-        console.log(searchText);
-        const data = {
-            term: searchText,
-        }
-        console.log(data)
-        axios.get("http://localhost:3002/product/search/term",data).then(
-            (response) => {
-                console.log(response.data)
-            }
-        );
-    }
+    };
+
+    let filteredSuggestions = [];
+    if(searchText.length > 0)
+        filteredSuggestions = suggestions.filter(suggestion => suggestion.name.startsWith(searchText));
 
   return (
     <div className='topbarContainer'>
@@ -38,8 +39,8 @@ function Topbar() {
                 <input placeholder='Search for a product' type='text' value={searchText} onChange={handleSearchChange} className="searchInput" />
                 
                 <ul className='searchlist'>
-                    {suggestions.map(value => (
-                        <li key={value}>{value}</li>
+                    {filteredSuggestions.map(suggestion => (
+                        <li key={suggestion.name}>{suggestion.name}</li>
                     ))}
                 </ul>
 

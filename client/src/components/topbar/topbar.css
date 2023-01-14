@@ -40,6 +40,8 @@
 }
 
 .searchInput {
+    display:flex;
+    flex-direction: column;
     border: none;
     width: 70%;
 }
@@ -50,6 +52,12 @@
 
 .searchlist {
     z-index: 10;
+    display:flex;
+    position:absolute;
+    flex-direction: column;
+    background-color: white;
+    width: 70%;
+    border-radius: 2px solid black;
 }
 
 .topbarRight {
