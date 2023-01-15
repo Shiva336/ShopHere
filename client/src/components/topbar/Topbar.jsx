@@ -6,10 +6,20 @@ import { Person } from "@material-ui/icons";
 import { Search } from "@material-ui/icons";
 import { Notifications } from "@material-ui/icons";
 import { ShoppingCart } from "@material-ui/icons";
+import { animateScroll as scroll } from "react-scroll";
+
 
 function Topbar() {
   const [searchText, setSearchText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const scrollToFeatured = () => {
+    const element = document.getElementById("featured-product-container");
+    scroll.scrollTo(element.offsetTop);
+  };
+  const scrollToHome = () => {
+    const element = document.getElementById("home-container");
+    scroll.scrollTo(element.offsetTop);
+  };
   const handleSearchChange = (event) => {
     setSearchText(event.target.value);
     console.log(searchText);
@@ -57,8 +67,9 @@ function Topbar() {
       </div>
 
       <div className="topbarRight">
+        <span className="navbar-links" onClick={scrollToFeatured}>Featured</span>
         <div className="topbarLinks">
-          <span className="topbarLink">Homepage</span>
+          <span className="topbarLink"  onClick={scrollToHome}>Homepage</span>
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">

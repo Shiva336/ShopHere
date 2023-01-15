@@ -5,7 +5,7 @@ import Carousel from '../../components/Carousel/Carousel';
 import FeaturedProduct from '../../components/featured-products/Product';
 function Home() {
   return (
-    <div className='HomeContainer'>
+    <div className='HomeContainer'id="home-container">
       <TopBar/>
       <Carousel/>
       <FeaturedProduct/>
