@@ -34,11 +34,10 @@ const productSchema = new mongoose.Schema({
         type: Array,
         default: []
     },
-    featured:{
+    featured: {
         type: Boolean,
-        require: true,
-        default: false
-    }
+        require: true
+    },
 },
 { timestamps: true }
 );

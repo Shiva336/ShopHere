@@ -76,6 +76,7 @@ function Auth() {
       }
     }
   }
+
   async function sendLoginForm(event) {
     event.preventDefault();
     let username;
