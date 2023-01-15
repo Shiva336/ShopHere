@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./topbar.css";
 import { Person } from "@material-ui/icons";
 import { Search } from "@material-ui/icons";
@@ -36,6 +36,7 @@ function Topbar() {
     if(searchText.length > 0)
         filteredSuggestions = suggestions.filter(suggestion => suggestion.name.startsWith(searchText));
 
+    console.log(filteredSuggestions);
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -60,11 +61,6 @@ function Topbar() {
                     ))}
                 </ul>
 
-          <ul>
-              {filteredSuggestions.map(suggestion => (
-                  <li className='searchlist' key={suggestion._id}>{suggestion.name}</li>
-              ))}
-          </ul>
         </div>
       </div>
 
