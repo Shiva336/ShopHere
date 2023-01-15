@@ -27,8 +27,6 @@ function Topbar() {
     if(searchText.length > 0)
         filteredSuggestions = suggestions.filter(suggestion => suggestion.name.startsWith(searchText));
 
-    console.log(filteredSuggestions);
-
   return (
     <div className='topbarContainer'>
         <div className="topbarLeft">
