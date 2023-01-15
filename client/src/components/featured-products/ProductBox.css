@@ -1,10 +1,9 @@
-.flex {
+.featured-flex {
   display: flex;
   gap: 10px;
-
   flex-direction: column;
 }
-.flex p {
+.featured-flex p {
   font-size: 15px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -14,33 +13,42 @@
   -webkit-box-orient: vertical;
 }
 
-.product-box {
-  color: black;
+.featured-product-box {
   max-width: 1200px;
+  padding: 20px;
+  opacity: 0.5;
+  transition: all ease-in-out ;
+  -webkit-transition: all ease-in-out ;
+  -moz-transition: all ease-in-out ;
+  -ms-transition: all ease-in-out ;
+  -o-transition: all ease-in-out ;
+}
+.featured-product-box:hover {
+  opacity: 1;
 }
 
-.product-box  img {
+.featured-product-box img {
   width: 100%;
   transition: transform ease-in-out 0.35s;
 }
-.flex button {
+.featured-flex button {
   cursor: pointer;
   width: 100%;
   height: 35px;
 }
 
-img{
-  transition: all 0.1ms ease-in-out;
-  -webkit-transition: all 0.1ms ease-in-out;
-  -moz-transition: all 0.1ms ease-in-out;
-  -ms-transition: all 0.1ms ease-in-out;
-  -o-transition: all 0.1ms ease-in-out;
+img {
+  border-radius: 28px;
 }
 
-.image-container>img:hover{
+.featured-image-container > img:hover {
   transform: scale(1.05);
   -webkit-transform: scale(1.05);
   -moz-transform: scale(1.05);
   -ms-transform: scale(1.05);
   -o-transform: scale(1.05);
+}
+
+.featured-image-container {
+  background-color: black;
 }
