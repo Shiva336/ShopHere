@@ -20,19 +20,21 @@ function Topbar() {
     const element = document.getElementById("home-container");
     scroll.scrollTo(element.offsetTop);
   };
-  const handleSearchChange = (event) => {
-    setSearchText(event.target.value);
-    console.log(searchText);
-    const data = {
-      term: searchText,
+ 
+  useEffect(()=> {
+        axios.get("http://localhost:3002/product").then(
+        (response) => { 
+                setSuggestions(response.data);
+        });
+    },[])
+
+    const handleSearchChange = event => {
+        setSearchText(event.target.value);
     };
-    console.log(data);
-    axios
-      .get("http://localhost:3002/product/search/term", data)
-      .then((response) => {
-        console.log(response.data);
-      });
-  };
+
+    let filteredSuggestions = [];
+    if(searchText.length > 0)
+        filteredSuggestions = suggestions.filter(suggestion => suggestion.name.startsWith(searchText));
 
   return (
     <div className="topbarContainer">
@@ -58,10 +60,10 @@ function Topbar() {
             className="searchInput"
           />
 
-          <ul className="searchlist">
-            {suggestions.map((value) => (
-              <li key={value}>{value}</li>
-            ))}
+          <ul>
+              {filteredSuggestions.map(suggestion => (
+                  <li className='searchlist' key={suggestion._id}>{suggestion.name}</li>
+              ))}
           </ul>
         </div>
       </div>
