@@ -11,16 +11,13 @@ function Product() {
   async function getData() {
     try {
       setLoading(true);
-      const response = await api.get(
-        `/product`
-      );
+      const response = await api.get(`/product`);
       setProducts(response.data);
     } catch (error) {
       setLoading(false);
       console.error(error);
     }
   }
-
   useEffect(() => {
     (async () => {
       await getData();
@@ -29,21 +26,26 @@ function Product() {
     return () => {};
   }, []);
 
-  return (<div>
-    <div className="product-container" id="product-container">
-      <div>
-    <h1 style={{alignItems: 'center',justifyContent: 'center'}}>FEATURED PRODUCTS</h1></div>
-      <div className="product-grid">
-          {products.map((product) => (
-            <ProductBox text={product} key={product._id} />
-          ))}
+  return (
+    <div>
+      <div className="featured-product-container" id="featured-product-container">
+        <div>
+          <h1 className="featured-shimmering-text">FEATURED PRODUCTS</h1>
+        </div>
+
+        <div className="featured-product-grid">
+          {!loading && <div className="loader"></div>}
+          {loading &&
+            products.map((product) => (
+                <ProductBox text={product} key={product._id} />
+            ))}
+        </div>
       </div>
-    </div></div>
+    </div>
   );
 }
 
 export default Product;
-
 
 // {loading && <div className="loader"></div>}
 // {!loading &&

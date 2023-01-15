@@ -16,6 +16,7 @@ router.get("/", async(req,res)=> {
 router.get("/:id", async(req,res)=> {
   try{
     const products =  await productModel.findById(req.params.id);
+    console.log(products);
     res.status(200).json(products);
   }
   catch(err) {
