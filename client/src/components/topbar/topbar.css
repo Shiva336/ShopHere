@@ -58,7 +58,14 @@
 }
 
 .searchlist {
-    z-index: 10;
+    display:flex;
+    position:absolute;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-right: 50px;
+    width:39.04%;
+    height: 30px;
+    background-color: white;
 }
 
 .topbarRight {
