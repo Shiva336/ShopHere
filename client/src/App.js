@@ -2,6 +2,7 @@ import "./App.css";
 import HomePage from "./Routes/Home";
 import AuthPage from "./Routes/Auth";
 import  ProductPage  from "./Routes/Product";
+import CategoryProductPage from "./Routes/Category";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/product/:id",
     element: <ProductPage />,
+  },
+  {
+    path: "/category/:category",
+    element: <CategoryProductPage />,
   },
 ]);
 
