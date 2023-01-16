@@ -6,6 +6,7 @@
   flex-direction:column;
   gap: 30px;
   padding-top: 60px;
+  flex-wrap: wrap;
 }
 
 .featured-product-container > h1 {
@@ -15,7 +16,12 @@
 .featured-product-container .featured-product-grid {
   display: flex;
   flex-direction:row;
+  flex-wrap: wrap;
   gap:100px;
+}
+
+.featured-product-grid>* {
+  flex: 0 0 0 0 0 0 0;
 }
 
 @media (max-width: 900px) {
@@ -48,6 +54,8 @@
   background-color: black;
   color:gold;
   width:100%;
+  display:flex;
+  flex-direction: row;
   padding-top: 20px;
   transition:all 150ms cubic-bezier(.42,0,.58,1);
   -webkit-transition:all 150ms cubic-bezier(.42,0,.58,1);
