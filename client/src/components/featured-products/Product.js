@@ -11,10 +11,11 @@ function Product() {
   async function getData() {
     try {
       setLoading(true);
-      const response = await api.get(`/product`);
+      const response = await api.get(`/product/featured`);
       setProducts(response.data);
-    } catch (error) {
       setLoading(false);
+    } catch (error) {
+      setLoading(true);
       console.error(error);
     }
   }
@@ -34,8 +35,8 @@ function Product() {
         </div>
 
         <div className="featured-product-grid">
-          {!loading && <div className="loader"></div>}
-          {loading &&
+          {loading && <div className="loader"></div>}
+          {!loading &&
             products.map((product) => (
                 <ProductBox text={product} key={product._id} />
             ))}
@@ -47,8 +48,3 @@ function Product() {
 
 export default Product;
 
-// {loading && <div className="loader"></div>}
-// {!loading &&
-//   products.map((product) => (
-//     <ProductBox text={product} key={product._id} />
-//   ))}

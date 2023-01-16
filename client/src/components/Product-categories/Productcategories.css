@@ -1,0 +1,19 @@
+.individual-product-container{
+    display: flex;
+    flex-direction: row;
+    padding:40px 100px;
+    align-items: center;
+    background-color: rgb(0, 179, 255);
+}
+img{
+    width: 20%;
+}
+
+.individual-text-container{
+    margin-left:100px;
+    padding-left:30px;
+}
+
+.individual-price{
+    color:gold;
+}

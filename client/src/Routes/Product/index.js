@@ -1,9 +1,9 @@
 import Product from "../../pages/Product/Product";
-import TopBar from '../../components/topbar/Topbar';
+import Navbar from '../../components/Navbar/Navbar';
 const ProductPage=()=>{
   return (
     <div className="App">
-    <TopBar/>
+    <Navbar/>
       <Product/>
     </div>
   );
