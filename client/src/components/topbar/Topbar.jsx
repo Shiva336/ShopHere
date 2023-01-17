@@ -42,8 +42,9 @@ function Topbar() {
   let filteredSuggestions = [];
   if (searchText.length > 0)
     filteredSuggestions = suggestions.filter((suggestion) =>
-      suggestion.name.startsWith(searchText)
+      suggestion.name.toLowerCase().startsWith(searchText.toLowerCase())
     );
+    console.log(filteredSuggestions);
 
   return (
     <div className="topbar-container">
@@ -69,14 +70,6 @@ function Topbar() {
               onChange={handleSearchChange}
               className="searchInput"
             />
-
-            <ul>
-              {filteredSuggestions.map((suggestion) => (
-                <li className="searchlist" key={suggestion._id}>
-                  {suggestion.name}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
 
@@ -98,6 +91,15 @@ function Topbar() {
           </div>
         </div>
       </div>
+      <div className="search-focus">
+{searchText.length > 0&&
+<ul className="search-suggestions">
+  {filteredSuggestions.map((suggestion) => (
+    <li className="searchlist" key={suggestion._id}  onClick={() => {navigate(`/product/${suggestion._id}`)}}>
+      {suggestion.name}
+    </li>
+  ))}
+</ul>}</div>
       <div className="separator-line"></div>
       <div className="topbar-bottom">
         <div className="topbar-bottom-text" onClick={handleCategoriesClick}>Smartphones</div>
