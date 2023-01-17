@@ -26,8 +26,8 @@ function Productcategories() {
   return (
     <>
       <Navbar />
-      <div>
-        Welcome to {category} section!
+      <div className="categories-container">
+        <p className="category-welcome-message">Welcome to {category} section!</p>
         <div className="category-container">
           {isLoading && <div className="loader"></div>}
           {!isLoading &&
@@ -42,15 +42,14 @@ function Productcategories() {
                     <h3>{product.price}</h3>
                   </div>
                   <div className="individual-highlights">
-                    <h2>Highlights</h2>
                     {product.highlights.map((highlight) => (
                       <div>
-                        <GiBurningDot />
+                        <GiBurningDot className="icon-highlights"/>
                         {highlight}
                       </div>
                     ))}
                   </div>
-                  <div className="individual-rating">{product.rating}</div>
+                  <div className="individual-rating"><h1>RATING HERE : @shiva</h1> {product.rating}</div>
                 </div>
               </div>
             ))}

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import "./Navbar.css";
 import { Search } from "@material-ui/icons";
 import { ShoppingCart } from "@material-ui/icons";
+import {IoLogInOutline} from 'react-icons/io5'
 
 function Navbar() {
   const [searchText, setSearchText] = useState("");
@@ -76,12 +77,7 @@ function Navbar() {
             <ShoppingCart />
             <span className="topbarIconBadge">2</span>
           </div>
-        </div>
-        <img
-          src="assets/person/people1.jpg"
-          alt="profile pic"
-          className="topbarImg"
-        />
+        </div><IoLogInOutline/>
       </div>
     </div>
   );

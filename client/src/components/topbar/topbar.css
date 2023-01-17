@@ -12,7 +12,7 @@
   position: sticky;
   top: 0;
   z-index: 5;
-  height: 100px;
+  height: fit-content;
 }
 .navbar-links {
   color: gold;
@@ -31,15 +31,15 @@
   font-size: 24px;
   margin-left: 20px;
   font-weight: bold;
-  border-radius:20px;
+  border-radius: 20px;
   color: rgb(163, 153, 14);
   cursor: pointer;
   padding-left: 10px;
   padding-right: 10px;
-  -webkit-border-radius:20px;
-  -moz-border-radius:20px;
-  -ms-border-radius:20px;
-  -o-border-radius:20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
 }
 
 .topbarCenter {
@@ -139,29 +139,36 @@
   background-color: hsl(180, 3%, 7%);
   color: white;
   z-index: 5;
-  height: 40px;
+  height: 60px;
   padding-left: 20px;
   padding-bottom: 10px;
   padding-top: 10px;
   gap: 10px;
 }
 
-.topbar-bottom-text{
-    cursor: pointer;
-    padding:4px 4px;
-    transition: all ease-in-out 420ms;
-    -webkit-transition: all ease-in-out 420ms;
-    -moz-transition: all ease-in-out 420ms;
-    -ms-transition: all ease-in-out 420ms;
-    -o-transition: all ease-in-out 420ms;
+.topbar-bottom-text {
+  cursor: pointer;
+  padding: 4px 4px;
+  transition: all ease-in-out 420ms;
+  -webkit-transition: all ease-in-out 420ms;
+  -moz-transition: all ease-in-out 420ms;
+  -ms-transition: all ease-in-out 420ms;
+  -o-transition: all ease-in-out 420ms;
 }
 
-.topbar-bottom-text:hover{
-    color:black;
-    border-radius:10px;
-    background-color:white;
-    -webkit-border-radius:10px;
-    -moz-border-radius:10px;
-    -ms-border-radius:10px;
-    -o-border-radius:10px;
+.topbar-bottom-text:hover {
+  color: black;
+  border-radius: 10px;
+  background-color: white;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+
+.login-icon{
+  width:40px;
+  height: 40px;
+  color:#00b3ff;
 }

@@ -1,9 +1,10 @@
+
 .individual-product-container{
     display: flex;
     flex-direction: row;
     padding:40px 100px;
     align-items: center;
-    background-color: rgb(0, 179, 255);
+    background-color: #00b3ff;
 }
 img{
     width: 20%;
@@ -11,9 +12,22 @@ img{
 
 .individual-text-container{
     margin-left:100px;
-    padding-left:30px;
+    padding-left:80px;
 }
 
 .individual-price{
     color:gold;
+}
+
+.category-welcome-message{
+    margin-top: 0px;
+    font-size: 30px;
+    background-color: #00b3ff;
+    height: 100%;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.icon-highlights{
+    margin-right: 10px;
 }
