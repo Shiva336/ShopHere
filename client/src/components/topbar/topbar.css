@@ -165,3 +165,10 @@
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
 }
+
+
+.login-icon{
+  width:40px;
+  height: 40px;
+  color:#00b3ff;
+}

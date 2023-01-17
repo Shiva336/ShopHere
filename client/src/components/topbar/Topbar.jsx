@@ -6,6 +6,8 @@ import { Search } from "@material-ui/icons";
 import { ShoppingCart } from "@material-ui/icons";
 import { animateScroll as scroll } from "react-scroll";
 import { useNavigate } from "react-router-dom";
+import {IoLogInOutline} from 'react-icons/io5'
+
 
 function Topbar() {
   
@@ -92,12 +94,8 @@ function Topbar() {
               <ShoppingCart />
               <span className="topbarIconBadge">2</span>
             </div>
+            <IoLogInOutline className="login-icon"/>
           </div>
-          <img
-            src="assets/person/people1.jpg"
-            alt="profile pic"
-            className="topbarImg"
-          />
         </div>
       </div>
       <div className="separator-line"></div>
