@@ -104,7 +104,7 @@ function Topbar() {
       <div className="topbar-bottom">
         <div className="topbar-bottom-text" onClick={handleCategoriesClick}>Smartphones</div>
         <div className="topbar-bottom-text" onClick={handleCategoriesClick}>Cameras</div>
-        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>Computer & Accessories</div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>Computers</div>
       </div>
     </div>
   );
