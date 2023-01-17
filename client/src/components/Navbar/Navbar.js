@@ -77,7 +77,7 @@ function Navbar() {
             <ShoppingCart />
             <span className="topbarIconBadge">2</span>
           </div>
-        </div><IoLogInOutline/>
+        </div><IoLogInOutline className="login-icon"/>
       </div>
     </div>
   );

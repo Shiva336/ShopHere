@@ -94,7 +94,7 @@ function Topbar() {
               <ShoppingCart />
               <span className="topbarIconBadge">2</span>
             </div>
-            <IoLogInOutline className="login-icon"/>
+            <IoLogInOutline className="login-icon" onClick={()=>{navigate(`/login`)}}/>
           </div>
         </div>
       </div>
