@@ -7,16 +7,44 @@
     background-color: #00b3ff;
 }
 img{
-    width: 20%;
+    width:300px;
 }
-
 .individual-text-container{
-    margin-left:100px;
-    padding-left:80px;
+    padding-left: 100px;
+    margin-left:0;
 }
-
 .individual-price{
     color:gold;
+}
+.img-btn{
+    display: flex;
+    flex-direction: column;
+    gap:20px
+}
+.primary-btn{
+    border-radius: 10px;
+    font-size: 16px;
+    width: 150px;
+    background-color:orangered;
+    border: none;
+    height: 60px;
+    color:white;
+    transition:all 150ms cubic-bezier(.42,0,.58,1);
+    -webkit-transition:all 150ms cubic-bezier(.42,0,.58,1);
+    -moz-transition:all 150ms cubic-bezier(.42,0,.58,1);
+    -ms-transition:all 150ms cubic-bezier(.42,0,.58,1);
+    -o-transition:all 150ms cubic-bezier(.42,0,.58,1);
+}
+
+.primary-btn:hover{
+    color:orangered;
+    background-color:white;
+}
+
+.cart-button-container{
+    display: flex;
+    flex-direction: row;
+    gap:8px;
 }
 
 .category-welcome-message{
