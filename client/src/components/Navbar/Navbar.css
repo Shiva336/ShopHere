@@ -106,3 +106,28 @@
     height: 40px;
     color:gold;
   }
+
+  
+
+ul{
+    padding-top:10px;
+    padding-bottom:10px
+  }
+  
+  li{
+    list-style-type: none;
+    cursor: pointer;
+  }
+  .searchlist{
+    width: fit-content;
+    border-radius: 10px;
+    padding: 0px 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+  .searchlist:hover{
+    background-color:grey;
+  }
+  
