@@ -4,6 +4,7 @@ import { api } from "../../api";
 import "./Productcategories.css";
 import { GiBurningDot } from "react-icons/gi";
 import Navbar from "../Navbar/Navbar";
+import {AiTwotoneStar} from 'react-icons/ai'
 function Productcategories() {
   const { category } = useParams();
   const [products, setProduct] = useState(null);
@@ -24,6 +25,10 @@ function Productcategories() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  let avgRating = 0;
+  let num = 0;
+
   return (
     <>
       <Navbar />
@@ -59,7 +64,12 @@ function Productcategories() {
                     ))}
                   </div>
                   <div className="individual-rating">
-                    <h1>RATING HERE : @shiva</h1> {product.rating}
+                    {avgRating=0} {num=0}
+                    {product.rating.map((rate)=> {
+                      avgRating+= parseFloat(rate);
+                      num = num+1;
+                    })}
+                    <h1>Rating: {(parseInt((avgRating/num)*100))/100}</h1> 
                   </div>
                 </div>
               </div>
