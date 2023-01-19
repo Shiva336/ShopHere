@@ -92,7 +92,7 @@ function Navbar() {
 {searchText.length > 0&&
 <ul className="search-suggestions">
   {filteredSuggestions.map((suggestion) => (
-    <li className="searchlist" key={suggestion._id}  onClick={() => {navigate(`/product/${suggestion._id}`)}}>
+    <li className="searchlist" key={suggestion._id}  onClick={()=> {window.location.href = `/product/${suggestion._id}`; }}>
       {suggestion.name}
     </li>
   ))}
