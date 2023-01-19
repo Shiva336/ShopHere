@@ -5,6 +5,7 @@ import "./Productcategories.css";
 import { GiBurningDot } from "react-icons/gi";
 import Navbar from "../Navbar/Navbar";
 import {AiTwotoneStar} from 'react-icons/ai'
+
 function Productcategories() {
   const { category } = useParams();
   const [products, setProduct] = useState(null);
