@@ -4,7 +4,7 @@
     flex-direction: row;
     padding:40px 100px;
     align-items: center;
-    background-color: #00b3ff;
+    background-color: #edf2f5;
 }
 img{
     width:300px;
@@ -50,7 +50,7 @@ img{
 .category-welcome-message{
     margin-top: 0px;
     font-size: 30px;
-    background-color: #00b3ff;
+    background-color: #edf2f5;
     height: 100%;
     margin-bottom: 0px;
     text-align: center;
