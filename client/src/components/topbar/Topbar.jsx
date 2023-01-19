@@ -75,7 +75,7 @@ function Topbar() {
                 <li className="searchlist" key={suggestion._id}>
                   {suggestion.name}
                 </li>
-              ))}
+              ))} 
             </ul>
           </div>
         </div>
