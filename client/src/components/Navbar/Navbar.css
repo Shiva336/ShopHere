@@ -58,17 +58,6 @@
     outline: none;
 }
 
-.searchlist {
-    display:flex;
-    position:absolute;
-    flex-direction: column;
-    margin-top: 15px;
-    margin-right: 50px;
-    width:39.04%;
-    height: 30px;
-    background-color: white;
-}
-
 .topbarRight {
     flex: 4;
     display: flex;
@@ -115,5 +104,30 @@
 .login-icon{
     width:40px;
     height: 40px;
-    color:#00b3ff;
+    color:gold;
   }
+
+  
+
+ul{
+    padding-top:10px;
+    padding-bottom:10px
+  }
+  
+  li{
+    list-style-type: none;
+    cursor: pointer;
+  }
+  .searchlist{
+    width: fit-content;
+    border-radius: 10px;
+    padding: 0px 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+  .searchlist:hover{
+    background-color:grey;
+  }
+  
