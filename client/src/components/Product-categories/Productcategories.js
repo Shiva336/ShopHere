@@ -28,7 +28,14 @@ function Productcategories() {
 
   let avgRating = 0;
   let num = 0;
-
+  function displayRating(product) {
+    avgRating=0; num=0
+                    {product.rating.map((rate)=> {
+                      avgRating+= parseFloat(rate);
+                      num = num+1;
+                    })}
+    return (parseInt((avgRating/num)*100))/100
+  }
   return (
     <>
       <Navbar />
@@ -64,12 +71,8 @@ function Productcategories() {
                     ))}
                   </div>
                   <div className="individual-rating">
-                    {avgRating=0} {num=0}
-                    {product.rating.map((rate)=> {
-                      avgRating+= parseFloat(rate);
-                      num = num+1;
-                    })}
-                    <h1>Rating: {(parseInt((avgRating/num)*100))/100}</h1> 
+                  
+                  <span> Rating: {displayRating(product)} <AiTwotoneStar/> </span>
                   </div>
                 </div>
               </div>
