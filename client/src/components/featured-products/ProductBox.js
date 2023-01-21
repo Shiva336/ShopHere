@@ -5,14 +5,14 @@ function ProductBox(props) {
   const { text } = props;
   const navigate = useNavigate();
   return (
-    <div className="featured-product-box" id="featured-products">
+    <div className="featured-product-box" id="featured-products" 
+    onClick={() => {
+      navigate(`/product/${text._id}`);
+    }}>
       <div className="featured-image-container">
         <img
           src={text.img}
           alt="Product IMG"
-          onClick={() => {
-            navigate(`/product/${text._id}`);
-          }}
         />
       </div>
       <div className="featured-text-container">

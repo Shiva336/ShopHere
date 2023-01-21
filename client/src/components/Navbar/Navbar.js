@@ -2,22 +2,16 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import "./Navbar.css";
-import { Search } from "@material-ui/icons";
-import { ShoppingCart } from "@material-ui/icons";
+import { BsSearch } from "react-icons/bs";
+import { FaShoppingCart } from "react-icons/fa";
 import { animateScroll as scroll } from "react-scroll";
 import { useNavigate } from "react-router-dom";
-import {IoLogInOutline} from 'react-icons/io5'
-
+import { IoLogInOutline } from "react-icons/io5";
 
 function Navbar() {
-  
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const scrollToFeatured = () => {
-    const element = document.getElementById("featured-product-container");
-    scroll.scrollTo(element.offsetTop);
-  };
   const scrollToHome = () => {
     const element = document.getElementById("home-container");
     scroll.scrollTo(element.offsetTop);
@@ -29,12 +23,6 @@ function Navbar() {
     });
   }, []);
 
-  const handleCategoriesClick=(event)=>{
-      let urlparam=event.currentTarget.textContent;
-      urlparam = urlparam.replace(/\s/g, '');
-      navigate(`/category/${urlparam}`);
-  }
-
   const handleSearchChange = (event) => {
     setSearchText(event.target.value);
   };
@@ -44,7 +32,7 @@ function Navbar() {
     filteredSuggestions = suggestions.filter((suggestion) =>
       suggestion.name.toLowerCase().startsWith(searchText.toLowerCase())
     );
-    console.log(filteredSuggestions);
+  console.log(filteredSuggestions);
 
   return (
     <div className="topbar-container">
@@ -62,7 +50,7 @@ function Navbar() {
 
         <div className="topbarCenter">
           <div className="searchbar">
-            <Search className="searchIcon" />
+            <BsSearch className="searchIcon" />
             <input
               placeholder="Search for a product"
               type="text"
@@ -81,22 +69,35 @@ function Navbar() {
           </div>
           <div className="topbarIcons">
             <div className="topbarIconItem">
-              <ShoppingCart />
+              <FaShoppingCart />
               <span className="topbarIconBadge">2</span>
             </div>
-            <IoLogInOutline className="login-icon" onClick={()=>{navigate(`/login`)}}/>
+            <IoLogInOutline
+              className="login-icon"
+              onClick={() => {
+                navigate(`/login`);
+              }}
+            />
           </div>
         </div>
       </div>
       <div className="search-focus">
-{searchText.length > 0&&
-<ul className="search-suggestions">
-  {filteredSuggestions.map((suggestion) => (
-    <li className="searchlist" key={suggestion._id}  onClick={() => {navigate(`/product/${suggestion._id}`)}}>
-      {suggestion.name}
-    </li>
-  ))}
-</ul>}</div>
+      {searchText.length > 0 && (
+        <ul className="search-suggestions">
+          {filteredSuggestions.map((suggestion) => (
+            <li
+              className="searchlist"
+              key={suggestion._id}
+              onClick={() => {
+                navigate(`/product/${suggestion._id}`);
+                window.location.reload();
+              }}
+            >
+              {suggestion.name}
+            </li>
+          ))}
+        </ul>
+      )}</div>
     </div>
   );
 }

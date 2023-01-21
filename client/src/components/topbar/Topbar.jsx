@@ -92,7 +92,7 @@ function Topbar() {
         </div>
       </div>
       <div className="search-focus">
-{searchText.length > 0&&
+{filteredSuggestions.length>0&&
 <ul className="search-suggestions">
   {filteredSuggestions.map((suggestion) => (
     <li className="searchlist" key={suggestion._id}  onClick={() => {navigate(`/product/${suggestion._id}`)}}>
