@@ -42,9 +42,6 @@ function Productcategories() {
     <>
       <Navbar />
       <div className="categories-container">
-        <p className="category-welcome-message">
-          Welcome to {category} section!
-        </p>
         <div className="category-container">
           {isLoading && <div className="loader"></div>}
           {!isLoading &&

@@ -6,11 +6,9 @@ import { Search } from "@material-ui/icons";
 import { ShoppingCart } from "@material-ui/icons";
 import { animateScroll as scroll } from "react-scroll";
 import { useNavigate } from "react-router-dom";
-import {IoLogInOutline} from 'react-icons/io5'
-
+import { IoLogInOutline } from "react-icons/io5";
 
 function Topbar() {
-  
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -29,11 +27,11 @@ function Topbar() {
     });
   }, []);
 
-  const handleCategoriesClick=(event)=>{
-      let urlparam=event.currentTarget.textContent;
-      urlparam = urlparam.replace(/\s/g, '');
-      navigate(`/category/${urlparam}`);
-  }
+  const handleCategoriesClick = (event) => {
+    let urlparam = event.currentTarget.textContent;
+    urlparam = urlparam.replace(/\s/g, "");
+    navigate(`/category/${urlparam}`);
+  };
 
   const handleSearchChange = (event) => {
     setSearchText(event.target.value);
@@ -44,7 +42,7 @@ function Topbar() {
     filteredSuggestions = suggestions.filter((suggestion) =>
       suggestion.name.toLowerCase().startsWith(searchText.toLowerCase())
     );
-    console.log(filteredSuggestions);
+  console.log(filteredSuggestions);
 
   return (
     <div className="topbar-container">
@@ -87,24 +85,43 @@ function Topbar() {
               <ShoppingCart />
               <span className="topbarIconBadge">2</span>
             </div>
-            <IoLogInOutline className="login-icon" onClick={()=>{navigate(`/login`)}}/>
+            <IoLogInOutline
+              className="login-icon"
+              onClick={() => {
+                navigate(`/login`);
+              }}
+            />
           </div>
         </div>
       </div>
-      <div className="search-focus">
-{filteredSuggestions.length>0&&
-<ul className="search-suggestions">
-  {filteredSuggestions.map((suggestion) => (
-    <li className="searchlist" key={suggestion._id}  onClick={() => {navigate(`/product/${suggestion._id}`)}}>
-      {suggestion.name}
-    </li>
-  ))}
-</ul>}</div>
+      {searchText.length > 0 && filteredSuggestions.length > 0 && (
+        <div className="search-focus">
+          <ul className="search-suggestions">
+            {filteredSuggestions.map((suggestion) => (
+              <li
+                className="searchlist"
+                key={suggestion._id}
+                onClick={() => {
+                  navigate(`/product/${suggestion._id}`);
+                }}
+              >
+                {suggestion.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       <div className="separator-line"></div>
       <div className="topbar-bottom">
-        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>Smartphones</div>
-        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>Cameras</div>
-        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>Computers</div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Smartphones
+        </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Cameras
+        </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Computers
+        </div>
       </div>
     </div>
   );
