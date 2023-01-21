@@ -5,6 +5,7 @@ import "./Productcategories.css";
 import { GiBurningDot } from "react-icons/gi";
 import Navbar from "../Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
+import {AiTwotoneStar} from 'react-icons/ai'
 function Productcategories() {
   const { category } = useParams();
   const navigate = useNavigate();
@@ -26,6 +27,17 @@ function Productcategories() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  let avgRating = 0;
+  let num = 0;
+  function displayRating(product) {
+    avgRating=0; num=0
+                    {product.rating.map((rate)=> {
+                      avgRating+= parseFloat(rate);
+                      num = num+1;
+                    })}
+    return (parseInt((avgRating/num)*100))/100
+  }
   return (
     <>
       <Navbar />
@@ -63,7 +75,8 @@ function Productcategories() {
                     ))}
                   </div>
                   <div className="individual-rating">
-                    <h1>RATING HERE : @shiva</h1> {product.rating}
+                  
+                  <span> Rating: {displayRating(product)} <AiTwotoneStar/> </span>
                   </div>
                 </div>
               </div>

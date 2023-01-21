@@ -82,22 +82,14 @@ function Navbar() {
         </div>
       </div>
       <div className="search-focus">
-      {searchText.length > 0 && (
-        <ul className="search-suggestions">
-          {filteredSuggestions.map((suggestion) => (
-            <li
-              className="searchlist"
-              key={suggestion._id}
-              onClick={() => {
-                navigate(`/product/${suggestion._id}`);
-                window.location.reload();
-              }}
-            >
-              {suggestion.name}
-            </li>
-          ))}
-        </ul>
-      )}</div>
+{searchText.length > 0&&
+<ul className="search-suggestions">
+  {filteredSuggestions.map((suggestion) => (
+    <li className="searchlist" key={suggestion._id}  onClick={()=> {window.location.href = `/product/${suggestion._id}`; }}>
+      {suggestion.name}
+    </li>
+  ))}
+</ul>}</div>
     </div>
   );
 }
