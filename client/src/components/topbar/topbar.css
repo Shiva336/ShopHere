@@ -164,21 +164,21 @@
 .search-suggestions{
   display: flex;
   flex-direction: column;
-  margin-top:-16px;
+  margin-top:-2px;
   background-color:white;
   width: 650px;
-  color:hsl(180, 3%, 7%);
-  margin-left:276px;
+  color:black;
 }
 
 .search-focus{
-  background-color:hsl(180, 3%, 7%);
+  position:absolute;
+  top:37px;left:276px;
   z-index:999;
 }
 
 ul{
   padding-top:10px;
-  padding-bottom:10px
+  padding-bottom:10px;
 }
 
 li{

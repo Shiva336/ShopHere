@@ -4,9 +4,11 @@ import { api } from "../../api";
 import "./Productcategories.css";
 import { GiBurningDot } from "react-icons/gi";
 import Navbar from "../Navbar/Navbar";
+import { useNavigate } from "react-router-dom";
 import {AiTwotoneStar} from 'react-icons/ai'
 function Productcategories() {
   const { category } = useParams();
+  const navigate = useNavigate();
   const [products, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const handleCartClick =() => {}
@@ -47,9 +49,11 @@ function Productcategories() {
           {isLoading && <div className="loader"></div>}
           {!isLoading &&
             products.map((product) => (
-              <div className="individual-product-container">
+              <div className="individual-product-container"  onClick={() => {
+                navigate(`/product/${product._id}`);
+              }}>
                 <div className="img-btn">
-                  <img src={product.img} alt="product-image"></img>
+                  <img src={product.img} alt="productimage"></img>
                   <div className="cart-button-container">
                     <button className="cart-button primary-btn" onClick={handleCartClick}>Add to cart</button>
                     <button className="wish-button primary-btn" onClick={handleWishlistClick}>Add to wishlist</button>
