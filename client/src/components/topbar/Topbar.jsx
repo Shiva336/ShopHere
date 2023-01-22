@@ -130,6 +130,9 @@ function Topbar() {
         <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
           Computers
         </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          MensFashion
+        </div>
       </div>
     </div>
   );

@@ -41,11 +41,11 @@
 }
 
 .separate-ratings:hover{
-  color:midnightblue;
+  color:blue;
   cursor: pointer;
 }
 .separate-reviews:hover{
-  color:midnightblue;
+  color:blue;
   cursor: pointer;
 }
 
