@@ -4,11 +4,11 @@ import "./topbar.css";
 import { Search } from "@material-ui/icons";
 import { ShoppingCart } from "@material-ui/icons";
 import { animateScroll as scroll } from "react-scroll";
-import { useNavigate,useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { IoLogInOutline } from "react-icons/io5";
 
 function Topbar() {
-  
+
   let { category } = useParams();
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
@@ -18,13 +18,14 @@ function Topbar() {
     scroll.scrollTo(element.offsetTop);
   };
   const scrollToHome = () => {
-    if(category!==undefined){
+    if (category !== undefined) {
       navigate(`/`);
     }
     const element = document.getElementById("home-container");
     scroll.scrollTo(element.offsetTop);
   };
 
+  
   useEffect(() => {
     axios.get("http://localhost:3002/product").then((response) => {
       setSuggestions(response.data);
@@ -35,6 +36,7 @@ function Topbar() {
     let urlparam = event.currentTarget.textContent;
     urlparam = urlparam.replace(/\s/g, "");
     navigate(`/category/${urlparam}`);
+    window.location.reload();
   };
 
   const handleSearchChange = (event) => {
@@ -76,10 +78,11 @@ function Topbar() {
         </div>
 
         <div className="topbarRight">
-          {category===undefined &&
-          <span className="navbar-links" onClick={scrollToFeatured}>
-            FEATURED
-          </span>}
+          {category === undefined && (
+            <span className="navbar-links" onClick={scrollToFeatured}>
+              FEATURED
+            </span>
+          )}
           <div className="topbarLinks">
             <span className="navbar-links" onClick={scrollToHome}>
               HOME

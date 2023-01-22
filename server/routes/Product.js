@@ -14,7 +14,6 @@ router.get("/", async(req,res)=> {
 router.get("/featured", async(req,res)=> {
   try{
     const products =  await productModel.find({ featured: true});
-    console.log(products);
     res.status(200).json(products);
   }
   catch(err) {

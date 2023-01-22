@@ -3,6 +3,7 @@
   background-color: hsl(180, 3%, 7%);
   display: flex;
   align-items: center;
+  padding-bottom: 10px;
 }
 .topbar-container {
   display: flex;
@@ -120,20 +121,23 @@
   position: sticky;
 }
 
-.topbar-bottom {
+.topbar-bottom{
   display: flex;
   flex-direction: row;
   align-items: center;
+  transition: top 0.3s;
   background-color: hsl(180, 3%, 7%);
   color: white;
   z-index: 5;
-  height: 60px;
+  height: 30px;
   padding-left: 20px;
-  padding-bottom: 10px;
-  padding-top: 10px;
   gap: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
-
+.navbar.hidden {
+  display: none;
+}
 .topbar-bottom-text {
   cursor: pointer;
   padding: 4px 4px;
