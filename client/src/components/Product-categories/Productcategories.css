@@ -12,8 +12,8 @@
   margin-left:30px;
   flex-direction: column;
   padding: 30px 0px;
-  align-items: center;
   justify-content:space-between;
+  align-items: center;
   border:1px solid #bbbbbb;
   background-color: #edf2f5;
   transition: box-shadow .3s;
@@ -65,6 +65,8 @@
 .cart-button-container {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: 8px;
 }
 
