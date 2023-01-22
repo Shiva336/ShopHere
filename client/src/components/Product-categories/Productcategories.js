@@ -51,10 +51,6 @@ function Productcategories() {
               }}>
                 <div className="img-btn">
                   <img src={product.img} alt="productimage"></img>
-                  <div className="cart-button-container">
-                    <button className="cart-button primary-btn" onClick={handleCartClick}>Add to cart</button>
-                    <button className="wish-button primary-btn" onClick={handleWishlistClick}>Add to wishlist</button>
-                  </div>
                 </div>
                 <div className="individual-text-container">
                   <div className="individual-name">
@@ -74,6 +70,10 @@ function Productcategories() {
                   <div className="individual-rating">
                   
                   <span> Rating: {displayRating(product)} <AiTwotoneStar/> </span>
+                  </div>
+                  <div className="cart-button-container">
+                    <button className="cart-button primary-btn" onClick={handleCartClick}>Add to cart</button>
+                    <button className="wish-button primary-btn" onClick={handleWishlistClick}>Add to wishlist</button>
                   </div>
                 </div>
               </div>
