@@ -1,14 +1,15 @@
-import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import "./topbar.css";
 import { Search } from "@material-ui/icons";
 import { ShoppingCart } from "@material-ui/icons";
 import { animateScroll as scroll } from "react-scroll";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import { IoLogInOutline } from "react-icons/io5";
 
 function Topbar() {
+  
+  let { category } = useParams();
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -17,6 +18,9 @@ function Topbar() {
     scroll.scrollTo(element.offsetTop);
   };
   const scrollToHome = () => {
+    if(category!==undefined){
+      navigate(`/`);
+    }
     const element = document.getElementById("home-container");
     scroll.scrollTo(element.offsetTop);
   };
@@ -72,9 +76,10 @@ function Topbar() {
         </div>
 
         <div className="topbarRight">
+          {category===undefined &&
           <span className="navbar-links" onClick={scrollToFeatured}>
             FEATURED
-          </span>
+          </span>}
           <div className="topbarLinks">
             <span className="navbar-links" onClick={scrollToHome}>
               HOME
