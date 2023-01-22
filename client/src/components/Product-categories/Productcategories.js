@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { api } from "../../api";
 import "./Productcategories.css";
 import { GiBurningDot } from "react-icons/gi";
-import Navbar from "../Navbar/Navbar";
+import Topbar from "../topbar/Topbar";
 import { useNavigate } from "react-router-dom";
 import {AiTwotoneStar} from 'react-icons/ai'
 function Productcategories() {
@@ -40,7 +40,7 @@ function Productcategories() {
   }
   return (
     <>
-      <Navbar />
+      <Topbar />
       <div className="categories-container">
         <div className="category-container">
           {isLoading && <div className="loader"></div>}
