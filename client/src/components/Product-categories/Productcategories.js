@@ -49,23 +49,24 @@ function Productcategories() {
               <div className="individual-product-container"  onClick={() => {
                 navigate(`/product/${product._id}`);
               }}>
-                <div className="img-btn">
+                <div className="img-container">
                   <img src={product.img} alt="productimage"></img>
-                </div>
-                <div className="individual-text-container">
-                  <div className="individual-name">
-                    <h1>{product.name}</h1>
-                  </div>
-                  <div className="individual-price">
-                    <h3>{product.price}</h3>
-                  </div>
                   <div className="individual-highlights">
+                    <h1 className="named-highlights">Highlights of {product.name}</h1>
                     {product.highlights.map((highlight) => (
-                      <div>
+                      <div className="mapped-highlights">
                         <GiBurningDot className="icon-highlights" />
                         {highlight}
                       </div>
                     ))}
+                  </div>
+                </div>
+                <div className="individual-text-container">
+                  <div className="individual-name">
+                    <h2>{product.name}</h2>
+                  </div>
+                  <div className="individual-price">
+                    <h3>{product.price}</h3>
                   </div>
                   <div className="individual-rating">
                   
