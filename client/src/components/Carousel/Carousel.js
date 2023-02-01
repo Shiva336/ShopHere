@@ -27,11 +27,11 @@ import "./Carousel.css";
 
   return (
     <div className="carousel" style={{ overflow: "hidden" }}>
-      <button className="carousel__button carousel__button--prev" onClick={prev}>
+      <button className="carousel-button carousel-button-prev" onClick={prev}>
       <FaArrowCircleLeft />
       </button>
-      <img src={images[currentIndex]} className="carousel__image" alt="slide" />
-      <button className="carousel__button carousel__button--next" onClick={next}>
+      <img src={images[currentIndex]} className="carousel-image" alt="slide" />
+      <button className="carousel-button carousel-button-next" onClick={next}>
       <FaArrowCircleRight/>
       </button>
     </div>

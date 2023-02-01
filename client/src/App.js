@@ -17,10 +17,12 @@ const router = createBrowserRouter([
   {
     path: "/product/:id",
     element: <ProductPage />,
+    errorElement: <div>Something went wrong</div>,
   },
   {
     path: "/category/:category",
     element: <CategoryProductPage />,
+    errorElement: <div>Something went wrong</div>,
   },
 ]);
 
