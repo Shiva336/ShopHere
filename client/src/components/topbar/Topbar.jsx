@@ -5,10 +5,10 @@ import { Search } from "@material-ui/icons";
 import { ShoppingCart } from "@material-ui/icons";
 import { animateScroll as scroll } from "react-scroll";
 import { useNavigate, useParams } from "react-router-dom";
-import { IoLogInOutline } from "react-icons/io5";
+import { IoLogInOutline, IoLogOutOutline } from "react-icons/io5";
 
 function Topbar() {
-
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
   let { category } = useParams();
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
@@ -25,7 +25,6 @@ function Topbar() {
     scroll.scrollTo(element.offsetTop);
   };
 
-  
   useEffect(() => {
     axios.get("http://localhost:3002/product").then((response) => {
       setSuggestions(response.data);
@@ -53,53 +52,57 @@ function Topbar() {
   return (
     <div className="topbar-container">
       <div className="topbarContainer">
-        <div className="topbarLeft">
-          <span
-            className="logo"
-            onClick={() => {
-              window.location.href = "/";
-            }}
-          >
-            ShopHere
+        <span
+          className="logo"
+          onClick={() => {
+            window.location.href = "/";
+          }}
+        >
+          ShopHere
+        </span>
+        <div className="searchbar">
+          <Search className="searchIcon" />
+          <input
+            placeholder="Search for a product"
+            type="text"
+            value={searchText}
+            onChange={handleSearchChange}
+            className="searchInput"
+          />
+        </div>
+        {category === undefined && (
+          <span className="navbar-links" onClick={scrollToFeatured}>
+            FEATURED
+          </span>
+        )}
+        <div className="topbarLinks">
+          <span className="navbar-links" onClick={scrollToHome}>
+            HOME
           </span>
         </div>
-
-        <div className="topbarCenter">
-          <div className="searchbar">
-            <Search className="searchIcon" />
-            <input
-              placeholder="Search for a product"
-              type="text"
-              value={searchText}
-              onChange={handleSearchChange}
-              className="searchInput"
-            />
+        <div className="topbarIcons">
+          <div className="topbarIconItem">
+            <ShoppingCart />
+            <div className="topbarIconBadge"></div>
           </div>
-        </div>
-
-        <div className="topbarRight">
-          {category === undefined && (
-            <span className="navbar-links" onClick={scrollToFeatured}>
-              FEATURED
-            </span>
-          )}
-          <div className="topbarLinks">
-            <span className="navbar-links" onClick={scrollToHome}>
-              HOME
-            </span>
-          </div>
-          <div className="topbarIcons">
-            <div className="topbarIconItem">
-              <ShoppingCart />
-              <span className="topbarIconBadge">2</span>
-            </div>
+          {!isLoggedIn && (
             <IoLogInOutline
               className="login-icon"
               onClick={() => {
+                localStorage.removeItem("isLoggedIn");
                 navigate(`/login`);
               }}
             />
-          </div>
+          )}
+          {isLoggedIn && (
+            <IoLogOutOutline
+              className="login-icon"
+              onClick={() => {
+                localStorage.removeItem("isLoggedIn");
+                navigate(`/login`);
+              }}
+            />
+          )}
         </div>
       </div>
       {searchText.length > 0 && filteredSuggestions.length > 0 && (

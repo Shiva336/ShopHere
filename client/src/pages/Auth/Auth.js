@@ -106,16 +106,20 @@ function Auth() {
 
     try {
       const response = await api.post(`/auth/login`, data);
-      if (response.status === 200) {
+      console.log(response.status);
         if (response.status === 200) {
           setIsRegistered(true);
+          localStorage.setItem('isLoggedIn', true);
           navigate("/");
         } else if (response.status === 400) {
-          alert("Incorrect password,Please try again!");
+          setpasswordError(response);
         }
-      }
+        else if (response.status === 404) {
+          setnameError(response);
+        }
+      
     } catch (error) {
-      alert(error);
+      return;
     }
   }
 
@@ -155,7 +159,7 @@ function Auth() {
                     type="text"
                     id="name"
                     name="name"
-                    placeholder="    Monkey D. Luffy"
+                    placeholder="    Name here"
                     autoComplete="off"
                     ref={usernameField}
                   />
