@@ -14,7 +14,6 @@ router.get("/", async(req,res)=> {
 router.get("/featured", async(req,res)=> {
   try{
     const products =  await productModel.find({ featured: true});
-    console.log(products);
     res.status(200).json(products);
   }
   catch(err) {
@@ -37,9 +36,7 @@ router.get("/:id", async(req,res)=> {
 //get products by category
 router.get("/category/:category", async(req,res)=> {
     try{
-      console.log(req.params.category);
         const products = await productModel.find({ category: req.params.category});
-        console.log(products);
         res.status(200).json(products);
       }
       catch(err) {

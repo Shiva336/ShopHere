@@ -28,7 +28,7 @@ function Product() {
   }, []);
 
   return (
-    <div>
+    <div className="fp-body">
       <div className="featured-product-container" id="featured-product-container">
         <div>
           <h1 className="featured-shimmering-text">FEATURED PRODUCTS</h1>

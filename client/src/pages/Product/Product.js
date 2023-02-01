@@ -4,7 +4,7 @@ import { api } from "../../api";
 import "./Product.css";
 import Rating from './Rating'
 
-function Product(){
+function Product() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [ratings, setRatings] = useState([]);
@@ -13,10 +13,10 @@ function Product(){
   useEffect(() => {
     (async () => {
       setIsLoading(true);
-      console.log(id)
+      console.log(id);
       const { data } = await api.get(`/product/${id}`);
       setProduct(data);
-      setRatings(data.rating)
+      console.log(data);
       setIsLoading(false);
     })();
 
@@ -29,30 +29,40 @@ function Product(){
 
   return (
     <>
-      <div className="products-container" id="home-container">
+      <div className="separate-products-container" id="home-container">
         {isLoading && <div className="loader"></div>}
         {product && (
-          <>
-            <img
-              src={
-                product.img
-              }
-              alt="Product IMG"
-            />
-            <div className="product-details">
+          <div className="separate-product-details">
+            <div className="separate-image-container">
+              <img
+                src={product.img}
+                alt="Product IMG"
+                className="separate-product-image"
+              />
+            </div>
+            <div className="separate-text-container">
               <h1>{product.name}</h1>
-              <p>{product.highlights}</p>
+              <div className="separate-rr-cont">
+                <div className="separate-ratings">
+                  {product.rating.length} ratings
+                </div>
+                <div style={{ padding: "0px 10px" }}>and</div>
+                <div className="separate-reviews">
+                  {product.reviews.length} reviews
+                </div>
+              </div>
+              <div className="separate-hl">
+                <h2 className="hl-header">Specifications</h2>
+                {product.highlights.map((highlight) => (
+                  <div className="separate-highlights">{highlight}</div>
+                ))}
+              </div>
             </div>
-
-            <div className="productRating">
-             <span>Rating: <Rating ratings={ratings} /> </span> 
-            </div>
-            
-          </>
+          </div>
         )}
       </div>
     </>
   );
-};
+}
 
-export default Product
+export default Product;

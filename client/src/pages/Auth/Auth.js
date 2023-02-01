@@ -11,7 +11,8 @@ function Auth() {
   const addressField = useRef(null);
   const usernameField = useRef(null);
   const passwordField = useRef(null);
-
+  const [nameError,setnameError] = useState("");
+  const [passwordError,setpasswordError] = useState("");
   const [text, setText] = useState("");
   const fullText = "If not here,then where?";
 
@@ -90,30 +91,35 @@ function Auth() {
       password: password,
     };
     if (username.length === 0 && password.length === 0) {
-      alert("Please enter the username and password!");
+      setnameError("Enter a valid username!");
+      setpasswordError("Enter a valid password!");
       return;
     }
     if (username.length === 0) {
-      alert("Please enter the username!");
+      setnameError("Enter a valid username!");
       return;
     }
     if (password.length === 0) {
-      alert("Please enter the password!");
+      setpasswordError("Enter a valid password!");
       return;
     }
 
     try {
       const response = await api.post(`/auth/login`, data);
-      if (response.status === 200) {
+      console.log(response.status);
         if (response.status === 200) {
           setIsRegistered(true);
+          localStorage.setItem('isLoggedIn', true);
           navigate("/");
         } else if (response.status === 400) {
-          alert("Incorrect password,Please try again!");
+          setpasswordError(response);
         }
-      }
+        else if (response.status === 404) {
+          setnameError(response);
+        }
+      
     } catch (error) {
-      console.error(error);
+      return;
     }
   }
 
@@ -153,7 +159,7 @@ function Auth() {
                     type="text"
                     id="name"
                     name="name"
-                    placeholder="    Monkey D. Luffy"
+                    placeholder="    Name here"
                     autoComplete="off"
                     ref={usernameField}
                   />
@@ -240,11 +246,12 @@ function Auth() {
                     type="text"
                     id="Username"
                     name="Username"
-                    placeholder="    Monkey D. Luffy"
+                    placeholder="    Username here"
                     autoComplete="off"
+                    
                     ref={usernameField}
                   />
-                  <div className="Username-err-label">Error label-todo</div>
+                  <div className="Username-err-label">{nameError}</div>
                   <input
                     type="password"
                     id="password"
@@ -253,7 +260,7 @@ function Auth() {
                     autoComplete="off"
                     ref={passwordField}
                   />
-                  <div className="password-err-label">Error label-todo</div>
+                  <div className="password-err-label">{passwordError}</div>
                 </div>
               </div>
               <div className="buttons-login">

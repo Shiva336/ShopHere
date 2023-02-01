@@ -1,16 +1,15 @@
-import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import "./topbar.css";
 import { Search } from "@material-ui/icons";
 import { ShoppingCart } from "@material-ui/icons";
 import { animateScroll as scroll } from "react-scroll";
-import { useNavigate } from "react-router-dom";
-import {IoLogInOutline} from 'react-icons/io5'
-
+import { useNavigate, useParams } from "react-router-dom";
+import { IoLogInOutline, IoLogOutOutline } from "react-icons/io5";
 
 function Topbar() {
-  
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  let { category } = useParams();
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -19,6 +18,9 @@ function Topbar() {
     scroll.scrollTo(element.offsetTop);
   };
   const scrollToHome = () => {
+    if (category !== undefined) {
+      navigate(`/`);
+    }
     const element = document.getElementById("home-container");
     scroll.scrollTo(element.offsetTop);
   };
@@ -29,11 +31,12 @@ function Topbar() {
     });
   }, []);
 
-  const handleCategoriesClick=(event)=>{
-      let urlparam=event.currentTarget.textContent;
-      urlparam = urlparam.replace(/\s/g, '');
-      navigate(`/category/${urlparam}`);
-  }
+  const handleCategoriesClick = (event) => {
+    let urlparam = event.currentTarget.textContent;
+    urlparam = urlparam.replace(/\s/g, "");
+    navigate(`/category/${urlparam}`);
+    window.location.reload();
+  };
 
   const handleSearchChange = (event) => {
     setSearchText(event.target.value);
@@ -44,67 +47,95 @@ function Topbar() {
     filteredSuggestions = suggestions.filter((suggestion) =>
       suggestion.name.toLowerCase().startsWith(searchText.toLowerCase())
     );
-    console.log(filteredSuggestions);
+  console.log(filteredSuggestions);
 
   return (
     <div className="topbar-container">
       <div className="topbarContainer">
-        <div className="topbarLeft">
-          <span
-            className="logo"
-            onClick={() => {
-              window.location.href = "/";
-            }}
-          >
-            ShopHere
-          </span>
+        <span
+          className="logo"
+          onClick={() => {
+            window.location.href = "/";
+          }}
+        >
+          ShopHere
+        </span>
+        <div className="searchbar">
+          <Search className="searchIcon" />
+          <input
+            placeholder="Search for a product"
+            type="text"
+            value={searchText}
+            onChange={handleSearchChange}
+            className="searchInput"
+          />
         </div>
-
-        <div className="topbarCenter">
-          <div className="searchbar">
-            <Search className="searchIcon" />
-            <input
-              placeholder="Search for a product"
-              type="text"
-              value={searchText}
-              onChange={handleSearchChange}
-              className="searchInput"
-            />
-          </div>
-        </div>
-
-        <div className="topbarRight">
+        {category === undefined && (
           <span className="navbar-links" onClick={scrollToFeatured}>
             FEATURED
           </span>
-          <div className="topbarLinks">
-            <span className="navbar-links" onClick={scrollToHome}>
-              HOME
-            </span>
+        )}
+        <div className="topbarLinks">
+          <span className="navbar-links" onClick={scrollToHome}>
+            HOME
+          </span>
+        </div>
+        <div className="topbarIcons">
+          <div className="topbarIconItem">
+            <ShoppingCart />
+            <div className="topbarIconBadge"></div>
           </div>
-          <div className="topbarIcons">
-            <div className="topbarIconItem">
-              <ShoppingCart />
-              <span className="topbarIconBadge">2</span>
-            </div>
-            <IoLogInOutline className="login-icon" onClick={()=>{navigate(`/login`)}}/>
-          </div>
+          {!isLoggedIn && (
+            <IoLogInOutline
+              className="login-icon"
+              onClick={() => {
+                localStorage.removeItem("isLoggedIn");
+                navigate(`/login`);
+              }}
+            />
+          )}
+          {isLoggedIn && (
+            <IoLogOutOutline
+              className="login-icon"
+              onClick={() => {
+                localStorage.removeItem("isLoggedIn");
+                navigate(`/login`);
+              }}
+            />
+          )}
         </div>
       </div>
-      <div className="search-focus">
-{searchText.length > 0&&
-<ul className="search-suggestions">
-  {filteredSuggestions.map((suggestion) => (
-    <li className="searchlist" key={suggestion._id}  onClick={() => {navigate(`/product/${suggestion._id}`)}}>
-      {suggestion.name}
-    </li>
-  ))}
-</ul>}</div>
+      {searchText.length > 0 && filteredSuggestions.length > 0 && (
+        <div className="search-focus">
+          <ul className="search-suggestions">
+            {filteredSuggestions.map((suggestion) => (
+              <li
+                className="searchlist"
+                key={suggestion._id}
+                onClick={() => {
+                  navigate(`/product/${suggestion._id}`);
+                }}
+              >
+                {suggestion.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       <div className="separator-line"></div>
       <div className="topbar-bottom">
-        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>Smartphones</div>
-        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>Cameras</div>
-        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>Computers</div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Smartphones
+        </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Cameras
+        </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Computers
+        </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          MensFashion
+        </div>
       </div>
     </div>
   );

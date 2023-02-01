@@ -3,15 +3,16 @@ import { useParams } from "react-router-dom";
 import { api } from "../../api";
 import "./Productcategories.css";
 import { GiBurningDot } from "react-icons/gi";
-import Navbar from "../Navbar/Navbar";
-import {AiTwotoneStar} from 'react-icons/ai'
-
+import Topbar from "../topbar/Topbar";
+import { useNavigate } from "react-router-dom";
+import { AiTwotoneStar } from "react-icons/ai";
 function Productcategories() {
   const { category } = useParams();
+  const navigate = useNavigate();
   const [products, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const handleCartClick =() => {}
-  const handleWishlistClick=()=>{}
+  const handleCartClick = () => {};
+  const handleWishlistClick = () => {};
   useEffect(() => {
     (async () => {
       setIsLoading(true);
@@ -30,50 +31,71 @@ function Productcategories() {
   let avgRating = 0;
   let num = 0;
   function displayRating(product) {
-    avgRating=0; num=0
-                    {product.rating.map((rate)=> {
-                      avgRating+= parseFloat(rate);
-                      num = num+1;
-                    })}
-    return (parseInt((avgRating/num)*100))/100
+    avgRating = 0;
+    num = 0;
+    {
+      product.rating.map((rate) => {
+        avgRating += parseFloat(rate);
+        num = num + 1;
+      });
+    }
+    return parseInt((avgRating / num) * 100) / 100;
   }
   return (
     <>
-      <Navbar />
+      <Topbar />
       <div className="categories-container">
-        <p className="category-welcome-message">
-          Welcome to {category} section!
-        </p>
         <div className="category-container">
           {isLoading && <div className="loader"></div>}
           {!isLoading &&
             products.map((product) => (
-              <div className="individual-product-container">
-                <div className="img-btn">
-                  <img src={product.img} alt="product-image"></img>
-                  <div className="cart-button-container">
-                    <button className="cart-button primary-btn" onClick={handleCartClick}>Add to cart</button>
-                    <button className="wish-button primary-btn" onClick={handleWishlistClick}>Add to wishlist</button>
-                  </div>
-                </div>
-                <div className="individual-text-container">
-                  <div className="individual-name">
-                    <h1>{product.name}</h1>
-                  </div>
-                  <div className="individual-price">
-                    <h3>{product.price}</h3>
+              <div
+                className="individual-product-container"
+                onClick={() => {
+                  navigate(`/product/${product._id}`);
+                }}
+              >
+                <div className="img-container">
+                  <div className="individual-product-image">
+                    <img src={product.img} className="individual-product-image"alt="productimage"></img>
                   </div>
                   <div className="individual-highlights">
+                    <h1 className="named-highlights">
+                      Highlights of {product.name}
+                    </h1>
                     {product.highlights.map((highlight) => (
-                      <div>
+                      <div className="mapped-highlights">
                         <GiBurningDot className="icon-highlights" />
                         {highlight}
                       </div>
                     ))}
                   </div>
+                </div>
+                <div className="individual-text-container">
+                  <div className="individual-name">
+                    <h2>{product.name}</h2>
+                  </div>
+                  <div className="individual-price">
+                    <h3>{product.price}</h3>
+                  </div>
                   <div className="individual-rating">
-                  
-                  <span> Rating: {displayRating(product)} <AiTwotoneStar/> </span>
+                    <span>
+                      Rating: {displayRating(product)} <AiTwotoneStar />
+                    </span>
+                  </div>
+                  <div className="cart-button-container">
+                    <button
+                      className="cart-button primary-btn"
+                      onClick={handleCartClick}
+                    >
+                      Add to cart
+                    </button>
+                    <button
+                      className="wish-button primary-btn"
+                      onClick={handleWishlistClick}
+                    >
+                      Add to wishlist
+                    </button>
                   </div>
                 </div>
               </div>
