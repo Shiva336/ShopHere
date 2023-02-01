@@ -106,10 +106,10 @@ function Auth() {
 
     try {
       const response = await api.post(`/auth/login`, data);
-      console.log(response.status);
         if (response.status === 200) {
           setIsRegistered(true);
           localStorage.setItem('isLoggedIn', true);
+          localStorage.setItem('loggedUser', data.name);
           navigate("/");
         } else if (response.status === 400) {
           setpasswordError(response);

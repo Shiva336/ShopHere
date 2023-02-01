@@ -5,10 +5,12 @@ import { Search } from "@material-ui/icons";
 import { ShoppingCart } from "@material-ui/icons";
 import { animateScroll as scroll } from "react-scroll";
 import { useNavigate, useParams } from "react-router-dom";
-import { IoLogInOutline, IoLogOutOutline } from "react-icons/io5";
+import { IoLogInOutline} from "react-icons/io5";
+import {FaUserCircle} from "react-icons/fa";
 
 function Topbar() {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const loggedUser = localStorage.getItem("loggedUser");
   let { category } = useParams();
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
@@ -95,13 +97,9 @@ function Topbar() {
             />
           )}
           {isLoggedIn && (
-            <IoLogOutOutline
-              className="login-icon"
-              onClick={() => {
-                localStorage.removeItem("isLoggedIn");
-                navigate(`/login`);
-              }}
-            />
+            <>
+              <div className="username-label">{loggedUser}<FaUserCircle className="user-icon"/></div>
+            </>
           )}
         </div>
       </div>

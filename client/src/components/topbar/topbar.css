@@ -5,6 +5,8 @@
   align-items: center;
   justify-content: space-between;
   padding-bottom: 10px;
+  padding-top:10px;
+  overflow: hidden;
 }
 .topbar-container {
   display: flex;
@@ -148,7 +150,7 @@
 .search-suggestions {
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
+  margin-top: 16px;
   background-color: white;
   border: 3px solid gold;
   padding-top: 12px;
@@ -159,7 +161,7 @@
 .search-focus {
   position: absolute;
   top: 37px;
-  left: 265px;
+  left: 250px;
   height: fit-content;
   z-index: 999;
 }
@@ -188,4 +190,19 @@ li {
   -moz-transform: scale(1.2);
   -ms-transform: scale(1.2);
   -o-transform: scale(1.2);
+}
+
+.username-label{
+  color:white;
+  margin-right: 30px;
+  margin-left: 10px;
+  margin-top:10px;
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+}
+
+.user-icon{
+  padding-left: 10px;
+  padding-top: 5px;
 }
