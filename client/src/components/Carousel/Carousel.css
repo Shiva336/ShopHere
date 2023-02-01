@@ -6,13 +6,13 @@
     background-color: black;
   }
   
-  .carousel__image {
+  .carousel-image {
     z-index: 2;
     width: 100%;
     height: 100vh;
   }
   
-  .carousel__button {
+  .carousel-button {
     position: absolute;
     background: transparent;
     transition: background-color 0.2s ease-in-out;
@@ -25,18 +25,18 @@
 }
 
 
-  .carousel__button:hover{
+  .carousel-button:hover{
     color:white;
     background-color: rgb(255, 219, 172);
 }
   
-  .carousel__button--prev {
+  .carousel-button-prev {
     border-top-left-radius: 22px;
     border-bottom-left-radius: 22px;
     left: 0;
 }
   
-  .carousel__button--next {
+  .carousel-button-next {
     border-top-right-radius: 22px;
     border-bottom-right-radius: 22px;
     right: 0;
