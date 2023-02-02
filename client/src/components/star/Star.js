@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './styles.css';
 
 const Star = (props) => {
-
     const changeGrade = (e) => {
         props.changeGradeIndex(e.target.value);
+    }
+
+    if(props.userRating - props.index > 0)
+    {
+        props.changeGradeIndex(props.index-1)
     }
 
     return (
