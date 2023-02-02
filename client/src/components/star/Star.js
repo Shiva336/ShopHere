@@ -8,13 +8,14 @@ const Star = (props) => {
     const changeGrade = (e) => {
         props.changeGradeIndex(e.target.value);
         const data = {
-            newrating: e.target.value
+            newrating: e.target.value+1
         }
         const response = api.put(`/product/${id}/rating`, data);
     }
 
+   
     if(props.userRating - props.index > 0)
-    {
+    { 
         props.changeGradeIndex(props.index-1)
     }
 
