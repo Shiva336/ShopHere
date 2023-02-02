@@ -97,7 +97,7 @@ function Topbar() {
           )}
           {isLoggedIn && (
             <>
-              <div className="username-label">{loggedUser}<FaUserCircle className="user-icon"/></div>
+              <div className="username-label">{loggedUser}<FaUserCircle className="user-icon" size="30"/></div>
             </>
           )}
         </div>
@@ -114,6 +114,8 @@ function Topbar() {
                 }}
               >
                 {suggestion.name}
+                {suggestion.featured &&(<span className="featured-suggestion">
+                Featured</span>)}
               </li>
             ))}
           </ul>

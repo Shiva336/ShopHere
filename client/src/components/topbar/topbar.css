@@ -23,6 +23,7 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
+  margin-left:50px;
   cursor: pointer;
 }
 .logo {
@@ -43,6 +44,7 @@
 .searchbar {
   height: 30px;
   background-color: white;
+  border-radius: 10px;
   display: flex;
   align-items: center;
 }
@@ -54,8 +56,9 @@
 
 .searchInput {
   display: flex;
-  width: 40vw;
+  width: 500px;
   flex-direction: column;
+  margin-right:10px;
   border: none;
 }
 
@@ -97,7 +100,7 @@
   width: 40px;
   height: 40px;
   margin-right: 30px;
-  margin-left: 10px;
+  margin-left: 80px;
   color: gold;
 }
 
@@ -155,7 +158,11 @@
   border: 3px solid gold;
   padding-top: 12px;
   padding-bottom: 10px;
-  width: 610px;
+  padding-left:50px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+margin-left:5px;
+  width: 534px;
   color: black;
 }
 .search-focus {
@@ -169,12 +176,12 @@
 li {
   list-style-type: none;
   cursor: pointer;
+  font-size: 20px;
 }
 .searchlist {
   width: fit-content;
   border-radius: 10px;
   padding-left:10px;
-  padding-right: 10px;
   transition: all 350ms ease-in-out;
   -webkit-transition: all 350ms ease-in-out;
   -moz-transition: all 350ms ease-in-out;
@@ -201,8 +208,21 @@ li {
   display: flex;
   flex-direction: row;
 }
-
+.featured-suggestion{
+  margin-left:10px;
+  padding-left:10px;
+  padding-right:10px;
+  border-radius: 5px;
+  background-color:lawngreen;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.searchlist:hover > .featured-suggestion{
+  background-color:red;
+  color:white;
+}
 .user-icon{
   padding-left: 10px;
-  padding-top: 5px;
 }
