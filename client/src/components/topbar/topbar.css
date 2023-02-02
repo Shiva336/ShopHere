@@ -212,12 +212,9 @@ li {
   margin-left:10px;
   padding-left:10px;
   padding-right:10px;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color:lawngreen;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
+  color:midnightblue;
 }
 .searchlist:hover > .featured-suggestion{
   background-color:red;
@@ -225,4 +222,8 @@ li {
 }
 .user-icon{
   padding-left: 10px;
+}
+
+.category-navbar-links{
+  color:hsl(180, 3%, 7%);
 }
