@@ -11,8 +11,8 @@ function Auth() {
   const addressField = useRef(null);
   const usernameField = useRef(null);
   const passwordField = useRef(null);
-  const [nameError,setnameError] = useState("");
-  const [passwordError,setpasswordError] = useState("");
+  const [nameError, setnameError] = useState("");
+  const [passwordError, setpasswordError] = useState("");
   const [text, setText] = useState("");
   const fullText = "If not here,then where?";
 
@@ -43,10 +43,16 @@ function Auth() {
     password = passwordField.current.value;
     let data;
 
+    // https://en.wikipedia.org/wiki/Regular_expression
     const phoneNumberPattern = /^\d{10}$/;
-    const emailPattern =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    // https://stackoverflow.com/questions/25286239/matching-exactly-10-digits-in-javascript
 
+    const emailPattern =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    /*http://jsfiddle.net/ghvj4gy9/
+    https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
+    */
     phone = phoneField.current.value.trim();
     email = emailField.current.value.trim();
 
@@ -64,7 +70,7 @@ function Auth() {
       };
 
       try {
-        const response = await api.post(`/auth/register`,data);
+        const response = await api.post(`/auth/register`, data);
         if (response.status === 200) {
           setText("");
           setIsRegistered(true);
@@ -106,18 +112,16 @@ function Auth() {
 
     try {
       const response = await api.post(`/auth/login`, data);
-      console.log(response.status);
-        if (response.status === 200) {
-          setIsRegistered(true);
-          localStorage.setItem('isLoggedIn', true);
-          navigate("/");
-        } else if (response.status === 400) {
-          setpasswordError(response);
-        }
-        else if (response.status === 404) {
-          setnameError(response);
-        }
-      
+      if (response.status === 200) {
+        setIsRegistered(true);
+        localStorage.setItem("isLoggedIn", true);
+        localStorage.setItem("loggedUser", data.name);
+        navigate("/");
+      } else if (response.status === 400) {
+        setpasswordError(response);
+      } else if (response.status === 404) {
+        setnameError(response);
+      }
     } catch (error) {
       return;
     }
@@ -248,7 +252,6 @@ function Auth() {
                     name="Username"
                     placeholder="    Username here"
                     autoComplete="off"
-                    
                     ref={usernameField}
                   />
                   <div className="Username-err-label">{nameError}</div>
