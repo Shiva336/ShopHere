@@ -6,6 +6,7 @@ import { GiBurningDot } from "react-icons/gi";
 import Topbar from "../topbar/Topbar";
 import { useNavigate } from "react-router-dom";
 import { AiTwotoneStar } from "react-icons/ai";
+
 function Productcategories() {
   const { category } = useParams();
   const navigate = useNavigate();
@@ -33,12 +34,12 @@ function Productcategories() {
   function displayRating(product) {
     avgRating = 0;
     num = 0;
-    {
+    
       product.rating.map((rate) => {
         avgRating += parseFloat(rate);
         num = num + 1;
       });
-    }
+    
     return parseInt((avgRating / num) * 100) / 100;
   }
   return (
