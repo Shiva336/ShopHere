@@ -34,12 +34,12 @@ function Productcategories() {
   function displayRating(product) {
     avgRating = 0;
     num = 0;
-    
-      product.rating.map((rate) => {
-        avgRating += parseFloat(rate);
-        num = num + 1;
-      });
-    
+
+    product.rating.map((rate) => {
+      avgRating += parseFloat(rate);
+      num = num + 1;
+    });
+
     return parseInt((avgRating / num) * 100) / 100;
   }
   return (
@@ -50,54 +50,49 @@ function Productcategories() {
           {isLoading && <div className="loader"></div>}
           {!isLoading &&
             products.map((product) => (
-              <div
-                className="individual-product-container"
-                onClick={() => {
-                  navigate(`/product/${product._id}`);
-                }}
-              >
-                <div className="img-container">
-                  <div className="individual-product-image">
-                    <img src={product.img} className="individual-product-image"alt="productimage"></img>
+              <div className="individual-product-container">
+                <div
+                  onClick={() => {
+                    navigate(`/product/${product._id}`);
+                  }}
+                  className="clickable-div"
+                >
+                  <div className="img-container">
+                    <div className="individual-product-image">
+                      <img
+                        src={product.img}
+                        className="individual-product-image"
+                        alt="productimage"
+                      ></img>
+                    </div>
                   </div>
-                  <div className="individual-highlights">
-                    <h1 className="named-highlights">
-                      Highlights of {product.name}
-                    </h1>
-                    {product.highlights.map((highlight) => (
-                      <div className="mapped-highlights">
-                        <GiBurningDot className="icon-highlights" />
-                        {highlight}
-                      </div>
-                    ))}
+                  <div className="individual-text-container">
+                    <div className="individual-name">
+                      <h2>{product.name}</h2>
+                    </div>
+                    <div className="individual-price">
+                      <h3>{product.price}</h3>
+                    </div>
+                    <div className="individual-rating">
+                      <span>
+                        Rating: {displayRating(product)} <AiTwotoneStar />
+                      </span>
+                    </div>
                   </div>
                 </div>
-                <div className="individual-text-container">
-                  <div className="individual-name">
-                    <h2>{product.name}</h2>
-                  </div>
-                  <div className="individual-price">
-                    <h3>{product.price}</h3>
-                  </div>
-                  <div className="individual-rating">
-                    <span>
-                      Rating: {displayRating(product)} <AiTwotoneStar />
-                    </span>
-                  </div>
-                  <div className="cart-button-container">
-                    <button
-                      className="cart-button primary-btn"
-                      onClick={handleCartClick}
-                    >
-                      Add to cart
-                    </button>
-                    <button
-                      className="wish-button primary-btn"
-                      onClick={handleWishlistClick}
-                    >
-                      Add to wishlist
-                    </button>
-                  </div>
+                <div className="cart-button-container">
+                  <button
+                    className="cart-button primary-btn"
+                    onClick={handleCartClick}
+                  >
+                    Add to cart
+                  </button>
+                  <button
+                    className="wish-button primary-btn"
+                    onClick={handleWishlistClick}
+                  >
+                    Add to wishlist
+                  </button>
                 </div>
               </div>
             ))}
