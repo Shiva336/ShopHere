@@ -8,7 +8,6 @@ function Home() {
     <div className='HomeContainer'id="home-container">
       <TopBar/>
       <Carousel/>
-      <div className='home-hidden-div'></div>
       <FeaturedProduct/>
     </div>
   )

@@ -6,11 +6,13 @@ import { ShoppingCart } from "@material-ui/icons";
 import { animateScroll as scroll } from "react-scroll";
 import { useNavigate, useParams } from "react-router-dom";
 import { IoLogInOutline } from "react-icons/io5";
+import { GoSignOut } from "react-icons/go";
 import { FaUserCircle } from "react-icons/fa";
 
 function Topbar() {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
   const loggedUser = localStorage.getItem("loggedUser");
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   let { category } = useParams();
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
@@ -50,6 +52,11 @@ function Topbar() {
       suggestion.name.toLowerCase().startsWith(searchText.toLowerCase())
     );
 
+    const handleLogout=()=>{
+      localStorage.setItem("isLoggedIn",false);
+      localStorage.setItem("loggedUser",'guest');
+      navigate(`/login`);
+    }
   return (
     <div className="topbar-container">
       <div className="topbarContainer">
@@ -107,7 +114,39 @@ function Topbar() {
             <>
               <div className="username-label">
                 {loggedUser}
-                <FaUserCircle className="user-icon" size="30" />
+                <FaUserCircle
+                  className="user-icon"
+                  size="30"
+                  onClick={() => {
+                    setIsProfileOpen(!isProfileOpen);
+                  }}
+                />
+                {isProfileOpen && (
+                  <>
+                    <div
+                      class="triangle-icon"
+                      onClick={() => {
+                        setIsProfileOpen(!isProfileOpen);
+                      }}
+                    ></div>
+                    <div className="profile-div">
+                      <div className="all-btn" onClick={handleLogout}>
+                        <GoSignOut className="profile-open-icon" size="20" />
+                        <span className="option-text">Logout</span>
+                      </div>
+                      <hr />
+                      <div className="all-btn">
+                        <FaUserCircle className="profile-open-icon" />
+                        <span className="option-text">My Profile</span>
+                      </div>
+                      <hr />
+                      <div className="all-btn">
+                        <ShoppingCart className="profile-open-icon" />
+                      <span className="option-text">My Cart</span>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </>
           )}
@@ -153,3 +192,5 @@ function Topbar() {
 }
 
 export default Topbar;
+
+// https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_shapes_triangle-up
