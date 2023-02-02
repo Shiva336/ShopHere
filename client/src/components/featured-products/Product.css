@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  height: 100vh;
 }
 .featured-product-container > h1 {
   color: black;
