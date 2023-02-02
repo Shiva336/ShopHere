@@ -5,8 +5,8 @@ import { Search } from "@material-ui/icons";
 import { ShoppingCart } from "@material-ui/icons";
 import { animateScroll as scroll } from "react-scroll";
 import { useNavigate, useParams } from "react-router-dom";
-import { IoLogInOutline} from "react-icons/io5";
-import {FaUserCircle} from "react-icons/fa";
+import { IoLogInOutline } from "react-icons/io5";
+import { FaUserCircle } from "react-icons/fa";
 
 function Topbar() {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
@@ -49,7 +49,7 @@ function Topbar() {
     filteredSuggestions = suggestions.filter((suggestion) =>
       suggestion.name.toLowerCase().startsWith(searchText.toLowerCase())
     );
-    
+
   return (
     <div className="topbar-container">
       <div className="topbarContainer">
@@ -76,10 +76,18 @@ function Topbar() {
             FEATURED
           </span>
         )}
+        {category !== undefined && (
+          <span className="category-navbar-links navbar-links">FEATURED</span>
+        )}
         <div className="topbarLinks">
-          <span className="navbar-links" onClick={scrollToHome}>
-            HOME
-          </span>
+          {category === undefined && (
+            <span className="navbar-links" onClick={scrollToHome}>
+              HOME
+            </span>
+          )}
+          {category !== undefined && (
+            <span className="category-navbar-links navbar-links">Home</span>
+          )}
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
@@ -97,7 +105,10 @@ function Topbar() {
           )}
           {isLoggedIn && (
             <>
-              <div className="username-label">{loggedUser}<FaUserCircle className="user-icon" size="30"/></div>
+              <div className="username-label">
+                {loggedUser}
+                <FaUserCircle className="user-icon" size="30" />
+              </div>
             </>
           )}
         </div>
@@ -114,8 +125,9 @@ function Topbar() {
                 }}
               >
                 {suggestion.name}
-                {suggestion.featured &&(<span className="featured-suggestion">
-                Featured</span>)}
+                {suggestion.featured && (
+                  <span className="featured-suggestion">Featured</span>
+                )}
               </li>
             ))}
           </ul>
