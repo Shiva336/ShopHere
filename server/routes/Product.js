@@ -26,7 +26,6 @@ router.get("/featured", async(req,res)=> {
 router.get("/:id", async(req,res)=> {
   try{
     const products =  await productModel.findById(req.params.id);
-    console.log(products);
     res.status(200).json(products);
   }
   catch(err) {
@@ -93,8 +92,9 @@ router.put("/:id/rating", async(req,res)=> {
 router.put("/:id/review", async(req,res)=> {
   try {
       const product = productModel.findById(req.params.id);
-      await product.updateOne({ $push: { rating: req.body.newreview} });
-      res.status(200).json("The rewview has been updated");
+      await product.updateOne({ $push: { reviews: req.body.newreview} });
+      console.log(req.body.newreview);
+      res.status(200).json("The review has been updated");
   }
   catch(err) {
       console.log(err);
