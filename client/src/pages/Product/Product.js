@@ -4,10 +4,12 @@ import { AiTwotoneStar } from "react-icons/ai";
 import RatingStars from "../../components/star/RatingStars";
 import { api } from "../../api";
 import "./Product.css";
+import Rating from './Rating'
 
 function Product() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [ratings, setRatings] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [review, setReview] = useState("");
   useEffect(() => {

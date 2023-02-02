@@ -8,6 +8,7 @@ const RatingStars = (props) => {
     const activeStar = {
         fill: 'yellow'
     };
+    const [index,setIndex] = useState(0);
 
     const changeGradeIndex = ( index ) => {
         setGradeIndex(index);
@@ -21,6 +22,7 @@ const RatingStars = (props) => {
                     GRADES.map((grade, index) => (
                         <Star 
                             index={index} 
+                            userRating={props.userRating}
                             key={grade} 
                             changeGradeIndex={changeGradeIndex}
                             style={ gradeIndex >= index ? activeStar : {}}
