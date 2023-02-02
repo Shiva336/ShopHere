@@ -33,6 +33,17 @@ function Product() {
     return parseInt((avgRating / num) * 100) / 100;
   }
 
+  const storeReview = ()=> {
+    const data = {
+      newreview: review,
+    }
+    const response = api.put(`/product/${id}/review`, data);
+  }
+
+  const updateReview = (e)=> {
+    setReview(e.target.value);
+  }
+
   return (
     <>
       <div className="separate-products-container" id="home-container">
@@ -77,6 +88,9 @@ function Product() {
           />
         </div>
         <div className="reviews-section">
+          <h1>Write a review: </h1>
+          <textarea className="review-textarea" onChange={updateReview}></textarea>
+          <button className="review-button" onClick={storeReview}>Submit</button>
 
           <h1>Reviews</h1>
           {product.reviews.map((review)=> {
