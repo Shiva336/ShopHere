@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { AiTwotoneStar } from "react-icons/ai";
+import RatingStars from "../../components/star/RatingStars";
 import { api } from "../../api";
 import "./Product.css";
 
@@ -7,23 +9,40 @@ function Product() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [review, setReview] = useState("");
   useEffect(() => {
     (async () => {
       setIsLoading(true);
-      console.log(id);
       const { data } = await api.get(`/product/${id}`);
       setProduct(data);
-      console.log(data);
       setIsLoading(false);
     })();
-
-    return () => {
-      setProduct(null);
-      setIsLoading(false);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  let avgRating = 0;
+  let num = 0;
+  function getRating(product) {
+    avgRating = 0;
+    num = 0;
+    
+      product.rating.map((rate) => {
+        avgRating += parseFloat(rate);
+        num = num + 1;
+      });
+    
+    return parseInt((avgRating / num) * 100) / 100;
+  }
+
+  const storeReview = ()=> {
+    const data = {
+      newreview: review,
+    }
+    const response = api.put(`/product/${id}/review`, data);
+  }
+
+  const updateReview = (e)=> {
+    setReview(e.target.value);
+  }
 
   return (
     <>
@@ -59,6 +78,27 @@ function Product() {
           </div>
         )}
       </div>
+      {product && (
+      <div>    
+        <div className="rating-section">
+          <h1>Ratings</h1>
+          Rating: {getRating(product)} <AiTwotoneStar />
+          <RatingStars
+            userRating={avgRating}
+          />
+        </div>
+        <div className="reviews-section">
+          <h1>Write a review: </h1>
+          <textarea className="review-textarea" onChange={updateReview}></textarea>
+          <button className="review-button" onClick={storeReview}>Submit</button>
+
+          <h1>Reviews</h1>
+          {product.reviews.map((review)=> {
+            return (<div>{review}</div>)
+          })}
+        </div>
+      </div>
+      )}
     </>
   );
 }

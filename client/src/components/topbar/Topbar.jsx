@@ -49,8 +49,7 @@ function Topbar() {
     filteredSuggestions = suggestions.filter((suggestion) =>
       suggestion.name.toLowerCase().startsWith(searchText.toLowerCase())
     );
-  console.log(filteredSuggestions);
-
+    
   return (
     <div className="topbar-container">
       <div className="topbarContainer">
