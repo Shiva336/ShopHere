@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './styles.css';
+import { api } from "../../api";
+import { useParams } from 'react-router-dom';
 
 const Star = (props) => {
-
+    const { id } = useParams();
     const changeGrade = (e) => {
         props.changeGradeIndex(e.target.value);
+        const data = {
+            newrating: e.target.value+1
+        }
+        const response = api.put(`/product/${id}/rating`, data);
+    }
+
+   
+    if(props.userRating - props.index > 0)
+    { 
+        props.changeGradeIndex(props.index-1)
     }
 
     return (
