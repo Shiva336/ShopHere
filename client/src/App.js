@@ -1,6 +1,7 @@
 import "./App.css";
 import HomePage from "./Routes/Home";
 import AuthPage from "./Routes/Auth";
+import AdminPage from "./Routes/Admin";
 import  ProductPage  from "./Routes/Product";
 import CategoryProductPage from "./Routes/Category";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -24,6 +25,11 @@ const router = createBrowserRouter([
     element: <CategoryProductPage />,
     errorElement: <div>Something went wrong</div>,
   },
+  {
+    path:"/admin",
+    element:<AdminPage />,
+    errorElement: <div>Something went wrong</div>,
+  }
 ]);
 
 
