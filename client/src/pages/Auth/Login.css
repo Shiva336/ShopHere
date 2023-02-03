@@ -69,7 +69,7 @@
   flex-direction: column;
   gap: 11px;
 }
-input {
+.auth-input {
   width: 200px;
   border: none;
   border-bottom: 1px solid black;
