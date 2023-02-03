@@ -12,7 +12,17 @@ function Productcategories() {
   const navigate = useNavigate();
   const [products, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const handleCartClick = () => {};
+
+  async function handleCartClick(id){
+    const data = {
+      id: id,
+      number: 100,
+      username: localStorage.getItem("loggedUser")
+    }
+    console.log(data);
+    const response = await api.put(`order/cart`,data);
+  };
+
   const handleWishlistClick = () => {};
   useEffect(() => {
     (async () => {
@@ -42,6 +52,7 @@ function Productcategories() {
 
     return parseInt((avgRating / num) * 100) / 100;
   }
+
   return (
     <>
       <Topbar />
@@ -49,8 +60,8 @@ function Productcategories() {
         <div className="category-container">
           {isLoading && <div className="loader"></div>}
           {!isLoading &&
-            products.map((product) => (
-              <div className="individual-product-container">
+            products.map((product,index) => (
+              <div className="individual-product-container" index={product._id}>
                 <div
                   onClick={() => {
                     navigate(`/product/${product._id}`);
@@ -83,7 +94,7 @@ function Productcategories() {
                 <div className="cart-button-container">
                   <button
                     className="cart-button primary-btn"
-                    onClick={handleCartClick}
+                    onClick={()=> {handleCartClick(product._id)}}
                   >
                     Add to cart
                   </button>
