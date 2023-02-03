@@ -80,7 +80,11 @@ router.post("/", async(req,res)=> {
 router.put("/:id/rating", async(req,res)=> {
     try {
         const product = productModel.findById(req.params.id);
-        await product.updateOne({ $push: { rating: req.body.newrating} });
+        const updatedRating = {
+          rating: req.body.newrating,
+          userid: req.params.id
+        }
+        await product.updateOne({ $push: { rating: updatedRating} });
         res.status(200).json("The rating has been updated");
     }
     catch(err) {

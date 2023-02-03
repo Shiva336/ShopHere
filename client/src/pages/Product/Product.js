@@ -26,9 +26,8 @@ function Product() {
   function getRating(product) {
     avgRating = 0;
     num = 0;
-    
       product.rating.map((rate) => {
-        avgRating += parseFloat(rate);
+        avgRating += parseFloat(rate.rating);
         num = num + 1;
       });
     
@@ -85,9 +84,7 @@ function Product() {
         <div className="rating-section">
           <h1>Ratings</h1>
           Rating: {getRating(product)} <AiTwotoneStar />
-          <RatingStars
-            userRating={avgRating}
-          />
+          <RatingStars/>
         </div>
         <div className="reviews-section">
           <h1>Write a review: </h1>

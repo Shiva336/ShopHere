@@ -2,22 +2,25 @@ import React, { useEffect } from 'react';
 import './styles.css';
 import { api } from "../../api";
 import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 const Star = (props) => {
+    const [isRated, setIsRated] = useState(false);
     const { id } = useParams();
     const changeGrade = (e) => {
         props.changeGradeIndex(e.target.value);
         const data = {
-            newrating: e.target.value+1
+            newrating: parseInt(e.target.value)+1,
+            userId: id
         }
         const response = api.put(`/product/${id}/rating`, data);
     }
 
    
-    if(props.userRating - props.index > 0)
-    { 
-        props.changeGradeIndex(props.index-1)
-    }
+    // if(props.userRating - props.index > 0)
+    // { 
+    //     props.changeGradeIndex(props.index-1)
+    // }
 
     return (
         <label className="star">

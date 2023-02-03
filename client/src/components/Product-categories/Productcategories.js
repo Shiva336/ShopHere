@@ -34,9 +34,8 @@ function Productcategories() {
   function displayRating(product) {
     avgRating = 0;
     num = 0;
-    
       product.rating.map((rate) => {
-        avgRating += parseFloat(rate);
+        avgRating += parseFloat(rate.rating);
         num = num + 1;
       });
     
