@@ -105,5 +105,12 @@ router.put("/:id/review", async(req,res)=> {
   }
 });
 
+router.post('/upload',async(req, res)=> {
+  try{
+    console.log(req.body);
+  }
+  catch(err){
+    console.log(err);}
+})
 
 module.exports = router;

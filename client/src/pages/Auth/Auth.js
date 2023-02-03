@@ -4,6 +4,10 @@ import { api } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 function Auth() {
+  useEffect(()=>{
+    localStorage.setItem("isLoggedIn", "guest");
+    localStorage.setItem("loggedUser", false);
+  },[])
   let navigate = useNavigate();
   const [isRegistered, setIsRegistered] = useState(true);
   const phoneField = useRef(null);
@@ -47,7 +51,7 @@ function Auth() {
     const phoneNumberPattern = /^\d{10}$/;
     // https://stackoverflow.com/questions/25286239/matching-exactly-10-digits-in-javascript
 
-    const emailPattern =
+    const emailPattern = // eslint-disable-next-line
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     /*http://jsfiddle.net/ghvj4gy9/
@@ -162,6 +166,7 @@ function Auth() {
                   <input
                     type="text"
                     id="name"
+                    className="auth-input"
                     name="name"
                     placeholder="    Name here"
                     autoComplete="off"
@@ -171,6 +176,7 @@ function Auth() {
                     type="email"
                     id="email"
                     name="email"
+                    className="auth-input"
                     placeholder="    shop@here.com"
                     autoComplete="off"
                     ref={emailField}
@@ -181,6 +187,7 @@ function Auth() {
                     id="phone"
                     name="phone"
                     placeholder="    9876543210"
+                    className="auth-input"
                     autoComplete="off"
                     ref={phoneField}
                   />
@@ -189,6 +196,7 @@ function Auth() {
                     id="address"
                     name="address"
                     placeholder="    Your Address"
+                    className="auth-input"
                     autoComplete="off"
                     ref={addressField}
                   />
@@ -197,6 +205,7 @@ function Auth() {
                     id="password"
                     name="password"
                     placeholder="    Password here"
+                    className="auth-input"
                     autoComplete="off"
                     ref={passwordField}
                   />
@@ -250,6 +259,7 @@ function Auth() {
                     type="text"
                     id="Username"
                     name="Username"
+                    className="auth-input"
                     placeholder="    Username here"
                     autoComplete="off"
                     ref={usernameField}
@@ -259,6 +269,7 @@ function Auth() {
                     type="password"
                     id="password"
                     name="password"
+                    className="auth-input"
                     placeholder="    Password here"
                     autoComplete="off"
                     ref={passwordField}
