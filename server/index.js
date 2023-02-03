@@ -17,6 +17,8 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
 const authRouter = require("./routes/Auth");
 app.use("/auth",authRouter);
+const userRouter = require("./routes/Users");
+app.use("/user",userRouter);
 const productRouter = require("./routes/Product");
 app.use("/product",productRouter);
 const cartRouter = require("./routes/Cart");

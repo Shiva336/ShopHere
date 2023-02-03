@@ -34,6 +34,20 @@ const userSchema = new mongoose.Schema({
     isAdmin: {
         type: Boolean,
         default: false
+    },
+    cart: {
+        orderNumber: {
+            type: String,
+            unique: true
+        },
+        items: {
+            type: Array,
+            required: true
+        },
+        total: {
+            type: Number,
+            default: 1
+        }
     }    
 },
 { timestamps: true }

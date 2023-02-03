@@ -7,7 +7,14 @@ const cartSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    items: [Product.schema],
+    username: {
+        type: String,
+        required: true
+    },
+    items: {
+        type: Array,
+        required: true
+    },
     total: {
         type: Number,
         default: 0
