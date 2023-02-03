@@ -5,12 +5,14 @@ import { Search } from "@material-ui/icons";
 import { ShoppingCart } from "@material-ui/icons";
 import { animateScroll as scroll } from "react-scroll";
 import { useNavigate, useParams } from "react-router-dom";
-import { IoLogInOutline} from "react-icons/io5";
-import {FaUserCircle} from "react-icons/fa";
+import { IoLogInOutline } from "react-icons/io5";
+import { GoSignOut } from "react-icons/go";
+import { FaUserCircle } from "react-icons/fa";
 
 function Topbar() {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
   const loggedUser = localStorage.getItem("loggedUser");
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   let { category } = useParams();
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
@@ -49,7 +51,12 @@ function Topbar() {
     filteredSuggestions = suggestions.filter((suggestion) =>
       suggestion.name.toLowerCase().startsWith(searchText.toLowerCase())
     );
-    
+
+    const handleLogout=()=>{
+      localStorage.setItem("isLoggedIn",false);
+      localStorage.setItem("loggedUser",'guest');
+      navigate(`/login`);
+    }
   return (
     <div className="topbar-container">
       <div className="topbarContainer">
@@ -76,10 +83,18 @@ function Topbar() {
             FEATURED
           </span>
         )}
+        {category !== undefined && (
+          <span className="category-navbar-links navbar-links">FEATURED</span>
+        )}
         <div className="topbarLinks">
-          <span className="navbar-links" onClick={scrollToHome}>
-            HOME
-          </span>
+          {category === undefined && (
+            <span className="navbar-links" onClick={scrollToHome}>
+              HOME
+            </span>
+          )}
+          {category !== undefined && (
+            <span className="category-navbar-links navbar-links">Home</span>
+          )}
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
@@ -97,7 +112,42 @@ function Topbar() {
           )}
           {isLoggedIn && (
             <>
-              <div className="username-label">{loggedUser}<FaUserCircle className="user-icon"/></div>
+              <div className="username-label">
+                {loggedUser}
+                <FaUserCircle
+                  className="user-icon"
+                  size="30"
+                  onClick={() => {
+                    setIsProfileOpen(!isProfileOpen);
+                  }}
+                />
+                {isProfileOpen && (
+                  <>
+                    <div
+                      class="triangle-icon"
+                      onClick={() => {
+                        setIsProfileOpen(!isProfileOpen);
+                      }}
+                    ></div>
+                    <div className="profile-div">
+                      <div className="all-btn" onClick={handleLogout}>
+                        <GoSignOut className="profile-open-icon" size="20" />
+                        <span className="option-text">Logout</span>
+                      </div>
+                      <hr />
+                      <div className="all-btn">
+                        <FaUserCircle className="profile-open-icon" />
+                        <span className="option-text">My Profile</span>
+                      </div>
+                      <hr />
+                      <div className="all-btn">
+                        <ShoppingCart className="profile-open-icon" />
+                      <span className="option-text">My Cart</span>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
             </>
           )}
         </div>
@@ -114,6 +164,9 @@ function Topbar() {
                 }}
               >
                 {suggestion.name}
+                {suggestion.featured && (
+                  <span className="featured-suggestion">Featured</span>
+                )}
               </li>
             ))}
           </ul>
@@ -139,3 +192,5 @@ function Topbar() {
 }
 
 export default Topbar;
+
+// https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_shapes_triangle-up
