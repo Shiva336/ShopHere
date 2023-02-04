@@ -1,8 +1,8 @@
-import "./Admin.css";
+import "../styles/Admin.css";
 import { useState,useRef} from "react";
-import Topbar from "../../components/topbar/Topbar";
+import Topbar from "../components/Topbar";
 import { FcPlus } from "react-icons/fc";
-import {api} from "../../api"
+import {api} from "../api"
 //https://stackoverflow.com/questions/66469913/how-to-add-input-field-dynamically-when-user-click-on-button-in-react-js
 
 function Admin() {

@@ -1,7 +1,7 @@
-import "./ProductBox.css";
+import "../styles/FeaturedProductBox.css";
 import { useNavigate } from "react-router-dom";
 
-function ProductBox(props) {
+function FeaturedProductBox(props) {
   const { text } = props;
   const navigate = useNavigate();
   return (
@@ -27,4 +27,4 @@ function ProductBox(props) {
   );
 }
 
-export default ProductBox;
+export default FeaturedProductBox;

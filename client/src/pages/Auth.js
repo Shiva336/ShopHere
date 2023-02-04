@@ -1,6 +1,6 @@
 import React from "react";
-import "./Login.css";
-import { api } from "../../api";
+import "../styles/Auth.css";
+import { api } from "../api";
 import { useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 function Auth() {
