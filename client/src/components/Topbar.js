@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import "./topbar.css";
+import "../styles/topbar.css";
 import { Search } from "@material-ui/icons";
 import { ShoppingCart } from "@material-ui/icons";
 import { animateScroll as scroll } from "react-scroll";
@@ -101,16 +101,16 @@ function Topbar() {
             <ShoppingCart />
             <div className="topbarIconBadge"></div>
           </div>
-          {!isLoggedIn && (
+          {(isLoggedIn==='undefined' ||isLoggedIn==='false') && (
             <IoLogInOutline
               className="login-icon"
               onClick={() => {
-                localStorage.removeItem("isLoggedIn");
+                localStorage.setItem("loggedUser",'guest');
                 navigate(`/login`);
               }}
             />
           )}
-          {isLoggedIn && (
+          {isLoggedIn==='true'&& (
             <>
               <div className="username-label">
                 {loggedUser}
@@ -124,7 +124,7 @@ function Topbar() {
                 {isProfileOpen && (
                   <>
                     <div
-                      class="triangle-icon"
+                      className="triangle-icon"
                       onClick={() => {
                         setIsProfileOpen(!isProfileOpen);
                       }}

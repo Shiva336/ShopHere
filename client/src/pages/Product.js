@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AiTwotoneStar } from "react-icons/ai";
-import RatingStars from "../../components/star/RatingStars";
-import { api } from "../../api";
-import "./Product.css";
+import RatingStars from "../components/RatingStars";
+import { api } from "../api";
+import "../styles/Product.css";
 import Rating from './Rating'
 
 function Product() {

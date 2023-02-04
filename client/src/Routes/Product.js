@@ -1,5 +1,5 @@
-import Product from "../../pages/Product/Product";
-import Topbar from '../../components/topbar/Topbar';
+import Product from "../pages/Product";
+import Topbar from '../components/Topbar';
 const ProductPage=()=>{
   return (
     <div className="App">

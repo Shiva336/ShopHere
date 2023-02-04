@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { api } from "../../api";
-import "./Productcategories.css";
-import { GiBurningDot } from "react-icons/gi";
-import Topbar from "../topbar/Topbar";
+import { api } from "../api";
+import "../styles/Productcategories.css";
+import Topbar from "./Topbar";
 import { useNavigate } from "react-router-dom";
 import { AiTwotoneStar } from "react-icons/ai";
 

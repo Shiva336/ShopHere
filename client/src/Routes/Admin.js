@@ -1,4 +1,4 @@
-import Admin from '../../pages/Admin/Admin'
+import Admin from '../pages/Admin'
 function AdminPage() {
   return (
     <div><Admin/></div>

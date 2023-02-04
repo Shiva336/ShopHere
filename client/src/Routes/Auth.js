@@ -1,4 +1,4 @@
-import Auth from "../../pages/Auth/Auth";
+import Auth from "../pages/Auth";
 const AuthPage=()=>{
   return (
     <div className="App">

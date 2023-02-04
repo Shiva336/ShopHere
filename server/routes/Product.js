@@ -64,7 +64,7 @@ router.post("/", async(req,res)=> {
             category: req.body.category,
             price: req.body.price,
             img: req.body.img,
-            featured: req.body.featured
+            featured:req.body.featured
         });
 
         const Product = await newProduct.save();
@@ -104,5 +104,12 @@ router.put("/:id/review", async(req,res)=> {
   }
 });
 
+router.post('/upload',async(req, res)=> {
+  try{
+    console.log(req.body);
+  }
+  catch(err){
+    console.log(err);}
+})
 
 module.exports = router;
