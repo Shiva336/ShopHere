@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/App.css";
 import HomePage from "./Routes/Home";
 import AuthPage from "./Routes/Auth";
 import AdminPage from "./Routes/Admin";

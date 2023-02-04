@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import './styles.css';
-import { api } from "../../api";
+import '../styles/star.css';
+import { api } from "../api";
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 

@@ -1,8 +1,8 @@
-import ProductBox from "./ProductBox";
-import "./Product.css";
+import FeaturedProductBox from "./FeaturedProductBox";
+import "../styles/FeaturedProduct.css";
 import { useEffect } from "react";
 import { useState } from "react";
-import { api } from "../../api";
+import { api } from "../api";
 
 function Product() {
   const [products, setProducts] = useState([{}]);
@@ -38,7 +38,7 @@ function Product() {
           {loading && <div className="loader"></div>}
           {!loading &&
             products.map((product) => (
-                <ProductBox text={product} key={product._id} />
+                <FeaturedProductBox text={product} key={product._id} />
             ))}
         </div>
       </div>

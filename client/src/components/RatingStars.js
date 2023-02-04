@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Star from './Star';
-import './styles.css';
+import '../styles/star.css';
 
 const RatingStars = (props) => {
     const [gradeIndex, setGradeIndex] = useState(-1);

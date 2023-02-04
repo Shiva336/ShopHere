@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {FaArrowCircleRight,FaArrowCircleLeft} from 'react-icons/fa'
 import { useCallback } from 'react';
 
-import "./Carousel.css";
+import "../styles/Carousel.css";
  const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const images = [

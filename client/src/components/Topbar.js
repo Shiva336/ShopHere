@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import "./topbar.css";
+import "../styles/topbar.css";
 import { Search } from "@material-ui/icons";
 import { ShoppingCart } from "@material-ui/icons";
 import { animateScroll as scroll } from "react-scroll";

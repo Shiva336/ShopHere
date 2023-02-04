@@ -1,5 +1,5 @@
 
-import Productcategories from "../../components/Product-categories/Productcategories"
+import Productcategories from "../components/Productcategories"
 
 const Category=()=>{
   return (

@@ -1,8 +1,8 @@
 import React from 'react'
-import './Home.css'
-import TopBar from '../../components/topbar/Topbar';
-import Carousel from '../../components/Carousel/Carousel';
-import FeaturedProduct from '../../components/featured-products/Product';
+import '../styles/Home.css'
+import TopBar from '../components/Topbar';
+import Carousel from '../components/Carousel';
+import FeaturedProduct from '../components/FeaturedProduct';
 function Home() {
   return (
     <div className='HomeContainer'id="home-container">
