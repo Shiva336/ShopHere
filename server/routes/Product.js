@@ -64,6 +64,7 @@ router.post("/", async(req,res)=> {
             category: req.body.category,
             price: req.body.price,
             img: req.body.img,
+            featured: req.body.featured
         });
 
         const Product = await newProduct.save();
