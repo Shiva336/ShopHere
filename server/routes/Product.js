@@ -61,11 +61,10 @@ router.post("/", async(req,res)=> {
         const newProduct = new productModel({
             name: req.body.name,
             highlights: req.body.highlights,
-            rating: req.body.rating,
             category: req.body.category,
             price: req.body.price,
             img: req.body.img,
-            reviews: req.body.reviews,
+            featured:req.body.featured
         });
 
         const Product = await newProduct.save();
