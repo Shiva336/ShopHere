@@ -42,14 +42,31 @@ function Admin() {
     let  image=upImageField.current.value; 
     let  category=upCatField.current.value;
     let price=upPriceField.current.value;
+    let highlightArr=[];
+    var x;
+    for(x=0;x<arr.length;x++){
+      highlightArr.push(arr[x].value);
+    }
+    console.log(highlightArr);
     let data={
       name: name,
-      highlights: arr,
+      highlights:highlightArr,
       category: category,
       price:price,
       img: image,
+      featured:false,
+      rating:[],
+      reviews:[]
     }    
-    await api.post("/product",data);
+    try{
+    let response=await api.post("/product",data);
+    if(response.status===200){
+      alert(`${name} uploaded successfully!`);
+    }
+  }
+  catch(err){
+    console.log(err);
+  }
 
   };
   const handleHighlightsChange = (e) => {
