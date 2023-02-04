@@ -16,6 +16,7 @@ router.put("/cart", async(req,res)=> {
         {
             flag = 1;
             product.quantity = product.quantity+1
+            newCart.total++;
         }
         });
         if(flag == 1) {
@@ -31,6 +32,7 @@ router.put("/cart", async(req,res)=> {
             const newCartItem = {
                 orderNumber: req.body.number,
                 items: user.cart.items,
+                total: 1
             }
             newCartItem.items.push(newItem);
             await user.updateOne({ $set: {cart: newCartItem}});
@@ -42,6 +44,32 @@ router.put("/cart", async(req,res)=> {
     catch(err) {
         res.send(err);
     }
+});
+
+//get items from a cart
+router.get("/show", async(req,res)=> {
+    try{
+        const user = await userModel.findOne({name: req.body.username});
+        res.status(200).json(user.cart);
+    }
+    catch(err) {
+        res.json(err);
+    }
 })
+
+//reduce quantity by one
+router.put("/show", async(req,res)=> {
+    try{
+        
+    }
+    catch(err) {
+        res.json(err);
+    }
+})
+
+//delete a product from cart
+
+
+//clear the cart
 
 module.exports = router;

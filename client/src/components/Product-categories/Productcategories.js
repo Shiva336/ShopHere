@@ -19,7 +19,6 @@ function Productcategories() {
       number: 100,
       username: localStorage.getItem("loggedUser")
     }
-    console.log(data);
     const response = await api.put(`order/cart`,data);
   };
 
