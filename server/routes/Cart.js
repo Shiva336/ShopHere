@@ -49,7 +49,7 @@ router.get("/show", async(req,res)=> {
 })
 
 //reduce quantity by one
-router.put("/quantity", async(req,res)=> {
+router.put("/quantity/decrease", async(req,res)=> {
     try{
         const user = await userModel.findOne({name: req.body.username});
         user.cart.items.map((product)=> {
@@ -60,6 +60,23 @@ router.put("/quantity", async(req,res)=> {
                 }
                 else
                     product.quantity--;
+            }
+        });
+        await user.updateOne({ $set: {cart: user.cart}});
+        res.status(200).json(user);
+    }
+    catch(err) {
+        res.json(err);
+    }
+});
+
+//increase quantity by one
+router.put("/quantity/increase", async(req,res)=> {
+    try{
+        const user = await userModel.findOne({name: req.body.username});
+        user.cart.items.map((product)=> {
+            if(product.id === req.body.id) {    
+                product.quantity++;
             }
         });
         await user.updateOne({ $set: {cart: user.cart}});
