@@ -38,7 +38,7 @@ router.put("/cart", async(req,res)=> {
 });
 
 //get items from a cart
-router.get("/show", async(req,res)=> {
+router.put("/show", async(req,res)=> {
     try{
         const user = await userModel.findOne({name: req.body.username});
         res.status(200).json(user.cart);
