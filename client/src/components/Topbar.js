@@ -189,7 +189,7 @@ function Topbar() {
           Computers
         </div>
         <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
-          MensFashion
+          Men's Fashion
         </div>
       </div>
     </div>

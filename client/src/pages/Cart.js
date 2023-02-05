@@ -32,7 +32,7 @@ function Cart() {
   return (
     <div>
       {loading && <div className="loader"></div>}
-      {!loading &&
+      {!loading && products && 
         products.map((product) => {
 
           return(<CartLayout text={product} key={product.id}/>)

@@ -21,6 +21,9 @@ function Productcategories() {
     const response = await api.put(`order/cart`,data);
   };
 
+  //check if logged in as admin
+  let isAdmin = localStorage.getItem("loggedUser")==="admin";
+ 
   const handleWishlistClick = () => {};
   useEffect(() => {
     (async () => {
@@ -90,20 +93,29 @@ function Productcategories() {
                     </div>
                   </div>
                 </div>
-                <div className="cart-button-container">
-                  <button
-                    className="cart-button primary-btn"
-                    onClick={()=> {handleCartClick(product._id)}}
-                  >
-                    Add to cart
-                  </button>
-                  <button
-                    className="wish-button primary-btn"
-                    onClick={handleWishlistClick}
-                  >
-                    Add to wishlist
-                  </button>
-                </div>
+                {!isAdmin && <div className="cart-button-container">
+                      <button
+                        className="cart-button primary-btn"
+                        onClick={()=> {handleCartClick(product._id)}}
+                      >
+                        Add to cart
+                      </button>
+                      <button
+                        className="wish-button primary-btn"
+                        onClick={handleWishlistClick}
+                      >
+                        Add to wishlist
+                      </button>                  
+                </div>}
+
+                {isAdmin && <div className="cart-button-container">
+                      <button
+                        className="cart-button primary-btn"
+                        onClick={()=> {handleCartClick(product._id)}}
+                      >
+                        Remove product
+                      </button>
+                </div>}
               </div>
             ))}
         </div>
