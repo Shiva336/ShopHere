@@ -12,9 +12,10 @@ function Cart() {
   const [total,setTotal]=useState(0);
   const [loading, setLoading] = useState(true);
   const checkoutHandler = async (amount) => {
-    const sendIt = {
-      total :total,
+    const sendIt={
+      username:localStorage.getItem("loggedUser")
     }
+    const response = await api.put(`order/clear`,sendIt);
 
     const { data: { key } } = await api.get("api/getkey")
 
