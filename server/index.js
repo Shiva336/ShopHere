@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
 const url = "mongodb+srv://admin:admin@shophere.goowmfm.mongodb.net/test";
-const Razorpay = require("razorpay");
 const {config} = require("dotenv");
 
 config({ path: "./config/config.env" });

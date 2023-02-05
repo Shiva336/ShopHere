@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const crypto = require("crypto");
 const Razorpay = require("razorpay");
-const { Payment } = require("../models/payment.js");
+const Payment = require("../models/payment.js");
 
 const instance = new Razorpay({
     key_id: process.env.RAZORPAY_API_KEY,
@@ -48,8 +48,8 @@ router.post("/paymentverification",async (req, res) => {
         razorpay_signature,
       });
   
-      res.redirect(
-        `http://localhost:3000/paymentsuccess?reference=${razorpay_payment_id}`
+      await res.redirect(
+        `http://localhost:3000/paymentsuccess/${razorpay_payment_id}`
       );
     } else {
       res.status(400).json({
