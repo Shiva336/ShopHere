@@ -40,7 +40,7 @@ function Cart() {
     if(otherNumbers != '')
         lastThree = ',' + lastThree;
     var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-
+//https://stackoverflow.com/questions/16037165/displaying-a-number-in-indian-format-using-javascript
   return (
       <div className="cart-container">
         <h2>Shopping Cart</h2>

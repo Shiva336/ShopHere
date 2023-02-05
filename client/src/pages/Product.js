@@ -12,14 +12,28 @@ function Product() {
   const [ratings, setRatings] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [review, setReview] = useState("");
-  async function handleCartClick(id) {
+  
+  async function handleCartClick(id, price){
+    let productPrice = 0;
+    let len = price.length;
+    for(let i=0; i<len; i++) 
+    {
+      if(price[i]>='0' && price[i]<='9')
+      {
+        productPrice = productPrice*10 + parseInt(price[i]);
+      }
+    }
+    
     const data = {
       id: id,
       number: 100,
       username: localStorage.getItem("loggedUser"),
-    };
-    const response = await api.put(`order/cart`, data);
-  }
+      price: productPrice
+    }
+    console.log(data);
+    const response = await api.put(`order/cart`,data);
+  };
+
 
   const handleWishlistClick = () => {};
   useEffect(() => {
@@ -95,9 +109,7 @@ function Product() {
             <div className="add-button-container">
               <button
                 className="cart-button primary-btn"
-                onClick={() => {
-                  handleCartClick(product._id);
-                }}
+                onClick={()=> {handleCartClick(product._id, product.price)}}
               >
                 Add to cart
               </button>
