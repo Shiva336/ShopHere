@@ -59,8 +59,8 @@ function Productcategories() {
         <div className="category-container">
           {isLoading && <div className="loader"></div>}
           {!isLoading &&
-            products.map((product,index) => (
-              <div className="individual-product-container" index={product._id}>
+            products.map((product) => (
+              <div className="individual-product-container" key={product._id}>
                 <div
                   onClick={() => {
                     navigate(`/product/${product._id}`);
