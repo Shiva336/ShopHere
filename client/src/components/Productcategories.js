@@ -28,6 +28,7 @@ function Productcategories() {
     }
     console.log(data);
     const response = await api.put(`order/cart`,data);
+    window.location.reload();
   };
 
   async function handleRemove(id){
@@ -115,7 +116,8 @@ function Productcategories() {
                 {!isAdmin && <div className="cart-button-container">
                       <button
                         className="cart-button primary-btn"
-                        onClick={()=> {handleCartClick(product._id, product.price)}}
+                        onClick={()=> {handleCartClick(product._id, product.price)}
+                      }
                       >
                         Add to cart
                       </button>
