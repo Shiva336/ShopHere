@@ -12,14 +12,32 @@ function Productcategories() {
   const [products, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  async function handleCartClick(id){
+  async function handleCartClick(id, price){
+    let productPrice = 0;
+    let len = price.length;
+    for(let i=0; i<len; i++) 
+    {
+      if(price[i]>='0' && price[i]<='9')
+      {
+        productPrice = productPrice*10 + parseInt(price[i]);
+      }
+    }
+    
     const data = {
       id: id,
       number: 100,
-      username: localStorage.getItem("loggedUser")
+      username: localStorage.getItem("loggedUser"),
+      price: productPrice
     }
+    console.log(data);
     const response = await api.put(`order/cart`,data);
   };
+
+  async function handleCartRemove(id){
+    const data = {
+
+    }
+  }
 
   //check if logged in as admin
   let isAdmin = localStorage.getItem("loggedUser")==="admin";
@@ -96,7 +114,7 @@ function Productcategories() {
                 {!isAdmin && <div className="cart-button-container">
                       <button
                         className="cart-button primary-btn"
-                        onClick={()=> {handleCartClick(product._id)}}
+                        onClick={()=> {handleCartClick(product._id, product.price)}}
                       >
                         Add to cart
                       </button>
@@ -111,7 +129,7 @@ function Productcategories() {
                 {isAdmin && <div className="cart-button-container">
                       <button
                         className="cart-button primary-btn"
-                        onClick={()=> {handleCartClick(product._id)}}
+                        onClick={()=> {handleCartRemove(product._id)}}
                       >
                         Remove product
                       </button>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import CartLayout from "./CartLayout";
 import { api } from "../api";
 import "../styles/Cart.css";
+
 let index=0;
 function Cart() {
   const [products, setProducts] = useState([{}]);
