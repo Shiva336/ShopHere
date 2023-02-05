@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import CartLayout from "./CartLayout";
 import { api } from "../api";
 import "../styles/Cart.css";
+import Topbar from "../components/Topbar"
 
 import {Link} from "react-router-dom";
 
@@ -71,6 +72,8 @@ function Cart() {
         lastThree = ',' + lastThree;
     var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
   return (
+    <>
+      <Topbar/>
       <div className="cart-container">
         <h2>Shopping Cart</h2>
         {products.length === 0 ?(
@@ -128,6 +131,7 @@ function Cart() {
 
                </div>
     </div>
+    </>
 
   );
 }
