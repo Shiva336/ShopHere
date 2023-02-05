@@ -36,6 +36,7 @@ function Productcategories() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  console.log(products);
 
   let avgRating = 0;
   let num = 0;
