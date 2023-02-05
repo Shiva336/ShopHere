@@ -12,7 +12,7 @@
   margin-left: 30px;
   flex-direction: column;
   padding: 30px 0px;
-  justify-content: space-between;
+  flex:1 1 1;
   align-items: center;
   border: 1px solid #bbbbbb;
   background-color: #edf2f5;

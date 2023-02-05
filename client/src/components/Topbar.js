@@ -8,8 +8,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { IoLogInOutline } from "react-icons/io5";
 import { GoSignOut } from "react-icons/go";
 import { FaUserCircle } from "react-icons/fa";
+import {api} from '../api'
 
 function Topbar() {
+  const [loading, setLoading] = useState(true);
+  const [cartCount,setCartCount]=useState(0);
   const isLoggedIn = localStorage.getItem("isLoggedIn");
   const loggedUser = localStorage.getItem("loggedUser");
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -33,6 +36,29 @@ function Topbar() {
     axios.get("http://localhost:3002/product").then((response) => {
       setSuggestions(response.data);
     });
+  }, []);
+
+  
+  async function getData() {
+    try {
+      setLoading(true);
+      let curr_user = localStorage.getItem("loggedUser");
+      const data = {
+        username: curr_user,
+      };
+      const response = await api.put(`order/show`, data);
+      setCartCount(response.data.items.length);
+      setLoading(false);
+    } catch (error) {
+      setLoading(true);
+      console.error(error);
+    }
+  }
+  useEffect(() => {
+    (async () => {
+      await getData();
+    })();
+    return () => {};
   }, []);
 
   const handleCategoriesClick = (event) => {
@@ -104,7 +130,7 @@ function Topbar() {
                 navigate(`/cart`);
               }}
             />
-            <div className="topbarIconBadge"></div>
+            <div className="topbarIconBadge">{cartCount}</div>
           </div>
           {(isLoggedIn === "undefined" || isLoggedIn === "false") && (
             <IoLogInOutline
