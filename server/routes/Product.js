@@ -81,7 +81,7 @@ router.put("/:id/rating", async(req,res)=> {
         const product = productModel.findById(req.params.id);
         const updatedRating = {
           rating: req.body.newrating,
-          userid: req.params.id
+          username: req.body.username
         }
         await product.updateOne({ $push: { rating: updatedRating} });
         res.status(200).json("The rating has been updated");

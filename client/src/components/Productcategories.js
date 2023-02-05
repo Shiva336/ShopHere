@@ -15,14 +15,11 @@ function Productcategories() {
   async function handleCartClick(id, price){
     let productPrice = 0;
     let len = price.length;
-    for(let i=0; i<len; i++) 
-    {
-      if(price[i]>='0' && price[i]<='9')
-      {
+    for(let i=0; i<len; i++) {
+      if(price[i]>='0' && price[i]<='9') {
         productPrice = productPrice*10 + parseInt(price[i]);
       }
     }
-    
     const data = {
       id: id,
       number: 100,
@@ -33,16 +30,21 @@ function Productcategories() {
     const response = await api.put(`order/cart`,data);
   };
 
-  async function handleCartRemove(id){
+  async function handleRemove(id){
     const data = {
-
+      id: id,
+      number: 100,
+      username: localStorage.getItem("loggedUser"),
     }
+    console.log(data);
+    const response = await api.put(`order/cart`,data);
   }
 
   //check if logged in as admin
   let isAdmin = localStorage.getItem("loggedUser")==="admin";
  
   const handleWishlistClick = () => {};
+
   useEffect(() => {
     (async () => {
       setIsLoading(true);
@@ -57,7 +59,6 @@ function Productcategories() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(products);
 
   let avgRating = 0;
   let num = 0;
@@ -66,7 +67,7 @@ function Productcategories() {
     num = 0;
 
     product.rating.map((rate) => {
-      avgRating += parseFloat(rate);
+      avgRating += parseFloat(rate.rating);
       num = num + 1;
     });
 
@@ -129,7 +130,7 @@ function Productcategories() {
                 {isAdmin && <div className="cart-button-container">
                       <button
                         className="cart-button primary-btn"
-                        onClick={()=> {handleCartRemove(product._id)}}
+                        onClick={()=> {handleRemove(product._id)}}
                       >
                         Remove product
                       </button>
