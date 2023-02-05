@@ -59,7 +59,7 @@ function Topbar() {
       await getData();
     })();
     return () => {};
-  }, []);
+  }, [getData]);
 
   const handleCategoriesClick = (event) => {
     let urlparam = event.currentTarget.textContent;
