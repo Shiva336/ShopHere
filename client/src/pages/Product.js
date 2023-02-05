@@ -109,9 +109,7 @@ function Product() {
             <div className="add-button-container">
               <button
                 className="cart-button primary-btn"
-                onClick={() => {
-                  handleCartClick(product._id);
-                }}
+                onClick={()=> {handleCartClick(product._id, product.price)}}
               >
                 Add to cart
               </button>
