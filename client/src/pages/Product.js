@@ -4,7 +4,7 @@ import { AiTwotoneStar } from "react-icons/ai";
 import RatingStars from "../components/RatingStars";
 import { api } from "../api";
 import "../styles/Product.css";
-import Rating from './Rating'
+import Rating from "./Rating";
 
 function Product() {
   const { id } = useParams();
@@ -12,6 +12,16 @@ function Product() {
   const [ratings, setRatings] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [review, setReview] = useState("");
+  async function handleCartClick(id) {
+    const data = {
+      id: id,
+      number: 100,
+      username: localStorage.getItem("loggedUser"),
+    };
+    const response = await api.put(`order/cart`, data);
+  }
+
+  const handleWishlistClick = () => {};
   useEffect(() => {
     (async () => {
       setIsLoading(true);
@@ -26,24 +36,24 @@ function Product() {
   function getRating(product) {
     avgRating = 0;
     num = 0;
-      product.rating.map((rate) => {
-        avgRating += parseFloat(rate.rating);
-        num = num + 1;
-      });
-    
+    product.rating.map((rate) => {
+      avgRating += parseFloat(rate.rating);
+      num = num + 1;
+    });
+
     return parseInt((avgRating / num) * 100) / 100;
   }
 
-  const storeReview = ()=> {
+  const storeReview = () => {
     const data = {
       newreview: review,
-    }
+    };
     const response = api.put(`/product/${id}/review`, data);
-  }
+  };
 
-  const updateReview = (e)=> {
+  const updateReview = (e) => {
     setReview(e.target.value);
-  }
+  };
 
   return (
     <>
@@ -80,23 +90,44 @@ function Product() {
         )}
       </div>
       {product && (
-      <div>    
-        <div className="rating-section">
-          <h1>Ratings</h1>
-          Rating: {getRating(product)} <AiTwotoneStar />
-          <RatingStars/>
-        </div>
-        <div className="reviews-section">
-          <h1>Write a review: </h1>
-          <textarea className="review-textarea" onChange={updateReview}></textarea>
-          <button className="review-button" onClick={storeReview}>Submit</button>
+        <div>
+          <div className="rating-section">
+            <div className="add-button-container">
+              <button
+                className="cart-button primary-btn"
+                onClick={() => {
+                  handleCartClick(product._id);
+                }}
+              >
+                Add to cart
+              </button>
+              <button
+                className="wish-button primary-btn"
+                onClick={handleWishlistClick}
+              >
+                Add to wishlist
+              </button>
+            </div>
+            <h1>Ratings</h1>
+            Rating: {getRating(product)} <AiTwotoneStar />
+            <RatingStars />
+          </div>
+          <div className="reviews-section">
+            <h1>Write a review: </h1>
+            <textarea
+              className="review-textarea"
+              onChange={updateReview}
+            ></textarea>
+            <button className="review-button" onClick={storeReview}>
+              Submit
+            </button>
 
-          <h1>Reviews</h1>
-          {product.reviews.map((review)=> {
-            return (<div>{review}</div>)
-          })}
+            <h1>Reviews</h1>
+            {product.reviews.map((review) => {
+              return <div>{review}</div>;
+            })}
+          </div>
         </div>
-      </div>
       )}
     </>
   );
