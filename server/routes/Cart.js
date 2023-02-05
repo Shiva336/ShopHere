@@ -13,6 +13,7 @@ router.put("/cart", async(req,res)=> {
         {
             flag = 1;
             product.quantity = product.quantity+1;
+            product.total+= product.price;
             user.cart.total+= product.price;
         }
         });
@@ -30,7 +31,8 @@ router.put("/cart", async(req,res)=> {
             const newItem = {
                 quantity: 1,
                 id: req.body.id,
-                price: req.body.price
+                price: req.body.price,
+                total: req.body.price
             }
             Cart.items.push(newItem);
             if(user.cart.total == 0)
@@ -72,6 +74,7 @@ router.put("/quantity/decrease", async(req,res)=> {
                 else
                 {
                     product.quantity--;
+                    product.total-= product.price;
                     user.cart.total-= product.price;
                 }
             }
@@ -92,6 +95,7 @@ router.put("/quantity/increase", async(req,res)=> {
             if(product.id === req.body.id) {    
                 product.quantity++;
                 user.cart.total+= product.price;
+                product.total+= product.price;
             }
         });
         await user.updateOne({ $set: {cart: user.cart}});

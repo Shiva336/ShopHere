@@ -4,6 +4,14 @@ import "../styles/Cart.css";
 
 function CartLayout(props) {
   const { text } = props;
+  
+  let stotal=text.total.toString();
+  var lastThree = stotal.substring(stotal.length-3);
+    var otherNumbers = stotal.substring(0,stotal.length-3);
+    if(otherNumbers != '')
+        lastThree = ',' + lastThree;
+    var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+
   const [cartItems, setCartItems] = useState(null);
   const [cartLoading, setCartLoading] = useState(true);
   async function getCartData() {
@@ -52,7 +60,7 @@ function CartLayout(props) {
               <button onClick={() => handleIncreaseCart(cartItems)}>+</button>
             </div>
             <div className="cart-product-total-price">
-                ₹{cartItems.price * text.quantity}
+                ₹{res}
             </div>
           </div>
         </div>
