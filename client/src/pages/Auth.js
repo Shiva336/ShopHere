@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 function Auth() {
   useEffect(()=>{
-    localStorage.setItem("isLoggedIn", "guest");
-    localStorage.setItem("loggedUser", false);
+    localStorage.setItem("isLoggedIn",false);
+    localStorage.setItem("loggedUser","guest");
   },[])
   let navigate = useNavigate();
   const [isRegistered, setIsRegistered] = useState(true);

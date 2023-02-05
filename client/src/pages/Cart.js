@@ -1,11 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import CartLayout from "./CartLayout";
 import { api } from "../api";
 import "../styles/Cart.css";
 let index=0;
 function Cart() {
   const [products, setProducts] = useState([{}]);
-  const [cartItems, setCartItems] = useState([{}]);
   const [loading, setLoading] = useState(true);
   async function getData() {
     try {
@@ -34,7 +34,8 @@ function Cart() {
       {loading && <div className="loader"></div>}
       {!loading &&
         products.map((product) => {
-          console.log(product)
+
+          return(<CartLayout text={product} key={product.id}/>)
         })}
     </div>
   );
