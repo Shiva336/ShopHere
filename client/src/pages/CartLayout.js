@@ -52,7 +52,7 @@ function CartLayout(props) {
               <button onClick={() => handleIncreaseCart(cartItems)}>+</button>
             </div>
             <div className="cart-product-total-price">
-              ${cartItems.price * text.quantity}
+                ₹{cartItems.price * text.quantity}
             </div>
           </div>
         </div>

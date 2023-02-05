@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 
 function Cart() {
   const [products, setProducts] = useState([{}]);
+  const [total,setTotal]=useState(0);
   const [loading, setLoading] = useState(true);
   async function getData() {
     try {
@@ -18,6 +19,7 @@ function Cart() {
       };
       const response = await api.put(`order/show`, data);
       setProducts(response.data.items);
+      setTotal(response.data.total);  
       setLoading(false);
     } catch (error) {
       setLoading(true);
@@ -32,6 +34,12 @@ function Cart() {
     return () => {};
   }, []);
 
+  let stotal=total.toString();
+  var lastThree = stotal.substring(stotal.length-3);
+    var otherNumbers = stotal.substring(0,stotal.length-3);
+    if(otherNumbers != '')
+        lastThree = ',' + lastThree;
+    var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
 
   return (
       <div className="cart-container">
@@ -62,12 +70,13 @@ function Cart() {
       {!loading &&
         
         products.map((product) => {
-
           return(<CartLayout text={product} key={product.id}/>)
         })}
         </div>
 
         )}
+
+    
 
           <div className="cart-summary">
                 <button className="clear-cart" >
@@ -76,7 +85,7 @@ function Cart() {
                 <div className="cart-checkout">
                 <div className="subtotal">
                         <span>SubTotal</span>
-                        <span className="amount">${}</span>
+                        <span className="amount">₹{res}</span>
                     </div>
                     <p>Taxes and Shipping calculated at checkout</p>
                     <button>Check out</button>
