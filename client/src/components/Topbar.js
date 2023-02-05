@@ -98,7 +98,12 @@ function Topbar() {
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
-            <ShoppingCart />
+            <ShoppingCart 
+            className="cart-icon"
+            onClick={() => {
+              navigate(`/cart`);
+            }}
+            />
             <div className="topbarIconBadge"></div>
           </div>
           {(isLoggedIn==='undefined' ||isLoggedIn==='false') && (

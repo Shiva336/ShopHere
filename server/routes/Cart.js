@@ -2,6 +2,7 @@ const router = require("express").Router();
 const userModel = require("../models/users");
 const bcrypt = require("bcrypt");
 
+
 //add product to cart
 router.put("/cart", async(req,res)=> {
     const user = await userModel.findOne({name: req.body.username});
@@ -39,7 +40,7 @@ router.put("/cart", async(req,res)=> {
 
 //get items from a cart
 router.put("/show", async(req,res)=> {
-    try{
+    try {
         const user = await userModel.findOne({name: req.body.username});
         res.status(200).json(user.cart);
     }
