@@ -36,12 +36,15 @@ function Product() {
 
 
   const handleWishlistClick = () => {};
+  
   useEffect(() => {
     (async () => {
       setIsLoading(true);
       const { data } = await api.get(`/product/${id}`);
       setProduct(data);
       setIsLoading(false);
+
+      console.log(data);
     })();
   }, []);
 

@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { api } from '../api';
 import Star from './Star';
 import '../styles/star.css';
+import { useParams } from 'react-router-dom';
 
 const RatingStars = (props) => {
+    const { id } = useParams();
     const [gradeIndex, setGradeIndex] = useState(-1);
     const GRADES = ['Poor', 'Fair', 'Good', 'Very good', 'Excellent'];
     const activeStar = {
@@ -14,6 +17,16 @@ const RatingStars = (props) => {
         setGradeIndex(index);
     }
 
+    const currentUser = localStorage.getItem("loggedUser");
+    useEffect(()=> {
+        (async()=> {
+            const { data } = await api.get(`/product/${id}`);
+            data.rating.map((rate)=> {
+                if(rate.username === currentUser)
+                    setGradeIndex(rate.rating-1);
+            })
+        })();
+    })
     return (
         <div className="container">
             <h1 className="result">{ GRADES[gradeIndex] ? GRADES[gradeIndex] : 'You didn\'t review yet'}</h1>
