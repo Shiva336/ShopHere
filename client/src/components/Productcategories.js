@@ -26,7 +26,6 @@ function Productcategories() {
       username: localStorage.getItem("loggedUser"),
       price: productPrice
     }
-    console.log(data);
     const response = await api.put(`order/cart`,data);
     window.location.reload();
   };

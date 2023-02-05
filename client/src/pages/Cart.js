@@ -41,6 +41,7 @@ function Cart() {
     const razor = new window.Razorpay(options);
     razor.open();
 }
+
   async function getData() {
     try {
       setLoading(true);
@@ -64,6 +65,15 @@ function Cart() {
     })();
     return () => {};
   }, []);
+
+  
+  async function handleClearCart(){
+    const data={
+      username:localStorage.getItem("loggedUser")
+    }
+    const response = await api.put(`order/clear`,data);
+    window.location.reload();
+  };
 
   let stotal=total.toString();
   var lastThree = stotal.substring(stotal.length-3);
@@ -108,7 +118,7 @@ function Cart() {
 
         )}
           <div className="cart-summary">
-                <button className="clear-cart" >
+                <button className="clear-cart" onClick={handleClearCart} >
                     Clear Cart
                     </button>
                 <div className="cart-checkout">
