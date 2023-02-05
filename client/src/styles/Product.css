@@ -89,3 +89,12 @@
   height: 1px;
   clip: rect(1px, 1px, 1px, 1px);
 }
+
+
+.add-button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-left: 5px;
+  margin-right: 5px;
+}

@@ -52,11 +52,11 @@ function Topbar() {
       suggestion.name.toLowerCase().startsWith(searchText.toLowerCase())
     );
 
-    const handleLogout=()=>{
-      localStorage.setItem("isLoggedIn",false);
-      localStorage.setItem("loggedUser",'guest');
-      navigate(`/login`);
-    }
+  const handleLogout = () => {
+    localStorage.setItem("isLoggedIn", false);
+    localStorage.setItem("loggedUser", "guest");
+    navigate(`/login`);
+  };
   return (
     <div className="topbar-container">
       <div className="topbarContainer">
@@ -98,24 +98,24 @@ function Topbar() {
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
-            <ShoppingCart 
-            className="cart-icon"
-            onClick={() => {
-              navigate(`/cart`);
-            }}
+            <ShoppingCart
+              className="cart-icon"
+              onClick={() => {
+                navigate(`/cart`);
+              }}
             />
             <div className="topbarIconBadge"></div>
           </div>
-          {(isLoggedIn==='undefined' ||isLoggedIn==='false') && (
+          {(isLoggedIn === "undefined" || isLoggedIn === "false") && (
             <IoLogInOutline
               className="login-icon"
               onClick={() => {
-                localStorage.setItem("loggedUser",'guest');
+                localStorage.setItem("loggedUser", "guest");
                 navigate(`/login`);
               }}
             />
           )}
-          {isLoggedIn==='true'&& (
+          {isLoggedIn === "true" && (
             <>
               <div className="username-label">
                 {loggedUser}
@@ -147,7 +147,7 @@ function Topbar() {
                       <hr />
                       <div className="all-btn">
                         <ShoppingCart className="profile-open-icon" />
-                      <span className="option-text">My Cart</span>
+                        <span className="option-text">My Cart</span>
                       </div>
                     </div>
                   </>
@@ -190,6 +190,9 @@ function Topbar() {
         </div>
         <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
           Men's Fashion
+        </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Women's Fashion
         </div>
       </div>
     </div>
