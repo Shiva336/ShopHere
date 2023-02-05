@@ -194,6 +194,39 @@ function Topbar() {
         <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
           Women's Fashion
         </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Headphones
+        </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Furniture
+        </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Books
+        </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Fragrances
+        </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Grocery
+        </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Skin Care
+        </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Watches
+        </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Shoes
+        </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Kitchenware
+        </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Chocolates
+        </div>
+        <div className="topbar-bottom-text" onClick={handleCategoriesClick}>
+          Jewellery
+        </div>
       </div>
     </div>
   );
