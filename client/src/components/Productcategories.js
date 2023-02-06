@@ -90,7 +90,7 @@ function Productcategories() {
                   className="clickable-div"
                 >
                   <div className="img-container">
-                    <div className="individual-product-image">
+                    <div className="individual-product-image-container">
                       <img
                         src={product.img}
                         className="individual-product-image"
