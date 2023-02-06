@@ -86,4 +86,31 @@
 .individual-product-image-container .individual-product-image{
   width:100%;
   padding:5%;
+  transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  -webkit-transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+  -moz-transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+  -ms-transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+  -o-transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
 }
+
+.individual-product-image-container .individual-product-image:hover{
+  transform: scale(1.1);
+  transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -webkit-transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+  -moz-transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+  -ms-transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+  -o-transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+}
+
+/*
+https://codepen.io/olac/pen/MvMxjw - zoom transition
+*/

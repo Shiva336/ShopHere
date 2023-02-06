@@ -27,7 +27,7 @@ function Productcategories() {
       price: productPrice
     }
     const response = await api.put(`order/cart`,data);
-    window.location.reload();
+    window.location.replace("http://localhost:3000/cart");
   };
 
   async function handleRemove(id){
