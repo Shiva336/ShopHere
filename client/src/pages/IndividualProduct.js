@@ -117,10 +117,32 @@ function IndividualProduct() {
                 handleCartClick(product._id, product.price);
               }}
             >
-              Add to cart
+              Add to cart 
             </button>
+            {getRating(product)} <AiTwotoneStar />
           </div>
-          <div>rating star</div>
+          {product && (
+        <div>
+          <div className="rating-section"> 
+            <RatingStars />
+          </div>
+          <div className="reviews-section">
+            <h1>Write a review: </h1>
+            <textarea
+              className="review-textarea"
+              onChange={updateReview}
+            ></textarea>
+            <button className="review-button" onClick={storeReview}>
+              Submit
+            </button>
+
+            <h1>Reviews</h1>
+            {product.reviews.map((review) => {
+              return <div key={review.length} className="review">{review}</div>;
+            })}
+          </div>
+        </div>
+      )}
           <div>submit review form</div>
           <div id="ind-rev-cont">reviews</div>
         </div>
