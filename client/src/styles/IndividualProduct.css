@@ -1,0 +1,51 @@
+.ind-pro-cont {
+  display: flex;
+  flex-direction: column;
+  padding-top:10vh;
+  height: 100vh;
+}
+
+.ind-image-specs {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100vw;
+}
+
+.ind-img-cont {
+  width: 50vw;
+  height: 50vh;
+}
+.ind-specs-content-cont {
+  width: fit-content;
+  border:2px groove gold;
+  height: fit-content;
+}
+
+.ind-pro-img{
+    width:70%;
+    padding-left: 10vw;
+    height: auto;
+}
+
+
+.separate-rr-cont{
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    color:black;
+  }
+  
+  .separate-ratings:hover{
+    color:blue;
+    cursor: pointer;
+  }
+  .separate-reviews:hover{
+    color:blue;
+    cursor: pointer;
+  }
+  
+  .separate-highlights{
+    font-size:24px;
+  }
+  
