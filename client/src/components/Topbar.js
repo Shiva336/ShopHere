@@ -12,11 +12,11 @@ import {api} from '../api'
 
 function Topbar() {
   const [loading, setLoading] = useState(true);
+  let urlLength=window.location.pathname;
   const [cartCount,setCartCount]=useState(0);
   const isLoggedIn = localStorage.getItem("isLoggedIn");
   const loggedUser = localStorage.getItem("loggedUser");
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  let { category } = useParams();
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -25,9 +25,6 @@ function Topbar() {
     scroll.scrollTo(element.offsetTop);
   };
   const scrollToHome = () => {
-    if (category !== undefined) {
-      navigate(`/`);
-    }
     const element = document.getElementById("home-container");
     scroll.scrollTo(element.offsetTop);
   };
@@ -104,22 +101,22 @@ function Topbar() {
             className="searchInput"
           />
         </div>
-        {category === undefined && (
+        {urlLength.length==1 && (
           <span className="navbar-links" onClick={scrollToFeatured}>
             FEATURED
           </span>
         )}
-        {category !== undefined && (
-          <span className="category-navbar-links navbar-links">FEATURED</span>
+        {urlLength.length>1  && (
+          <span className="category-navbar-links">FEATURED</span>
         )}
         <div className="topbarLinks">
-          {category === undefined && (
+          {urlLength.length==1 && (
             <span className="navbar-links" onClick={scrollToHome}>
               HOME
             </span>
           )}
-          {category !== undefined && (
-            <span className="category-navbar-links navbar-links">Home</span>
+          {urlLength.length>1 && (
+            <span className="category-navbar-links">Home</span>
           )}
         </div>
         <div className="topbarIcons">

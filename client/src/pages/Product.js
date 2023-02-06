@@ -43,8 +43,6 @@ function Product() {
       const { data } = await api.get(`/product/${id}`);
       setProduct(data);
       setIsLoading(false);
-
-      console.log(data);
     })();
   }, []);
 
@@ -98,8 +96,8 @@ function Product() {
               </div>
               <div className="separate-hl">
                 <h2 className="hl-header">Specifications</h2>
-                {product.highlights.map((highlight) => (
-                  <div className="separate-highlights">{highlight}</div>
+                {product.highlights.map((highlight,i) => (
+                  <div className="separate-highlights" key={i}>{highlight}</div>
                 ))}
               </div>
             </div>
@@ -139,7 +137,7 @@ function Product() {
 
             <h1>Reviews</h1>
             {product.reviews.map((review) => {
-              return <div>{review}</div>;
+              return <div key={review.length} className="review">{review}</div>;
             })}
           </div>
         </div>
