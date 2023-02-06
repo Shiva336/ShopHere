@@ -11,6 +11,7 @@ function IndividualProduct() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [ratings, setRatings] = useState([]);
+  const [rated, setRated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [review, setReview] = useState("");
 
@@ -22,7 +23,6 @@ function IndividualProduct() {
         productPrice = productPrice * 10 + parseInt(price[i]);
       }
     }
-
     const data = {
       id: id,
       number: 100,
@@ -50,8 +50,13 @@ function IndividualProduct() {
     product.rating.map((rate) => {
       avgRating += parseFloat(rate.rating);
       num = num + 1;
+      if (!rated) {
+        setRated(true);
+      }
     });
-
+    if (product.rating.length === 0) {
+      return "No reviews yet";
+    }
     return parseInt((avgRating / num) * 100) / 100;
   }
 
@@ -110,39 +115,44 @@ function IndividualProduct() {
             </div>
             <div></div>
           </div>
-          <div>
+          <div className="btn-rev-cont">
+            <div>
             <button
               className="cart-button primary-btn"
               onClick={() => {
                 handleCartClick(product._id, product.price);
               }}
             >
-              Add to cart 
-            </button>
-            {getRating(product)} <AiTwotoneStar />
+              Add to cart
+            </button></div>
+            <div className="rating-text">{getRating(product)} {rated && <AiTwotoneStar />}</div>
           </div>
           {product && (
-        <div>
-          <div className="rating-section"> 
-            <RatingStars />
-          </div>
-          <div className="reviews-section">
-            <h1>Write a review: </h1>
-            <textarea
-              className="review-textarea"
-              onChange={updateReview}
-            ></textarea>
-            <button className="review-button" onClick={storeReview}>
-              Submit
-            </button>
+            <div>
+              <div className="rating-section">
+                <RatingStars />
+              </div>
+              <div className="reviews-section">
+                <h1>Write a review: </h1>
+                <textarea
+                  className="review-textarea"
+                  onChange={updateReview}
+                ></textarea>
+                <button className="review-button" onClick={storeReview}>
+                  Submit
+                </button>
 
-            <h1>Reviews</h1>
-            {product.reviews.map((review) => {
-              return <div key={review.length} className="review">{review}</div>;
-            })}
-          </div>
-        </div>
-      )}
+                <h1>Reviews</h1>
+                {product.reviews.map((review) => {
+                  return (
+                    <div key={review.length} className="review">
+                      {review}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
           <div>submit review form</div>
           <div id="ind-rev-cont">reviews</div>
         </div>

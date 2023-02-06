@@ -10,6 +10,7 @@ function Productcategories() {
   const { category } = useParams();
   const navigate = useNavigate();
   const [products, setProduct] = useState(null);
+  const [rated, setRated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   async function handleCartClick(id, price){
@@ -65,12 +66,17 @@ function Productcategories() {
   function displayRating(product) {
     avgRating = 0;
     num = 0;
-
     product.rating.map((rate) => {
       avgRating += parseFloat(rate.rating);
       num = num + 1;
+      if (!rated) {
+        setRated(true);
+      }
     });
 
+    if (product.rating.length === 0) {
+      return "No reviews yet";
+    }
     return parseInt((avgRating / num) * 100) / 100;
   }
 
@@ -107,7 +113,7 @@ function Productcategories() {
                     </div>
                     <div className="individual-rating">
                       <span>
-                        Rating: {displayRating(product)} <AiTwotoneStar />
+                        Rating: {displayRating(product)} {rated&&<AiTwotoneStar />}
                       </span>
                     </div>
                   </div>

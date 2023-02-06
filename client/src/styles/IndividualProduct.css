@@ -57,3 +57,25 @@
     font-size:24px;
   }
   
+  .btn-rev-cont{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+    align-items: center;
+    padding-left:5vw;
+  }
+
+  .rating-text{
+    color:white;
+    background-color:gold;
+    width:100px;
+    font-size: 20px;
+    border-radius: 10px;
+    text-align: center;
+    padding-top:16px;
+    height:60px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
