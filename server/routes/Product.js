@@ -79,20 +79,26 @@ router.post("/", async(req,res)=> {
 router.put("/:id/rating", async(req,res)=> {
     try {
         const product = productModel.findById(req.params.id);
+        console.log(product.rating);
+
+        if(product.rating === undefined) {
+          const updatedRating = {
+            rating: req.body.newrating,
+            username: req.body.username
+          }
+          await product.updateOne({ $push: { rating: updatedRating} });
+          res.status(200).json("The rating has been updated");
+        }
+
         product.rating.map((rate)=> {
           if(rate.username === req.body.username)
           {
+            flag = 1;
             console.log("a");
             alert("you have already rated this product");
-            res.json(product);
+            res.status(200).json(product);
           }
         })
-        const updatedRating = {
-          rating: req.body.newrating,
-          username: req.body.username
-        }
-        await product.updateOne({ $push: { rating: updatedRating} });
-        res.status(200).json("The rating has been updated");
     }
     catch(err) {
         console.log(err);

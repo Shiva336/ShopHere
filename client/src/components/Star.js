@@ -3,8 +3,10 @@ import '../styles/star.css';
 import { api } from "../api";
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Star = (props) => {
+    const navigate = useNavigate();
     const [isRated, setIsRated] = useState(false);
     const { id } = useParams();
     const changeGrade = (e) => {
@@ -14,6 +16,7 @@ const Star = (props) => {
         }
         const response = api.put(`/product/${id}/rating`, data);
         props.changeGradeIndex(e.target.value);
+        navigate(`/product/${id}`);
     }
     return (
         <label className="star">
