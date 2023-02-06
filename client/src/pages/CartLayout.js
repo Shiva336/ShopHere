@@ -72,10 +72,10 @@ function CartLayout(props) {
             <div className="car-product-price">{cartItems.price}</div>
             <div className="cart-remove-container">
               <div className="cart-product-quantity">
-                <button onClick={() => handleDecreaseCart(cartItems)}>-</button>
+                <button className="cart-btn-dec" onClick={() => handleDecreaseCart(cartItems)}>-</button>
                 <div className="count">{text.quantity}</div>
-                <button onClick={() => handleIncreaseCart(cartItems)}>+</button>
-              </div>{" "}
+                <button className="cart-btn-inc" onClick={() => handleIncreaseCart(cartItems)}>+</button>
+              </div>
               <button
                 className="remove-from-cart"
                 onClick={() => handleRemoveFromCart(cartItems)}

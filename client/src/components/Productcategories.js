@@ -27,7 +27,7 @@ function Productcategories() {
       price: productPrice
     }
     const response = await api.put(`order/cart`,data);
-    window.location.reload();
+    window.location.replace("http://localhost:3000/cart");
   };
 
   async function handleRemove(id){
@@ -90,7 +90,7 @@ function Productcategories() {
                   className="clickable-div"
                 >
                   <div className="img-container">
-                    <div className="individual-product-image">
+                    <div className="individual-product-image-container">
                       <img
                         src={product.img}
                         className="individual-product-image"

@@ -6,13 +6,14 @@
   flex-wrap: wrap;
   background-color: #edf2f5;
   height: fit-content;
+  overflow: hidden;
 }
 .individual-product-container {
   display: flex;
   margin-left: 30px;
   flex-direction: column;
   padding: 30px 0px;
-  flex:1 1 1;
+  width: 30vw;
   align-items: center;
   border: 1px solid #bbbbbb;
   background-color: #edf2f5;
@@ -72,48 +73,44 @@
   margin-right: 5px;
 }
 
-.icon-highlights {
-  margin-right: 10px;
-}
-
-.categories-container {
-  background-color: #edf2f5;
-}
-
-.individual-highlights {
-  display: none;
-  background-color: rgb(3, 3, 95);
-  color: white;
-  border-radius: 50px;
-  height: fit-content;
-  top: 0;
-  z-index: 999;
-  padding: 30px 30px;
-}
-.named-highlights {
-  text-align: center;
-}
-.mapped-highlights {
-  padding-left: 90px;
-}
-.img-container:hover > .individual-highlights {
-  display: block;
-  position: fixed;
-  top: 5vh;
-  opacity: 0.8;
-  bottom: 1vh;
-  left: 25vh;
-  right: 25vh;
-  height: 50vh;
-  z-index: 999;
-  -webkit-transform: translateY(10vh);
-  -moz-transform: translateY(10vh);
-  -ms-transform: translateY(10vh);
-  -o-transform: translateY(10vh);
-}
-
 .clickable-div{
   align-items: center;
   display: flex;
   flex-direction: column;
 }
+
+.individual-product-image-container{
+  align-items: center;
+}
+
+.individual-product-image-container .individual-product-image{
+  width:100%;
+  padding:5%;
+  transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  -webkit-transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+  -moz-transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+  -ms-transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+  -o-transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+}
+
+.individual-product-image-container .individual-product-image:hover{
+  transform: scale(1.1);
+  transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -webkit-transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+  -moz-transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+  -ms-transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+  -o-transition: 350ms cubic-bezier(0.6, 0.03, 0.28, 0.98);
+}
+
+/*
+https://codepen.io/olac/pen/MvMxjw - zoom transition
+*/
