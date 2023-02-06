@@ -44,8 +44,6 @@ function Productcategories() {
   //check if logged in as admin
   let isAdmin = localStorage.getItem("loggedUser")==="admin";
  
-  const handleWishlistClick = () => {};
-
   useEffect(() => {
     (async () => {
       setIsLoading(true);
@@ -125,13 +123,7 @@ function Productcategories() {
                       }
                       >
                         Add to cart
-                      </button>
-                      <button
-                        className="wish-button primary-btn"
-                        onClick={handleWishlistClick}
-                      >
-                        Add to wishlist
-                      </button>                  
+                      </button>              
                 </div>}
 
                 {isAdmin && <div className="cart-button-container">

@@ -6,7 +6,7 @@ import { api } from "../api";
 import "../styles/IndividualProduct.css";
 import Rating from "./Rating";
 import { animateScroll as scroll } from "react-scroll";
-
+import { VscDebugBreakpointLog } from "react-icons/vsc";
 function IndividualProduct() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -147,12 +147,13 @@ function IndividualProduct() {
             <button className="review-button" onClick={storeReview}>
               Submit
             </button>
-          <div id="ind-rev-cont">
             <h1 className="review-text-header">Reviews</h1>
+          <div id="ind-rev-cont">
             {product.reviews.map((review) => {
               return (
-                <div key={review.length} className="review">
-                  {review}
+                <div key={review.length} className="ind-review">
+                  <div className="review-ind-cont">
+                  <VscDebugBreakpointLog size="30" className="bullet-icon"/><div className="ind-rev-text-wrap">{review}</div></div>
                 </div>
               );
             })}

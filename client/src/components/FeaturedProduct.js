@@ -3,7 +3,7 @@ import "../styles/FeaturedProduct.css";
 import { useEffect } from "react";
 import { useState } from "react";
 import { api } from "../api";
-
+//https://codepen.io/shshaw/pen/YpERQQ
 function Product() {
   const [products, setProducts] = useState([{}]);
   const [loading, setLoading] = useState(true);
