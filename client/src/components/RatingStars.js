@@ -35,6 +35,7 @@ const RatingStars = (props) => {
                     GRADES.map((grade, index) => (
                         <Star 
                             index={index} 
+                            gradeIndex={gradeIndex}
                             key={grade} 
                             changeGradeIndex={changeGradeIndex}
                             style={ gradeIndex >= index ? activeStar : {}}
