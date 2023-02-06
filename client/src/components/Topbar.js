@@ -210,6 +210,7 @@ function Topbar() {
                 key={suggestion._id}
                 onClick={() => {
                   navigate(`/product/${suggestion._id}`);
+                  window.location.reload();
                 }}
               >
                 {suggestion.name}
