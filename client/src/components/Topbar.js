@@ -8,12 +8,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { IoLogInOutline } from "react-icons/io5";
 import { GoSignOut } from "react-icons/go";
 import { FaUserCircle } from "react-icons/fa";
-import {api} from '../api'
-
+import { api } from "../api";
+let urlLength = window.location.pathname;
 function Topbar() {
   const [loading, setLoading] = useState(true);
-  let urlLength=window.location.pathname;
-  const [cartCount,setCartCount]=useState(0);
+  const [cartCount, setCartCount] = useState(0);
   const isLoggedIn = localStorage.getItem("isLoggedIn");
   const loggedUser = localStorage.getItem("loggedUser");
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -35,7 +34,6 @@ function Topbar() {
     });
   }, []);
 
-  
   async function getData() {
     try {
       setLoading(true);
@@ -56,7 +54,7 @@ function Topbar() {
       await getData();
     })();
     return () => {};
-  }, [getData]);
+  });
 
   const handleCategoriesClick = (event) => {
     let urlparam = event.currentTarget.textContent;
@@ -80,6 +78,14 @@ function Topbar() {
     localStorage.setItem("loggedUser", "guest");
     navigate(`/login`);
   };
+
+  const handleCartClick = () => {
+    window.location = "http://localhost:3000/cart";
+  };
+  
+  const handleAdminClick = () => {
+    window.location = "http://localhost:3000/admin";
+  };
   return (
     <div className="topbar-container">
       <div className="topbarContainer">
@@ -101,21 +107,21 @@ function Topbar() {
             className="searchInput"
           />
         </div>
-        {urlLength.length==1 && (
+        {urlLength.length == 1 && (
           <span className="navbar-links" onClick={scrollToFeatured}>
             FEATURED
           </span>
         )}
-        {urlLength.length>1  && (
+        {urlLength.length > 1 && (
           <span className="category-navbar-links">FEATURED</span>
         )}
         <div className="topbarLinks">
-          {urlLength.length==1 && (
+          {urlLength.length == 1 && (
             <span className="navbar-links" onClick={scrollToHome}>
               HOME
             </span>
           )}
-          {urlLength.length>1 && (
+          {urlLength.length > 1 && (
             <span className="category-navbar-links">Home</span>
           )}
         </div>
@@ -163,15 +169,16 @@ function Topbar() {
                         <span className="option-text">Logout</span>
                       </div>
                       <hr />
-                      <div className="all-btn">
-                        <FaUserCircle className="profile-open-icon" />
-                        <span className="option-text">My Profile</span>
-                      </div>
-                      <hr />
-                      <div className="all-btn">
+                      {loggedUser!=='admin'&&
+                      <div className="all-btn" onClick={handleCartClick}>
                         <ShoppingCart className="profile-open-icon" />
                         <span className="option-text">My Cart</span>
-                      </div>
+                      </div>}
+                      {loggedUser==='admin'&&
+                      <div className="all-btn" onClick={handleAdminClick}>
+                        <ShoppingCart className="profile-open-icon" />
+                        <span className="option-text">Upload product</span>
+                      </div>}
                     </div>
                   </>
                 )}
