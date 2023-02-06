@@ -37,6 +37,7 @@
   display: flex;
   flex-direction: row;
   font-size: 20px;
+  font-family: '';
   color:black;
 }
 
