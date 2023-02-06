@@ -117,44 +117,46 @@ function IndividualProduct() {
           </div>
           <div className="btn-rev-cont">
             <div>
-            <button
-              className="cart-button primary-btn"
-              onClick={() => {
-                handleCartClick(product._id, product.price);
-              }}
-            >
-              Add to cart
-            </button></div>
-            <div className="rating-text">{getRating(product)} {rated && <AiTwotoneStar />}</div>
+              <button
+                className="cart-button primary-btn"
+                onClick={() => {
+                  handleCartClick(product._id, product.price);
+                }}
+              >
+                Add to cart
+              </button>
+            </div>
+            <div className="rating-text">
+              {getRating(product)} {rated && <AiTwotoneStar />}
+            </div>
           </div>
           {product && (
             <div>
               <div className="rating-section">
                 <RatingStars />
               </div>
-              <div className="reviews-section">
-                <h1>Write a review: </h1>
-                <textarea
-                  className="review-textarea"
-                  onChange={updateReview}
-                ></textarea>
-                <button className="review-button" onClick={storeReview}>
-                  Submit
-                </button>
-
-                <h1>Reviews</h1>
-                {product.reviews.map((review) => {
-                  return (
-                    <div key={review.length} className="review">
-                      {review}
-                    </div>
-                  );
-                })}
-              </div>
             </div>
           )}
-          <div>submit review form</div>
-          <div id="ind-rev-cont">reviews</div>
+          <div className="rev-container">
+            <h1 className="rev-review-text">Write a review : </h1>
+            <textarea
+              className="review-textarea"
+              onChange={updateReview}
+            ></textarea>
+          </div>
+            <button className="review-button" onClick={storeReview}>
+              Submit
+            </button>
+          <div id="ind-rev-cont">
+            <h1 className="review-text-header">Reviews</h1>
+            {product.reviews.map((review) => {
+              return (
+                <div key={review.length} className="review">
+                  {review}
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
     </>

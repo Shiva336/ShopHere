@@ -67,7 +67,7 @@
   padding-left: 30px;
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: 15px;
 }
 .auth-input {
   width: 200px;
