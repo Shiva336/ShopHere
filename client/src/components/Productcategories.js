@@ -32,12 +32,10 @@ function Productcategories() {
 
   async function handleRemove(id){
     const data = {
-      id: id,
-      number: 100,
-      username: localStorage.getItem("loggedUser"),
+      id: id
     }
     console.log(data);
-    const response = await api.put(`order/cart`,data);
+    const response = await api.put(`product/remove`,data);
   }
 
   //check if logged in as admin
