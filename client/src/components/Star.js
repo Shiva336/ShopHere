@@ -13,16 +13,8 @@ const Star = (props) => {
             username: localStorage.getItem("loggedUser")
         }
         const response = api.put(`/product/${id}/rating`, data);
-        console.log(response.data);
         props.changeGradeIndex(e.target.value);
     }
-
-   
-    // if(props.userRating - props.index > 0)
-    // { 
-    //     props.changeGradeIndex(props.index-1)
-    // }
-
     return (
         <label className="star">
             <input

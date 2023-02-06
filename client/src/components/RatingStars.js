@@ -21,7 +21,6 @@ const RatingStars = (props) => {
     useEffect(()=> {
         (async()=> {
             const { data } = await api.get(`/product/${id}`);
-            console.log(data);
             data.rating.map((rate)=> {
                 if(rate.username === currentUser)
                     setGradeIndex(rate.rating-1);
