@@ -10,7 +10,6 @@ const instance = new Razorpay({
 });
 
 router.post("/checkout", async (req, res) => {
-    console.log(instance);
     const options = {
       amount: req.body.total*100,
       currency: "INR",

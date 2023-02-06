@@ -27,17 +27,15 @@ function Productcategories() {
       price: productPrice
     }
     const response = await api.put(`order/cart`,data);
-    window.location.reload();
+    window.location.replace("http://localhost:3000/cart");
   };
 
   async function handleRemove(id){
     const data = {
-      id: id,
-      number: 100,
-      username: localStorage.getItem("loggedUser"),
+      id: id
     }
     console.log(data);
-    const response = await api.put(`order/cart`,data);
+    const response = await api.put(`product/remove`,data);
   }
 
   //check if logged in as admin
@@ -90,7 +88,7 @@ function Productcategories() {
                   className="clickable-div"
                 >
                   <div className="img-container">
-                    <div className="individual-product-image">
+                    <div className="individual-product-image-container">
                       <img
                         src={product.img}
                         className="individual-product-image"
