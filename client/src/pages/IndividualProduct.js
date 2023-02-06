@@ -5,6 +5,7 @@ import RatingStars from "../components/RatingStars";
 import { api } from "../api";
 import "../styles/IndividualProduct.css";
 import Rating from "./Rating";
+import { animateScroll as scroll } from "react-scroll";
 
 function IndividualProduct() {
   const { id } = useParams();
@@ -64,7 +65,10 @@ function IndividualProduct() {
   const updateReview = (e) => {
     setReview(e.target.value);
   };
-
+  const scrollToReviews = () => {
+    const element = document.getElementById("ind-rev-cont");
+    scroll.scrollTo(element.offsetTop);
+  };
   return (
     <>
       {isLoading && <div className="loader"></div>}
@@ -80,19 +84,19 @@ function IndividualProduct() {
             </div>
             <div className="ind-specs-cont">
               <div className="ind-pro-name">
-                <h1>{product.name}</h1>
+                <h1>{product.name}</h1>{" "}
+                <div className="separate-rr-cont">
+                  <div className="separate-ratings">
+                    {product.rating.length} ratings
+                  </div>
+                  <div style={{ padding: "0px 10px" }}>and</div>
+                  <div className="separate-reviews" onClick={scrollToReviews}>
+                    {product.reviews.length} reviews
+                  </div>
+                </div>
               </div>
               <div className="ind-specs-content-cont">
                 <div className="ind-text-cont">
-                  <div className="separate-rr-cont">
-                    <div className="separate-ratings">
-                      {product.rating.length} ratings
-                    </div>
-                    <div style={{ padding: "0px 10px" }}>and</div>
-                    <div className="separate-reviews">
-                      {product.reviews.length} reviews
-                    </div>
-                  </div>
                   <div className="separate-hl">
                     <h2 className="hl-header">Specifications</h2>
                     {product.highlights.map((highlight, i) => (
@@ -106,19 +110,19 @@ function IndividualProduct() {
             </div>
             <div></div>
           </div>
-            <div>
-              <button
-                className="cart-button primary-btn"
-                onClick={() => {
-                  handleCartClick(product._id, product.price);
-                }}
-              >
-                Add to cart
-              </button>
-            </div>
+          <div>
+            <button
+              className="cart-button primary-btn"
+              onClick={() => {
+                handleCartClick(product._id, product.price);
+              }}
+            >
+              Add to cart
+            </button>
+          </div>
           <div>rating star</div>
           <div>submit review form</div>
-          <div>reviews</div>
+          <div id="ind-rev-cont">reviews</div>
         </div>
       )}
     </>
