@@ -1,5 +1,5 @@
 .featured-product-container {
-  background-color: black;
+  background-color: white;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -28,17 +28,17 @@
   margin-bottom: 20px;
   background: linear-gradient(
     to right,
-    #ffffff 0%,
+    black 0%,
     #ffd700 10%,
-    #ffffff 20%,
+    black 20%,
     #ffd700 30%,
-    #ffffff 40%,
+    black 40%,
     #ffd700 50%,
-    #ffffff 60%,
+    black 60%,
     #ffd700 70%,
-    #ffffff 80%,
+    black 80%,
     #ffd700 90%,
-    #ffffff 100%
+    black 100%
   );
   background-size: 200% 100%;
   animation: shimmer 3.5s linear infinite;
@@ -57,7 +57,7 @@
 }
 
 .featured-product-grid {
-  background-color: black;
+  background-color: white;
   color: gold;
   width: 100%;
   display: flex;
