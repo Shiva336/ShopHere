@@ -16,7 +16,6 @@ const Star = (props) => {
         }
         const response = api.put(`/product/${id}/rating`, data);
         props.changeGradeIndex(e.target.value);
-        navigate(`/product/${id}`);
     }
     return (
         <label className="star">
