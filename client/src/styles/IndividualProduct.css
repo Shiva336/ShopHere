@@ -1,8 +1,10 @@
 .ind-pro-cont {
   display: flex;
   flex-direction: column;
+  justify-content:space-between;
+  gap:20px;
   padding-top:10vh;
-  height: 100vh;
+  overflow: hidden;
 }
 
 .ind-image-specs {
@@ -13,12 +15,15 @@
 }
 
 .ind-img-cont {
-  width: 50vw;
-  height: 50vh;
+  width: 35vw;
 }
 .ind-specs-content-cont {
+  margin-top:3vh;
   width: fit-content;
   border:2px groove gold;
+  padding-right:4vw;
+  padding-left:4vw;
+  padding-bottom: 2vw;
   height: fit-content;
 }
 
@@ -28,12 +33,15 @@
     height: auto;
 }
 
+.ind-rev-cont{
+  height:100vh;
+}
 
 .separate-rr-cont{
     display: flex;
     flex-direction: row;
     font-size: 20px;
-    color:black;
+    color:grey;
   }
   
   .separate-ratings:hover{
