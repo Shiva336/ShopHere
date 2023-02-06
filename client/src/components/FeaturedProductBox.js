@@ -1,6 +1,6 @@
 import "../styles/FeaturedProductBox.css";
 import { useNavigate } from "react-router-dom";
-
+// https://www.geeksforgeeks.org/how-to-create-image-slider-in-reacts/
 function FeaturedProductBox(props) {
   const { text } = props;
   const navigate = useNavigate();
