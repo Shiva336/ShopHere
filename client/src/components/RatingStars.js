@@ -21,12 +21,13 @@ const RatingStars = (props) => {
     useEffect(()=> {
         (async()=> {
             const { data } = await api.get(`/product/${id}`);
+            console.log(data);
             data.rating.map((rate)=> {
                 if(rate.username === currentUser)
                     setGradeIndex(rate.rating-1);
             })
         })();
-    })
+    },[gradeIndex])
     return (
         <div className="container">
             <h1 className="result">{ GRADES[gradeIndex] ? GRADES[gradeIndex] : 'You didn\'t review yet'}</h1>

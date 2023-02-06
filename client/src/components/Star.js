@@ -8,13 +8,13 @@ const Star = (props) => {
     const [isRated, setIsRated] = useState(false);
     const { id } = useParams();
     const changeGrade = (e) => {
-        props.changeGradeIndex(e.target.value);
         const data = {
             newrating: parseInt(e.target.value)+1,
             username: localStorage.getItem("loggedUser")
         }
         const response = api.put(`/product/${id}/rating`, data);
-        window.location.reload();
+        console.log(response.data);
+        props.changeGradeIndex(e.target.value);
     }
 
    
