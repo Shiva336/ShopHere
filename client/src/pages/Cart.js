@@ -86,10 +86,10 @@ function Cart() {
   }, []);
 
   async function handleClearCart() {
-   // const data = {
-     // username: localStorage.getItem("loggedUser"),
-    //};
-   // const response = await api.put(`order/clear`, data);
+   const data = {
+     username: localStorage.getItem("loggedUser"),
+    };
+   const response = await api.put(`order/clear`, data);
     window.location.reload();
   }
 
