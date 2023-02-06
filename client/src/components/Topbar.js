@@ -82,7 +82,7 @@ function Topbar() {
   const handleCartClick = () => {
     window.location = "http://localhost:3000/cart";
   };
-  
+
   const handleAdminClick = () => {
     window.location = "http://localhost:3000/admin";
   };
@@ -126,15 +126,27 @@ function Topbar() {
           )}
         </div>
         <div className="topbarIcons">
-          <div className="topbarIconItem">
-            <ShoppingCart
-              className="cart-icon"
-              onClick={() => {
-                navigate(`/cart`);
-              }}
-            />
-            <div className="topbarIconBadge">{cartCount}</div>
-          </div>
+          {loggedUser !== "admin" && (
+            <div className="topbarIconItem">
+              <ShoppingCart
+                className="cart-icon"
+                onClick={() => {
+                  navigate(`/cart`);
+                }}
+              />
+              <div className="topbarIconBadge">{cartCount}</div>
+            </div>
+          )}
+          {loggedUser === "admin" && (
+            <div className="topbarIconItem">
+              <ShoppingCart
+                className="cart-icon"
+                style={{color:"hsl(180, 3%, 7%)"}}
+              />
+              <div className="topbarIconBadge" 
+                style={{backgroundColor:"hsl(180, 3%, 7%)",color:"hsl(180, 3%, 7%)"}}>{cartCount}</div>
+            </div>
+          )}
           {(isLoggedIn === "undefined" || isLoggedIn === "false") && (
             <IoLogInOutline
               className="login-icon"
@@ -169,16 +181,18 @@ function Topbar() {
                         <span className="option-text">Logout</span>
                       </div>
                       <hr />
-                      {loggedUser!=='admin'&&
-                      <div className="all-btn" onClick={handleCartClick}>
-                        <ShoppingCart className="profile-open-icon" />
-                        <span className="option-text">My Cart</span>
-                      </div>}
-                      {loggedUser==='admin'&&
-                      <div className="all-btn" onClick={handleAdminClick}>
-                        <ShoppingCart className="profile-open-icon" />
-                        <span className="option-text">Upload product</span>
-                      </div>}
+                      {loggedUser !== "admin" && (
+                        <div className="all-btn" onClick={handleCartClick}>
+                          <ShoppingCart className="profile-open-icon" />
+                          <span className="option-text">My Cart</span>
+                        </div>
+                      )}
+                      {loggedUser === "admin" && (
+                        <div className="all-btn" onClick={handleAdminClick}>
+                          <ShoppingCart className="profile-open-icon" />
+                          <span className="option-text">Upload product</span>
+                        </div>
+                      )}
                     </div>
                   </>
                 )}

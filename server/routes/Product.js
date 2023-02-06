@@ -78,7 +78,19 @@ router.post("/", async(req,res)=> {
 //update rating
 router.put("/:id/rating", async(req,res)=> {
     try {
-        const product = productModel.findById(req.params.id);
+        const product = await productModel.findById(req.params.id);
+        console.log(product.rating)
+
+        if(product.rating) {
+          product.rating.map((rate)=> {
+            if(rate.username === req.body.username)
+            {
+              flag = 1;
+              console.log("a");
+              res.status(200).json(product);
+            }
+          })
+        }
         const updatedRating = {
           rating: req.body.newrating,
           username: req.body.username
@@ -104,12 +116,20 @@ router.put("/:id/review", async(req,res)=> {
   }
 });
 
-router.post('/upload',async(req, res)=> {
-  try{
-    console.log(req.body);
+router.put("/remove", async (req,res)=> {
+  try {
+      const product = await productModel.findById(req.body.id);
+      if(req.body.username === "admin") {  
+          await product.deleteOne({ id: req.body.id});
+          res.status(200).json("the product has been removed");
+      }   
+      else {
+          res.status(403).json("you are not an admin");
+      }
   }
-  catch(err){
-    console.log(err);}
-})
+  catch(err) {
+      res.status(500).json(err);
+  }
+});
 
 module.exports = router;

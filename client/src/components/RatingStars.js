@@ -26,7 +26,7 @@ const RatingStars = (props) => {
                     setGradeIndex(rate.rating-1);
             })
         })();
-    })
+    },[gradeIndex])
     return (
         <div className="container">
             <h1 className="result">{ GRADES[gradeIndex] ? GRADES[gradeIndex] : 'You didn\'t review yet'}</h1>
@@ -35,6 +35,7 @@ const RatingStars = (props) => {
                     GRADES.map((grade, index) => (
                         <Star 
                             index={index} 
+                            gradeIndex={gradeIndex}
                             key={grade} 
                             changeGradeIndex={changeGradeIndex}
                             style={ gradeIndex >= index ? activeStar : {}}
