@@ -12,11 +12,6 @@ function Cart() {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const checkoutHandler = async (amount) => {
-   // const sendIt = {
-     // username: localStorage.getItem("loggedUser"),
-    //};
-    //const response = await api.put(`order/clear`, sendIt);
-
     const {
       data: { key },
     } = await api.get("api/getkey");
@@ -42,9 +37,13 @@ function Cart() {
         x.style.left= "35vw";
         x.style.zIndex= "2000";
         x.style.top="50vh";
-        setTimeout(()=> {
+        setTimeout(async ()=> {
+          const sendIt = {
+            username: localStorage.getItem("loggedUser"),
+           };
+           const response = await api.put(`order/clear`, sendIt);
           navigate(`/`);
-        },5000)
+        },3000)
       },
       callback_url: "http://localhost:3002/api/paymentverification",
       
