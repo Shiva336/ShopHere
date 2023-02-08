@@ -14,6 +14,13 @@ function Productcategories() {
   const [isLoading, setIsLoading] = useState(true);
 
   async function handleCartClick(id, price){
+    
+    let curr_user = localStorage.getItem("loggedUser");
+    if (curr_user === "guest") {
+      alert("You must be logged in !");
+      window.location = "http://localhost:3000/login";
+    }
+    else{
     let productPrice = 0;
     let len = price.length;
     for(let i=0; i<len; i++) {
@@ -28,7 +35,7 @@ function Productcategories() {
       price: productPrice
     }
     const response = await api.put(`order/cart`,data);
-    window.location.replace("http://localhost:3000/cart");
+    window.location.replace("http://localhost:3000/cart");}
   };
 
   async function handleRemove(id){

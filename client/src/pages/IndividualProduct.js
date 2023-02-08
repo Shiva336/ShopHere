@@ -16,21 +16,27 @@ function IndividualProduct() {
   const [review, setReview] = useState("");
 
   async function handleCartClick(id, price) {
-    let productPrice = 0;
-    let len = price.length;
-    for (let i = 0; i < len; i++) {
-      if (price[i] >= "0" && price[i] <= "9") {
-        productPrice = productPrice * 10 + parseInt(price[i]);
+    let curr_user = localStorage.getItem("loggedUser");
+    if (curr_user === "guest") {
+      alert("You must be logged in !");
+      window.location = "http://localhost:3000/login";
+    } else {
+      let productPrice = 0;
+      let len = price.length;
+      for (let i = 0; i < len; i++) {
+        if (price[i] >= "0" && price[i] <= "9") {
+          productPrice = productPrice * 10 + parseInt(price[i]);
+        }
       }
+      const data = {
+        id: id,
+        number: 100,
+        username: localStorage.getItem("loggedUser"),
+        price: productPrice,
+      };
+      console.log(data);
+      const response = await api.put(`order/cart`, data);
     }
-    const data = {
-      id: id,
-      number: 100,
-      username: localStorage.getItem("loggedUser"),
-      price: productPrice,
-    };
-    console.log(data);
-    const response = await api.put(`order/cart`, data);
   }
 
   useEffect(() => {
@@ -144,16 +150,18 @@ function IndividualProduct() {
               onChange={updateReview}
             ></textarea>
           </div>
-            <button className="review-button" onClick={storeReview}>
-              Submit
-            </button>
-            <h1 className="review-text-header">Reviews</h1>
+          <button className="review-button" onClick={storeReview}>
+            Submit
+          </button>
+          <h1 className="review-text-header">Reviews</h1>
           <div id="ind-rev-cont">
             {product.reviews.map((review) => {
               return (
                 <div key={review.length} className="ind-review">
                   <div className="review-ind-cont">
-                  <VscDebugBreakpointLog size="30" className="bullet-icon"/><div className="ind-rev-text-wrap">{review}</div></div>
+                    <VscDebugBreakpointLog size="30" className="bullet-icon" />
+                    <div className="ind-rev-text-wrap">{review}</div>
+                  </div>
                 </div>
               );
             })}
