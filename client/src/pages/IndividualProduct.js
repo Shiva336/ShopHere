@@ -14,9 +14,17 @@ function IndividualProduct() {
   const [rated, setRated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [review, setReview] = useState("");
-
+  let curr_user = localStorage.getItem("loggedUser");
+  async function handleRemove(id) {
+    const data = {
+      id: id,
+      username: localStorage.getItem("loggedUser"),
+    };
+    console.log(data);
+    const response = await api.put(`product/remove`, data);
+    window.location.reload();
+  }
   async function handleCartClick(id, price) {
-    let curr_user = localStorage.getItem("loggedUser");
     if (curr_user === "guest") {
       alert("You must be logged in !");
       window.location = "http://localhost:3000/login";
@@ -123,14 +131,28 @@ function IndividualProduct() {
           </div>
           <div className="btn-rev-cont">
             <div>
-              <button
-                className="cart-button primary-btn"
-                onClick={() => {
-                  handleCartClick(product._id, product.price);
-                }}
-              >
-                Add to cart
-              </button>
+              {curr_user !== "admin" && (
+                <button
+                  className="cart-button primary-btn"
+                  onClick={() => {
+                    handleCartClick(product._id, product.price);
+                  }}
+                >
+                  Add to cart
+                </button>
+              )}
+              {curr_user === "admin" && (
+                <div className="cart-button-container">
+                  <button
+                    className="cart-button primary-btn"
+                    onClick={() => {
+                      handleRemove(product._id);
+                    }}
+                  >
+                    Remove product
+                  </button>
+                </div>
+              )}
             </div>
             <div className="rating-text">
               {getRating(product)} {rated && <AiTwotoneStar />}
