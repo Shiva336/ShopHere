@@ -13,44 +13,43 @@ function Productcategories() {
   const [rated, setRated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  async function handleCartClick(id, price){
-    
+  async function handleCartClick(id, price) {
     let curr_user = localStorage.getItem("loggedUser");
     if (curr_user === "guest") {
       alert("You must be logged in !");
       window.location = "http://localhost:3000/login";
-    }
-    else{
-    let productPrice = 0;
-    let len = price.length;
-    for(let i=0; i<len; i++) {
-      if(price[i]>='0' && price[i]<='9') {
-        productPrice = productPrice*10 + parseInt(price[i]);
+    } else {
+      let productPrice = 0;
+      let len = price.length;
+      for (let i = 0; i < len; i++) {
+        if (price[i] >= "0" && price[i] <= "9") {
+          productPrice = productPrice * 10 + parseInt(price[i]);
+        }
       }
+      const data = {
+        id: id,
+        number: 100,
+        username: localStorage.getItem("loggedUser"),
+        price: productPrice,
+      };
+      const response = await api.put(`order/cart`, data);
+      window.location.replace("http://localhost:3000/cart");
     }
-    const data = {
-      id: id,
-      number: 100,
-      username: localStorage.getItem("loggedUser"),
-      price: productPrice
-    }
-    const response = await api.put(`order/cart`,data);
-    window.location.replace("http://localhost:3000/cart");}
-  };
+  }
 
-  async function handleRemove(id){
+  async function handleRemove(id) {
     const data = {
       id: id,
-      username: localStorage.getItem("loggedUser")
-    }
+      username: localStorage.getItem("loggedUser"),
+    };
     console.log(data);
-    const response = await api.put(`product/remove`,data);
+    const response = await api.put(`product/remove`, data);
     window.location.reload();
   }
 
   //check if logged in as admin
-  let isAdmin = localStorage.getItem("loggedUser")==="admin";
- 
+  let isAdmin = localStorage.getItem("loggedUser") === "admin";
+
   useEffect(() => {
     (async () => {
       setIsLoading(true);
@@ -118,29 +117,37 @@ function Productcategories() {
                     </div>
                     <div className="individual-rating">
                       <span>
-                        Rating: {displayRating(product)} {rated&&<AiTwotoneStar />}
+                        Rating: {displayRating(product)}{" "}
+                        {rated && <AiTwotoneStar />}
                       </span>
                     </div>
                   </div>
                 </div>
-                {!isAdmin && <div className="cart-button-container">
-                      <button
-                        className="cart-button primary-btn"
-                        onClick={()=> {handleCartClick(product._id, product.price)}
-                      }
-                      >
-                        Add to cart
-                      </button>              
-                </div>}
+                {!isAdmin && (
+                  <div className="cart-button-container">
+                    <button
+                      className="cart-button primary-btn"
+                      onClick={() => {
+                        handleCartClick(product._id, product.price);
+                      }}
+                    >
+                      Add to cart
+                    </button>
+                  </div>
+                )}
 
-                {isAdmin && <div className="cart-button-container">
-                      <button
-                        className="cart-button primary-btn"
-                        onClick={()=> {handleRemove(product._id)}}
-                      >
-                        Remove product
-                      </button>
-                </div>}
+                {isAdmin && (
+                  <div className="cart-button-container">
+                    <button
+                      className="cart-button primary-btn"
+                      onClick={() => {
+                        handleRemove(product._id);
+                      }}
+                    >
+                      Remove product
+                    </button>
+                  </div>
+                )}
               </div>
             ))}
         </div>

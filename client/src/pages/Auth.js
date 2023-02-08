@@ -116,19 +116,17 @@ function Auth() {
 
     try {
       const response = await api.post(`/auth/login`, data);
-      if (response.data.name===data.name) {
+       if (response.data.name === "User not found") {
+        alert("User not found!");
+      } else if (response.data.name ==="Wrong password") {
+        alert("Wrong password!");
+      }
+      else if (response.data.name===data.name) {
         setIsRegistered(true);
-        console.log(response.data.name);
         localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("loggedUser", data.name);
         navigate("/");
-      }
-      if(response.data.name==="User not found"){
-        alert("User not found!");
-      }
-      if(response.data.name==='Wrong password'){
-        alert("Wrong password!");
-      }
+      } 
     } catch (error) {
       return;
     }
