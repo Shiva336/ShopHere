@@ -37,13 +37,16 @@ function Productcategories() {
     }
   }
 
-  async function handleRemove(id) {
+  async function handleRemove(id,productname) {
     const data = {
       id: id,
       username: localStorage.getItem("loggedUser"),
     };
     console.log(data);
     const response = await api.put(`product/remove`, data);
+    if(response.status === 200){
+      alert(productname+" removed successfully !");
+    }
     window.location.reload();
   }
 
@@ -141,7 +144,7 @@ function Productcategories() {
                     <button
                       className="cart-button primary-btn"
                       onClick={() => {
-                        handleRemove(product._id);
+                        handleRemove(product._id,product.name);
                       }}
                     >
                       Remove product

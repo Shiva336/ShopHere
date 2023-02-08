@@ -43,7 +43,7 @@ function Cart() {
            };
            const response = await api.put(`order/clear`, sendIt);
           navigate(`/`);
-        },3000)
+        },100)
       },
       callback_url: "http://localhost:3002/api/paymentverification",
       

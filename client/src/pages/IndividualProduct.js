@@ -22,7 +22,10 @@ function IndividualProduct() {
     };
     console.log(data);
     const response = await api.put(`product/remove`, data);
-    window.location.reload();
+    if(response.status === 200){
+      alert(product.name+" removed successfully !");
+    }
+    window.location.replace("http://localhost:3000");
   }
   async function handleCartClick(id, price) {
     if (curr_user === "guest") {
