@@ -80,7 +80,11 @@ function Topbar() {
   };
 
   const handleCartClick = () => {
-    window.location = "http://localhost:3000/cart";
+    let curr_user = localStorage.getItem("loggedUser");
+    if (curr_user === "guest") {
+      alert("You must be logged in !");
+      window.location = "http://localhost:3000/login";
+    } else window.location = "http://localhost:3000/cart";
   };
 
   const handleAdminClick = () => {
@@ -128,12 +132,7 @@ function Topbar() {
         <div className="topbarIcons">
           {loggedUser !== "admin" && (
             <div className="topbarIconItem">
-              <ShoppingCart
-                className="cart-icon"
-                onClick={() => {
-                  navigate(`/cart`);
-                }}
-              />
+              <ShoppingCart className="cart-icon" onClick={handleCartClick} />
               <div className="topbarIconBadge">{cartCount}</div>
             </div>
           )}
@@ -141,10 +140,17 @@ function Topbar() {
             <div className="topbarIconItem">
               <ShoppingCart
                 className="cart-icon"
-                style={{color:"hsl(180, 3%, 7%)"}}
+                style={{ color: "hsl(180, 3%, 7%)" }}
               />
-              <div className="topbarIconBadge" 
-                style={{backgroundColor:"hsl(180, 3%, 7%)",color:"hsl(180, 3%, 7%)"}}>{cartCount}</div>
+              <div
+                className="topbarIconBadge"
+                style={{
+                  backgroundColor: "hsl(180, 3%, 7%)",
+                  color: "hsl(180, 3%, 7%)",
+                }}
+              >
+                {cartCount}
+              </div>
             </div>
           )}
           {(isLoggedIn === "undefined" || isLoggedIn === "false") && (

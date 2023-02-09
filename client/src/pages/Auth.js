@@ -116,17 +116,17 @@ function Auth() {
 
     try {
       const response = await api.post(`/auth/login`, data);
-      console.log(response.status);
-      if (response.status === 200) {
+       if (response.data.name === "User not found") {
+        alert("User not found!");
+      } else if (response.data.name ==="Wrong password") {
+        alert("Wrong password!");
+      }
+      else if (response.data.name===data.name) {
         setIsRegistered(true);
         localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("loggedUser", data.name);
         navigate("/");
-      } else if (response.status === 400) {
-        setpasswordError(response);
-      } else if (response.status === 404) {
-        alert("user doesn't exist");
-      }
+      } 
     } catch (error) {
       console.log(error);
       return;
