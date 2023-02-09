@@ -74,17 +74,23 @@ function Productcategories() {
       alert("You must be logged in !");
       window.location = "http://localhost:3000/login";
     } else {
+      let productPrice = 0;
+      let len = price.length;
+      for (let i = 0; i < len; i++) {
+        if (price[i] >= "0" && price[i] <= "9") {
+          productPrice = productPrice * 10 + parseInt(price[i]);
+        }
+      }
       const data = {
         id: id,
         username: localStorage.getItem("loggedUser"),
-        price: price
+        price: productPrice
       };
-      console.log(price)
       const response = await api.put(`order/wishlist`, data);
       if(response.product==="found")
         alert(productname+" already in wishlist!");
       else alert(productname+" added successfully!")
-      // window.location.replace("http://localhost:3000/wishlist");
+      window.location.replace("http://localhost:3000/wishlist");
     }
   }
 

@@ -164,9 +164,10 @@ router.put("/wishlist", async(req,res)=> {
 });
 
 //get items from wishlist
-router.get("/wishlist/show", async(req,res)=> {
+router.put("/wishlist/show", async(req,res)=> {
     try {
         const user = await userModel.findOne({name: req.body.username});
+        console.log(user.wishlist);
         res.status(200).json(user.wishlist);
     }
     catch(err) {

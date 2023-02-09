@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { IoLogInOutline } from "react-icons/io5";
 import { GoSignOut } from "react-icons/go";
 import { FaUserCircle } from "react-icons/fa";
+import {FaHeart} from "react-icons/fa";
 import { api } from "../api";
 let urlLength = window.location.pathname;
 function Topbar() {
@@ -85,6 +86,14 @@ function Topbar() {
       alert("You must be logged in !");
       window.location = "http://localhost:3000/login";
     } else window.location = "http://localhost:3000/cart";
+  };
+  
+  const handleWishClick = () => {
+    let curr_user = localStorage.getItem("loggedUser");
+    if (curr_user === "guest") {
+      alert("You must be logged in !");
+      window.location = "http://localhost:3000/login";
+    } else window.location = "http://localhost:3000/wishlist";
   };
 
   const handleAdminClick = () => {
@@ -197,6 +206,14 @@ function Topbar() {
                         <div className="all-btn" onClick={handleAdminClick}>
                           <ShoppingCart className="profile-open-icon" />
                           <span className="option-text">Upload product</span>
+                        </div>
+                      )}
+                      
+                      <hr/>
+                      {loggedUser !== "admin" && (
+                        <div className="all-btn" onClick={handleWishClick}>
+                          <FaHeart className="profile-open-icon" />
+                          <span className="option-text">My Wishlist</span>
                         </div>
                       )}
                     </div>
