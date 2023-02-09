@@ -5,6 +5,7 @@ import AdminPage from "./Routes/Admin";
 import  ProductPage  from "./Routes/Product";
 import CategoryProductPage from "./Routes/Category";
 import CartPage from "./Routes/Cart";
+import WishlistPage from "./Routes/Wishlist";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
   {
     path: "/cart",
     element: <CartPage/>,
+    errorElement: <div>Something went wrong</div>,
+  },
+  {
+    path: "/wishlist",
+    element: <WishlistPage/>,
     errorElement: <div>Something went wrong</div>,
   },
 ]);

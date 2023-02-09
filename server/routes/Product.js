@@ -79,14 +79,11 @@ router.post("/", async(req,res)=> {
 router.put("/:id/rating", async(req,res)=> {
     try {
         const product = await productModel.findById(req.params.id);
-        console.log(product.rating)
-
         if(product.rating) {
           product.rating.map((rate)=> {
             if(rate.username === req.body.username)
             {
               flag = 1;
-              console.log("a");
               res.status(200).json(product);
             }
           })
