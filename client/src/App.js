@@ -5,7 +5,6 @@ import AdminPage from "./Routes/Admin";
 import  ProductPage  from "./Routes/Product";
 import CategoryProductPage from "./Routes/Category";
 import CartPage from "./Routes/Cart";
-import PaymentSuccess from "./pages/paymentSucess";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -38,11 +37,6 @@ const router = createBrowserRouter([
     element: <CartPage/>,
     errorElement: <div>Something went wrong</div>,
   },
-  {
-    path: "/paymentsuccess",
-    element: <PaymentSuccess/>,
-    errorElement: <div>Something went wrong</div>,
-  }
 ]);
 
 

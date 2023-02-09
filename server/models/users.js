@@ -48,6 +48,13 @@ const userSchema = new mongoose.Schema({
             type: Number,
             default: 0
         }
+    },
+    wishlist: {
+        items: {
+            type: Array,
+            default: [],
+            required: true
+        },
     }    
 },
 { timestamps: true }
