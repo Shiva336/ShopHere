@@ -91,6 +91,31 @@ function IndividualProduct() {
     const element = document.getElementById("ind-rev-cont");
     scroll.scrollTo(element.offsetTop);
   };
+  async function handleWishClick(id, price,productname) {
+    let curr_user = localStorage.getItem("loggedUser");
+    if (curr_user === "guest") {
+      alert("You must be logged in !");
+      window.location = "http://localhost:3000/login";
+    } else {
+      let productPrice = 0;
+      let len = price.length;
+      for (let i = 0; i < len; i++) {
+        if (price[i] >= "0" && price[i] <= "9") {
+          productPrice = productPrice * 10 + parseInt(price[i]);
+        }
+      }
+      const data = {
+        id: id,
+        username: localStorage.getItem("loggedUser"),
+        price: productPrice
+      };
+      const response = await api.put(`order/wishlist`, data);
+      if(response.product==="found")
+        alert(productname+" already in wishlist!");
+      else alert(productname+" added successfully!")
+      window.location.replace("http://localhost:3000/wishlist");
+    }
+  }
   return (
     <>
       {isLoading && <div className="loader"></div>}
@@ -135,6 +160,7 @@ function IndividualProduct() {
           <div className="btn-rev-cont">
             <div>
               {curr_user !== "admin" && (
+                <>
                 <button
                   className="cart-button primary-btn"
                   onClick={() => {
@@ -142,7 +168,14 @@ function IndividualProduct() {
                   }}
                 >
                   Add to cart
-                </button>
+                </button>   <button
+                      className="wish-button primary-btn"
+                      onClick={() => {
+                        handleWishClick(product._id, product.price,product.name);
+                      }}
+                    >
+                      Add to Wishlist
+                    </button></>
               )}
               {curr_user === "admin" && (
                 <div className="cart-button-container">
