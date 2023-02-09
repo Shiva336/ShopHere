@@ -116,6 +116,7 @@ function Auth() {
 
     try {
       const response = await api.post(`/auth/login`, data);
+      console.log(response.status);
       if (response.status === 200) {
         setIsRegistered(true);
         localStorage.setItem("isLoggedIn", true);
@@ -124,9 +125,10 @@ function Auth() {
       } else if (response.status === 400) {
         setpasswordError(response);
       } else if (response.status === 404) {
-        setnameError(response);
+        alert("user doesn't exist");
       }
     } catch (error) {
+      console.log(error);
       return;
     }
   }
