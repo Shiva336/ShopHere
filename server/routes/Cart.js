@@ -132,4 +132,46 @@ router.put("/clear", async(req,res)=> {
     }
 })
 
+//add to wishlist
+router.put("/wishlist", async(req,res)=> {
+    const user = await userModel.findOne({name: req.body.username});
+    let flag = 0;
+    try { 
+        user.wishlist.items.map((product)=> {
+        if(product.id === req.body.id)
+        {
+            flag = 1;
+            res.status(200).json({product: "found"});
+        }
+        });
+             
+        if(flag === 0) {
+            const wish = {
+                items: user.wishlist.items,
+            }
+            const newItem = {
+                id: req.body.id,
+                price: req.body.price,
+            }
+            wish.items.push(newItem);
+            await user.updateOne({ $set: {wishlist: wish}});
+            res.status(200).json(user);
+        }
+    }
+    catch(err) {
+        res.send(err);
+    }
+});
+
+//get items from wishlist
+router.get("/wishlist/show", async(req,res)=> {
+    try {
+        const user = await userModel.findOne({name: req.body.username});
+        res.status(200).json(user.wishlist);
+    }
+    catch(err) {
+        res.json(err);
+    }
+})
+
 module.exports = router;

@@ -128,6 +128,7 @@ function Auth() {
         navigate("/");
       } 
     } catch (error) {
+      console.log(error);
       return;
     }
   }
