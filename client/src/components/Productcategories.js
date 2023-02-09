@@ -37,15 +37,15 @@ function Productcategories() {
     }
   }
 
-  async function handleRemove(id,productname) {
+  async function handleRemove(id, productname) {
     const data = {
       id: id,
       username: localStorage.getItem("loggedUser"),
     };
     console.log(data);
     const response = await api.put(`product/remove`, data);
-    if(response.status === 200){
-      alert(productname+" removed successfully !");
+    if (response.status === 200) {
+      alert(productname + " removed successfully !");
     }
     window.location.reload();
   }
@@ -67,6 +67,26 @@ function Productcategories() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  async function handleWishClick(id, price,productname) {
+    let curr_user = localStorage.getItem("loggedUser");
+    if (curr_user === "guest") {
+      alert("You must be logged in !");
+      window.location = "http://localhost:3000/login";
+    } else {
+      const data = {
+        id: id,
+        username: localStorage.getItem("loggedUser"),
+        price: price
+      };
+      console.log(price)
+      const response = await api.put(`order/wishlist`, data);
+      if(response.product==="found")
+        alert(productname+" already in wishlist!");
+      else alert(productname+" added successfully!")
+      // window.location.replace("http://localhost:3000/wishlist");
+    }
+  }
 
   let avgRating = 0;
   let num = 0;
@@ -136,6 +156,14 @@ function Productcategories() {
                     >
                       Add to cart
                     </button>
+                    <button
+                      className="wish-button primary-btn"
+                      onClick={() => {
+                        handleWishClick(product._id, product.price,product.name);
+                      }}
+                    >
+                      Add to Wishlist
+                    </button>
                   </div>
                 )}
 
@@ -144,7 +172,7 @@ function Productcategories() {
                     <button
                       className="cart-button primary-btn"
                       onClick={() => {
-                        handleRemove(product._id,product.name);
+                        handleRemove(product._id, product.name);
                       }}
                     >
                       Remove product
